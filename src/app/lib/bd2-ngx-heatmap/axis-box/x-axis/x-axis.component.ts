@@ -1,13 +1,13 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ScaleLinear} from 'd3-scale';
 
-//[attr.transform]="axisTransform"
+//
 
 @Component({
-  selector: 'bd2-x-axis',
+  selector: '[bd2-x-axis]',
   template: `
     <svg:g class="x-axis" >
-      <svg:line x1="0" y1="0" y2="100" x2="100" stroke="grey"></svg:line>
+      <svg:line x1="0" y1="0" y2="0" [attr.x2]="x2" [attr.transform]="axisTransform" stroke="grey"></svg:line>
     </svg:g>
   `,
   styles: [
@@ -36,7 +36,7 @@ export class XAxisComponent implements OnInit, OnChanges {
 
     console.log('y possition', this.yPosition);
     console.log('range', this.xScale?.range());
-    //this.axisTransform = `translate(0,${this.yPosition})`;
+    this.axisTransform = `translate(0,${this.yPosition})`;
     this.x2 = this.xScale?.range()[1];
   }
 

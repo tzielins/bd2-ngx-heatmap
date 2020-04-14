@@ -3,7 +3,7 @@
     <g class="mainPane" style="background: aqua;" [attr.transform]="graphic.mainPaneTransform">
       <!--<svg:line x1="0" y1="0" x2="50" y2="100" stroke="gray"></svg:line>-->
 
-      <g [bd2-axis-box]="graphic"></g>
+      <g bd2-axis-box [graphic]="graphic" [debug]="'message'"></g>
 
     </g>
   </svg>

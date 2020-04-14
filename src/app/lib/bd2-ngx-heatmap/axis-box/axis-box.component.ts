@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {GraphicContext} from '../../bd2-heatmap.dom';
 
 @Component({
@@ -7,14 +7,21 @@ import {GraphicContext} from '../../bd2-heatmap.dom';
   styles: [
   ]
 })
-export class AxisBoxComponent implements OnInit {
+export class AxisBoxComponent implements OnInit, OnChanges {
 
-  @Input('bd2-axis-box')
+  @Input()
   graphic: GraphicContext;
+
+  @Input()
+  debug: string;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log("DM", this.debug);
   }
 
 }
