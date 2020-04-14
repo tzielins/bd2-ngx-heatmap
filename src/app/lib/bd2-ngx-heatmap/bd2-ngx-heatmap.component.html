@@ -1,7 +1,10 @@
 <div class="bd2-heatmap" [hidden]="hidden">
-  <svg [attr.width]="svgWidth" [attr.viewBox]="viewBox">
-    <g class="mainPane" style="background: aqua;" [attr.transform]="mainPaneTransform">
-      <bd2-axis-box></bd2-axis-box>
+  <svg *ngIf="graphic" [attr.width]="svgWidth" [attr.viewBox]="graphic.viewBox">
+    <g class="mainPane" style="background: aqua;" [attr.transform]="graphic.mainPaneTransform">
+      <!--<svg:line x1="0" y1="0" x2="50" y2="100" stroke="gray"></svg:line>-->
+
+      <g [bd2-axis-box]="graphic"></g>
+
     </g>
   </svg>
   {{series.length}}<br>

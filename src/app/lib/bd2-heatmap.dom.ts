@@ -14,7 +14,15 @@ export type LookAndFeel = {
 
 export class GraphicContext {
 
+  viewBox: string;
+  mainPaneTransform: string;
+
+  pWidth:number;
+  pHeight: number;
+
   workspaceWidth: number;
+  workspaceHeight: number;
+
   xScale: ScaleLinear<number, number>;
   yScale: ScaleBand<any>;
 }
@@ -22,8 +30,8 @@ export class GraphicContext {
 
 export type Serie = {
 
-  dataId?: number | string;
-  label: string;
+  key?: any;
+  label?: string;
   data: Point[];
 
   min: number;

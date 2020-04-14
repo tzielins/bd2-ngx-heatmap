@@ -1,1 +1,11 @@
-<p>axis-box works!</p>
+<svg:g *ngIf="graphic" class="axisWrapper">
+  <svg:circle
+    cx="0"
+    cy="0"
+    r="50">
+  </svg:circle>
+  <bd2-x-axis class="xTopAxis" [top]="true" [xScale]="graphic.xScale" [yPosition]="0"></bd2-x-axis>
+  <bd2-x-axis class="xBottomAxis" [top]="false" [xScale]="graphic.xScale" [yPosition]="graphic.workspaceHeight"></bd2-x-axis>
+  <svg:g class="yLeftAxis"></svg:g>
+  <svg:g class="yRightAxis"></svg:g>
+</svg:g>
