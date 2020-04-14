@@ -1,0 +1,9 @@
+<div class="bd2-heatmap" [hidden]="hidden">
+  <svg [attr.width]="svgWidth" [attr.viewBox]="viewBox">
+    <g class="mainPane" style="background: aqua;" [attr.transform]="mainPaneTransform">
+      <bd2-axis-box></bd2-axis-box>
+    </g>
+  </svg>
+  {{series.length}}<br>
+  {{ series | json }}
+</div>
