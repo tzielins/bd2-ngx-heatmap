@@ -12,8 +12,7 @@ export class AxisBoxComponent implements OnInit, OnChanges {
   @Input()
   graphic: GraphicContext;
 
-  @Input()
-  debug: string;
+
 
   constructor() { }
 
@@ -21,7 +20,6 @@ export class AxisBoxComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("DM", this.debug);
   }
 
 }

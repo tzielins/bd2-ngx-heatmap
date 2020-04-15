@@ -6,6 +6,9 @@ import { Bd2NgxHeatmapComponent } from './lib/bd2-ngx-heatmap/bd2-ngx-heatmap.co
 import { AxisBoxComponent } from './lib/bd2-ngx-heatmap/axis-box/axis-box.component';
 import { XAxisComponent } from './lib/bd2-ngx-heatmap/axis-box/x-axis/x-axis.component';
 import { YAxisComponent } from './lib/bd2-ngx-heatmap/axis-box/y-axis/y-axis.component';
+import { SerieBoxComponent } from './lib/bd2-ngx-heatmap/serie-box/serie-box.component';
+import { DataPointBoxComponent } from './lib/bd2-ngx-heatmap/serie-box/data-point-box/data-point-box.component';
+import { VTickMarkComponent } from './lib/bd2-ngx-heatmap/axis-box/x-axis/v-tick-mark/v-tick-mark.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +16,10 @@ import { YAxisComponent } from './lib/bd2-ngx-heatmap/axis-box/y-axis/y-axis.com
     Bd2NgxHeatmapComponent,
     AxisBoxComponent,
     XAxisComponent,
-    YAxisComponent
+    YAxisComponent,
+    SerieBoxComponent,
+    DataPointBoxComponent,
+    VTickMarkComponent,
   ],
   imports: [
     BrowserModule

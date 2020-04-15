@@ -1,5 +1,6 @@
 import {GraphicContext, LookAndFeel, Serie} from './bd2-heatmap.dom';
-import {scaleBand, scaleLinear} from 'd3-scale';
+import {scaleBand, scaleLinear, scaleQuantize} from 'd3-scale';
+import {colors} from './color-util';
 
 export class Bd2HeatmapUtil {
 
@@ -35,20 +36,31 @@ export class Bd2HeatmapUtil {
 
   addScales(context: GraphicContext, data: Serie[], lookAndFeel: LookAndFeel) {
 
-    const timeDomain = this.timeDomain(data);
+    /*const timeDomain = this.timeDomain(data);
 
     context.xScale = scaleLinear()
       .clamp(true)
       .domain(timeDomain)
       .range([0, context.workspaceWidth]);
 
+     */
+    const timeDomain = this.timeDomainBand(data);
+
+    context.xScale = scaleBand()
+      // .clamp(true)
+      .padding(0)
+      .domain(timeDomain)
+      .range([0, context.workspaceWidth]);
+
     const yDomain = data.map( s => s.key);
 
     context.yScale = scaleBand()
-      //.padding(lookAndFeel.rowGap)
-      .padding(0)
+      .paddingInner(lookAndFeel.rowGap)
+      // .padding(0)
       .domain(yDomain)
       .range([0, context.workspaceHeight]);
+
+    context.colorScale = this.heatmapScale(data);
   }
 
   timeDomain(data: Serie[]): [number, number] {
@@ -68,5 +80,40 @@ export class Bd2HeatmapUtil {
 
     return [min, max];
 
+  }
+
+  timeDomainBand(data: Serie[]): any[] {
+
+    const [min, max] = this.timeDomain(data);
+
+    const res = [];
+
+    for (let i = min; i <= max; i++) {
+      res.push(i);
+    }
+    return res;
+
+  }
+
+  heatmapScale(data: Serie[]) {
+
+    const domain = this.valuesRange(data);
+    const range = colors();
+
+    return scaleQuantize<string>().domain(domain).range(range);
+  }
+
+  valuesRange(traces: Serie[]): [number, number] {
+
+    if (traces.length === 0) { return [NaN, NaN]; }
+    let min = traces[0].min;
+    let max = traces[0].max;
+
+    traces.forEach( tr => {
+      min = Math.min(min, tr.min);
+      max = Math.max(max, tr.max);
+    });
+
+    return [min, max];
   }
 }

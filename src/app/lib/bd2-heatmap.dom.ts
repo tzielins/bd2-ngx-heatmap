@@ -1,6 +1,6 @@
 
 // import * as d3Scale from 'd3-scale';
-import {ScaleBand, ScaleLinear} from 'd3-scale';
+import {ScaleBand, ScaleLinear, ScaleQuantize} from 'd3-scale';
 
 export type LookAndFeel = {
   vMargin: number;
@@ -17,14 +17,17 @@ export class GraphicContext {
   viewBox: string;
   mainPaneTransform: string;
 
-  pWidth:number;
+  pWidth: number;
   pHeight: number;
 
   workspaceWidth: number;
   workspaceHeight: number;
 
-  xScale: ScaleLinear<number, number>;
+  // xScale: ScaleLinear<number, number>;
+  xScale: ScaleBand<any>;
   yScale: ScaleBand<any>;
+
+  colorScale: ScaleQuantize<string>;
 }
 
 
@@ -47,3 +50,10 @@ export type Point = {
   y: number;
 
 };
+
+export class Tick {
+
+  constructor(public x = 0, public y = 0, public label:any = undefined,
+              public top= false, public left= false) {}
+
+}
