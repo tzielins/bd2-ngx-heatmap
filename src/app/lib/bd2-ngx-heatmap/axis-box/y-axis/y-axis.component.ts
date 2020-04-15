@@ -1,20 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {ScaleBand, ScaleLinear} from 'd3-scale';
 
 @Component({
-  selector: 'bd2-y-axis',
+  selector: '[bd2-y-axis]',
   template: `
-    <p>
-      y-axis works!
-    </p>
+    <svg:g class="y-axis" [attr.transform]="axisTransform" >
+      <svg:line x1="0" y1="0" x2="0" [attr.y2]="y2" stroke="grey"></svg:line>
+    </svg:g>
   `,
   styles: [
   ]
 })
-export class YAxisComponent implements OnInit {
+export class YAxisComponent implements OnInit, OnChanges {
+
+  @Input()
+  yScale: ScaleBand<any>;
+
+  @Input()
+  xPosition: number;
+
+  @Input()
+  left = false;
+
+  axisTransform: string;
+  y2: number;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+
+    this.axisTransform = `translate(${this.xPosition},0)`;
+    this.y2 = this.yScale?.range()[1];
   }
 
 }

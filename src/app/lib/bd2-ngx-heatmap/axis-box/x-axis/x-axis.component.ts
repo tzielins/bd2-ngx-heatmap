@@ -6,8 +6,8 @@ import {ScaleLinear} from 'd3-scale';
 @Component({
   selector: '[bd2-x-axis]',
   template: `
-    <svg:g class="x-axis" >
-      <svg:line x1="0" y1="0" y2="0" [attr.x2]="x2" [attr.transform]="axisTransform" stroke="grey"></svg:line>
+    <svg:g class="x-axis" [attr.transform]="axisTransform" >
+      <svg:line x1="0" y1="0" y2="0" [attr.x2]="x2" stroke="grey"></svg:line>
     </svg:g>
   `,
   styles: [
@@ -34,8 +34,6 @@ export class XAxisComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
 
-    console.log('y possition', this.yPosition);
-    console.log('range', this.xScale?.range());
     this.axisTransform = `translate(0,${this.yPosition})`;
     this.x2 = this.xScale?.range()[1];
   }

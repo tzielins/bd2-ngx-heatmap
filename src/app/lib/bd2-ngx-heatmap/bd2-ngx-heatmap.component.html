@@ -4,6 +4,27 @@
       <!--<svg:line x1="0" y1="0" x2="50" y2="100" stroke="gray"></svg:line>-->
 
       <g bd2-axis-box [graphic]="graphic" [debug]="'message'"></g>
+      <g class="dataBox">
+
+        <g class="serieBox">
+          <g class="pointBox">
+            <rect x="0" y="0" width="20" height="30" fill="red"></rect>
+            <rect [attr.x]="graphic.xScale(-0.5)" [attr.y]="graphic.yScale(1)"
+                  [attr.width]="graphic.xScale(0.5)-graphic.xScale(-0.5)"
+                  [attr.height]="graphic.yScale.bandwidth()-1" fill="blue"></rect>
+            <rect [attr.x]="graphic.xScale(0.5)" [attr.y]="graphic.yScale(2)"
+                  [attr.width]="graphic.xScale(1.5)-graphic.xScale(0.5)-1"
+                  [attr.height]="graphic.yScale.bandwidth()-1" fill="grey" stroke="green"></rect>
+            <rect [attr.x]="graphic.xScale(1.5)" [attr.y]="graphic.yScale(2)"
+                  [attr.width]="graphic.xScale(2.5)-graphic.xScale(1.5)-1"
+                  [attr.height]="graphic.yScale.bandwidth()-1" fill="grey" stroke="pink"></rect>
+            <rect [attr.x]="graphic.xScale(2.5)" [attr.y]="graphic.yScale(2)"
+                  [attr.width]="graphic.xScale(3.5)-graphic.xScale(2.5)"
+                  [attr.height]="graphic.yScale.bandwidth()-1" fill="grey" stroke="red"></rect>
+
+          </g>
+        </g>
+      </g>
 
     </g>
   </svg>

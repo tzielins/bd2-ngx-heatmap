@@ -45,7 +45,8 @@ export class Bd2HeatmapUtil {
     const yDomain = data.map( s => s.key);
 
     context.yScale = scaleBand()
-      .padding(lookAndFeel.rowGap)
+      //.padding(lookAndFeel.rowGap)
+      .padding(0)
       .domain(yDomain)
       .range([0, context.workspaceHeight]);
   }

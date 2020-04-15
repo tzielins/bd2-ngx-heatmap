@@ -1,11 +1,6 @@
 <svg:g *ngIf="graphic" class="axisWrapper">
-  <svg:circle
-    cx="0"
-    cy="0"
-    r="20">
-  </svg:circle>
   <g bd2-x-axis class="xTopAxis" [top]="true" [xScale]="graphic.xScale" [yPosition]="0"></g>
   <g bd2-x-axis class="xBottomAxis" [top]="false" [xScale]="graphic.xScale" [yPosition]="graphic.workspaceHeight"></g>
-  <svg:g class="yLeftAxis"></svg:g>
-  <svg:g class="yRightAxis"></svg:g>
+  <g bd2-y-axis class="yLeftAxis" [left]="true" [yScale]="graphic.yScale" [xPosition]="0"></g>
+  <g bd2-y-axis class="yRightAxis" [left]="false" [yScale]="graphic.yScale" [xPosition]="graphic.workspaceWidth"></g>
 </svg:g>
