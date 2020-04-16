@@ -5,7 +5,7 @@ import {ScaleBand, ScaleLinear} from 'd3-scale';
   selector: '[bd2-y-axis]',
   template: `
     <svg:g class="y-axis" [attr.transform]="axisTransform" >
-      <svg:line x1="0" y1="0" x2="0" [attr.y2]="y2" stroke="grey"></svg:line>
+      <!--<svg:line x1="0" y1="0" x2="0" [attr.y2]="y2" stroke="grey"></svg:line>-->
     </svg:g>
   `,
   styles: [

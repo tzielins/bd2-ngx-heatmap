@@ -48,7 +48,8 @@ export class Bd2HeatmapUtil {
 
     context.xScale = scaleBand()
       // .clamp(true)
-      .padding(0)
+      .paddingInner(0)
+      .paddingOuter(0)
       .domain(timeDomain)
       .range([0, context.workspaceWidth]);
 
@@ -56,7 +57,7 @@ export class Bd2HeatmapUtil {
 
     context.yScale = scaleBand()
       .paddingInner(lookAndFeel.rowGap)
-      // .padding(0)
+      .paddingOuter(0)
       .domain(yDomain)
       .range([0, context.workspaceHeight]);
 

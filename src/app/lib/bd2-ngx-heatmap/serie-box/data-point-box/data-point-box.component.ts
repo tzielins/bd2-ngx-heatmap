@@ -7,7 +7,7 @@ import {ScaleBand, ScaleQuantize} from 'd3-scale';
   template: `
     <svg:rect *ngIf="point && xScale" [attr.x]="xScale(point.x)" [attr.y]="yPosition"
           [attr.width]="xScale.bandwidth()-1"
-          [attr.height]="yWidth" [attr.fill]="colorScale(point.y)" [attr.stroke]="colorScale(point.y)">
+          [attr.height]="yHeight" [attr.fill]="colorScale(point.y)" [attr.stroke]="colorScale(point.y)">
     </svg:rect>
   `,
   styles: [
@@ -22,7 +22,7 @@ export class DataPointBoxComponent implements OnInit {
   yPosition: number;
 
   @Input()
-  yWidth: number;
+  yHeight: number;
 
   @Input()
   xScale: ScaleBand<any>;

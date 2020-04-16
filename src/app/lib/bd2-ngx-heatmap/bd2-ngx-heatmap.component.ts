@@ -30,7 +30,7 @@ export class Bd2NgxHeatmapComponent implements OnInit {
     hMargin: 20,
 
     smallRowWidth: 20,
-    bigRowWidth: 40,
+    bigRowWidth: 20,
 
     rowGap: 0.05,
 

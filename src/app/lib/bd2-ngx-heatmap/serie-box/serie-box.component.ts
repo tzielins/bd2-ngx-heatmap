@@ -8,7 +8,7 @@ import {GraphicContext, Serie} from '../../bd2-heatmap.dom';
       <svg:g *ngFor="let point of serie.data" bd2-data-point-box
              [point]="point" [xScale]="graphic.xScale"
              [yPosition]="yPosition"
-             [yWidth]="yWidth" [colorScale]="graphic.colorScale"
+             [yHeight]="yHeight" [colorScale]="graphic.colorScale"
       ></svg:g>
     </svg:g>
   `,
@@ -25,7 +25,7 @@ export class SerieBoxComponent implements OnInit, OnChanges {
 
   yPosition: number;
 
-  yWidth: number;
+  yHeight: number;
 
   constructor() { }
 
@@ -36,7 +36,7 @@ export class SerieBoxComponent implements OnInit, OnChanges {
 
     if (this.graphic && this.serie) {
       this.yPosition = this.graphic.yScale(this.serie.key);
-      this.yWidth = this.graphic.yScale.bandwidth();
+      this.yHeight = this.graphic.yScale.bandwidth();
     }
   }
 
