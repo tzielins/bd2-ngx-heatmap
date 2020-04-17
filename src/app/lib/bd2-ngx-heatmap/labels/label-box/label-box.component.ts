@@ -1,11 +1,11 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {Serie} from '../../../bd2-heatmap.dom';
 
 @Component({
   selector: '[bd2-label-box]',
   template: `
     <svg:g *ngIf="serie" class="label"  >
-      <svg:text #text x="5" [attr.y]="yMiddle" 
+      <svg:text #text x="5" [attr.y]="yMiddle"
                 dominant-baseline="central" [style.font-size]="fontSize()"
                 [attr.opacity]="toggled ? 1 : 0.6" [attr.fill]="toggled ? 'white' : undefined"
       >{{serie.label}}</svg:text>
@@ -42,7 +42,7 @@ export class LabelBoxComponent implements OnInit {
   yHeight: number;
 
   @ViewChild('text')
-  textNode: any;
+  textNode: ElementRef<SVGGraphicsElement>;
 
   textBWidth = 0;
   textBY = 0;

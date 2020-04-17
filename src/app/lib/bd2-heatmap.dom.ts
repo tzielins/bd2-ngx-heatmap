@@ -28,6 +28,9 @@ export class GraphicContext {
   yScale: ScaleBand<any>;
 
   colorScale: ScaleQuantize<string>;
+
+  valuesFormatter: (n: number | { valueOf(): number }) => string;
+  domainFormatter: (n: number | { valueOf(): number }) => string;
 }
 
 

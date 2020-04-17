@@ -9,6 +9,7 @@ import {GraphicContext, Serie} from '../../bd2-heatmap.dom';
              [point]="point" [xScale]="graphic.xScale"
              [yPosition]="yPosition"
              [yHeight]="yHeight" [colorScale]="graphic.colorScale"
+             [label]="serie.label"
       ></svg:g>
     </svg:g>
   `,

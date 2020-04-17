@@ -2,12 +2,14 @@ import {Component, Input, OnInit} from '@angular/core';
 import {GraphicContext, LookAndFeel, Serie} from '../bd2-heatmap.dom';
 import {scaleBand, ScaleBand, scaleLinear, ScaleLinear} from 'd3-scale';
 import {Bd2HeatmapUtil} from '../bd2-heatmap-util';
+import {TooltipService} from './tooltip.service';
 
 
 @Component({
   selector: 'bd2-ngx-heatmap',
   templateUrl: './bd2-ngx-heatmap.component.html',
-  styleUrls: ['./bd2-ngx-heatmap.component.css']
+  styleUrls: ['./bd2-ngx-heatmap.component.css'],
+  providers: [TooltipService]
 })
 export class Bd2NgxHeatmapComponent implements OnInit {
 

@@ -2,6 +2,7 @@
   <svg *ngIf="graphic" [attr.width]="svgWidth" [attr.viewBox]="graphic.viewBox">
     <g class="mainPane" style="background: aqua;" [attr.transform]="graphic.mainPaneTransform">
 
+
       <g bd2-axis-box [graphic]="graphic"></g>
 
       <g class="dataBox">
@@ -17,6 +18,8 @@
       </g>
 
       <g bd2-labels [graphic]="graphic" [data]="series" class="labelsBox"></g>
+
+      <g bd2-tooltip [graphic]="graphic"></g>
 
     </g>
   </svg>

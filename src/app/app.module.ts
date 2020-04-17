@@ -11,6 +11,7 @@ import { DataPointBoxComponent } from './lib/bd2-ngx-heatmap/serie-box/data-poin
 import { VTickMarkComponent } from './lib/bd2-ngx-heatmap/axis-box/x-axis/v-tick-mark/v-tick-mark.component';
 import { LabelsComponent } from './lib/bd2-ngx-heatmap/labels/labels.component';
 import { LabelBoxComponent } from './lib/bd2-ngx-heatmap/labels/label-box/label-box.component';
+import { TooltipComponent } from './lib/bd2-ngx-heatmap/tooltip/tooltip.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { LabelBoxComponent } from './lib/bd2-ngx-heatmap/labels/label-box/label-
     VTickMarkComponent,
     LabelsComponent,
     LabelBoxComponent,
+    TooltipComponent,
   ],
   imports: [
     BrowserModule

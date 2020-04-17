@@ -1,6 +1,7 @@
 import {GraphicContext, LookAndFeel, Serie} from './bd2-heatmap.dom';
 import {scaleBand, scaleLinear, scaleQuantize} from 'd3-scale';
 import {colors} from './color-util';
+import {format} from 'd3-format';
 
 export class Bd2HeatmapUtil {
 
@@ -12,6 +13,7 @@ export class Bd2HeatmapUtil {
     this.addPaneAttributes(context, lookAndFeel);
 
     this.addScales(context, data, lookAndFeel);
+    this.addFormatters(context, data, lookAndFeel);
     return context;
   }
 
@@ -62,6 +64,16 @@ export class Bd2HeatmapUtil {
       .range([0, context.workspaceHeight]);
 
     context.colorScale = this.heatmapScale(data);
+
+
+  }
+
+  addFormatters(context: GraphicContext, data: Serie[], lookAndFeel: LookAndFeel) {
+    const timeDomain = this.timeDomain(data);
+    context.domainFormatter = this.formatForDomain(timeDomain);
+
+    const valuesRange = this.valuesRange(data);
+    context.valuesFormatter = this.formatForDomain(valuesRange);
   }
 
   timeDomain(data: Serie[]): [number, number] {
@@ -116,5 +128,19 @@ export class Bd2HeatmapUtil {
     });
 
     return [min, max];
+  }
+
+  formatForDomain([min, max]: [number, number]) {
+    const range = max - min;
+    if (range < 1) {
+      return format('.2~e');
+    }
+    if (range < 100) {
+      return format('.2~f');
+    }
+    if (range < 100000) {
+      return format('d');
+    }
+    return format('.2~e');
   }
 }
