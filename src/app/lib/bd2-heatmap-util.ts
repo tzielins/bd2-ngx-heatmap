@@ -2,6 +2,7 @@ import {GraphicContext, LookAndFeel, Serie} from './bd2-heatmap.dom';
 import {scaleBand, scaleLinear, scaleQuantize} from 'd3-scale';
 import {colors} from './color-util';
 import {format} from 'd3-format';
+import {interpolateSpectral} from 'd3-scale-chromatic';
 
 export class Bd2HeatmapUtil {
 
@@ -14,26 +15,34 @@ export class Bd2HeatmapUtil {
 
     this.addScales(context, data, lookAndFeel);
     this.addFormatters(context, data, lookAndFeel);
+
+    context.labelsColors = this.labelsColors(data);
     return context;
   }
 
   calculateDimensions(context: GraphicContext, data: Serie[], lookAndFeel: LookAndFeel) {
 
     context.pWidth = 500;
-    context.workspaceWidth = context.pWidth - 2 * lookAndFeel.hMargin;
+    context.workspaceWidth = context.pWidth - 3 * lookAndFeel.hMargin;
 
     context.workspaceHeight = this.calculateWorkspaceHeight(data, lookAndFeel);
     context.pHeight = context.workspaceHeight + 2 * lookAndFeel.vMargin;
   }
 
   calculateWorkspaceHeight(data: any[], lookAndFeel: LookAndFeel) {
-    return data.length <= 50 ? data.length * lookAndFeel.bigRowWidth : data.length * lookAndFeel.smallRowWidth;
+    if (data.length <= 25) {
+      return data.length * lookAndFeel.bigRowWidth;
+    }
+    if (data.length <= 100) {
+      return data.length * lookAndFeel.midRowWidth;
+    }
+    return data.length * lookAndFeel.smallRowWidth;
   }
 
   addPaneAttributes(context: GraphicContext, lookAndFeel: LookAndFeel) {
     context.viewBox = `0 0 500 ${context.pHeight}`;
 
-    context.mainPaneTransform = `translate(${lookAndFeel.hMargin}, ${lookAndFeel.vMargin})`;
+    context.mainPaneTransform = `translate(${2*lookAndFeel.hMargin}, ${lookAndFeel.vMargin})`;
   }
 
   addScales(context: GraphicContext, data: Serie[], lookAndFeel: LookAndFeel) {
@@ -142,5 +151,13 @@ export class Bd2HeatmapUtil {
       return format('d');
     }
     return format('.2~e');
+  }
+
+  labelsColors(traces: Serie[]) {
+    const size = traces.length;
+
+    return function(i: number) {
+      return interpolateSpectral(i / size);
+    };
   }
 }

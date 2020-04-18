@@ -7,6 +7,7 @@ export type LookAndFeel = {
   hMargin: number;
 
   smallRowWidth: number;
+  midRowWidth: number;
   bigRowWidth: number;
 
   rowGap: number;
@@ -28,6 +29,7 @@ export class GraphicContext {
   yScale: ScaleBand<any>;
 
   colorScale: ScaleQuantize<string>;
+  labelsColors: (n: number) => string;
 
   valuesFormatter: (n: number | { valueOf(): number }) => string;
   domainFormatter: (n: number | { valueOf(): number }) => string;

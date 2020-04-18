@@ -1,20 +1,29 @@
 <div class="bd2-heatmap" [hidden]="hidden">
   <svg *ngIf="graphic" [attr.width]="svgWidth" [attr.viewBox]="graphic.viewBox">
+    <defs>
+      <filter id="bd2-shadow">
+        <feDropShadow dx="1" dy="1" stdDeviation="1"/>
+      </filter>
+    </defs>
     <g class="mainPane" style="background: aqua;" [attr.transform]="graphic.mainPaneTransform">
 
 
       <g bd2-axis-box [graphic]="graphic"></g>
 
-      <g class="dataBox">
+      <g class="dataBox" >
 
         <pattern id="pattern-diagonal" width="10" height="10" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
           <line x1="0" y1="0" x2="0" y2="10" style="stroke:lightgrey; stroke-width:1" />
         </pattern>
 
         <rect class="dataBackground" x="2" y="2"
-              [attr.width]="graphic.workspaceWidth-4" [attr.height]="graphic.workspaceHeight-4" fill="url(#pattern-diagonal)">
+              [attr.width]="graphic.workspaceWidth-4" [attr.height]="graphic.workspaceHeight-4" fill="url(#pattern-diagonal)"
+
+        >
         </rect>
+
         <g *ngFor="let serie of series" bd2-serie-box [graphic]="graphic" [serie]="serie"></g>
+
       </g>
 
       <g bd2-labels [graphic]="graphic" [data]="series" class="labelsBox"></g>

@@ -12,11 +12,11 @@ import {debounceTime, map, tap} from 'rxjs/operators';
   selector: '[bd2-tooltip]',
   template: `
     <svg:g *ngIf="graphic" class="tooltipBox" [attr.display]="show ? undefined : 'none'" [attr.transform]="position"
-           style="font-size: 10;"
+           font-size="10"
     >
       <svg:g [attr.opacity]="ready ? 1 : 0">
       <svg:rect [attr.x]="textBX" [attr.width]="textBWidth" [attr.y]="textBY" [attr.height]="textBHeight"
-                fill="black" opacity="0.8"
+                fill="black" opacity="0.8" filter="url(#bd2-shadow)"
       ></svg:rect>
       <svg:text #text fill="white">
         <tspan x="1em">{{label}}</tspan>

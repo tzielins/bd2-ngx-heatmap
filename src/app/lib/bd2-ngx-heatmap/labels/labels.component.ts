@@ -5,9 +5,10 @@ import {GraphicContext, Serie} from '../../bd2-heatmap.dom';
   selector: '[bd2-labels]',
   template: `
     <svg:g *ngIf="graphic && data" class="labels">
-        <svg:g bd2-label-box *ngFor="let serie of data"
+        <svg:g bd2-label-box *ngFor="let serie of data; let ix = index"
                [serie]="serie"
                [yPosition]="yPosition(serie)" [yHeight]="yHeight()" [yMiddle]="yMiddle(serie)"
+               [band]="this.graphic.yScale.bandwidth()" [color]="this.graphic.labelsColors(ix)"
         ></svg:g>
     </svg:g>
   `,
@@ -32,6 +33,7 @@ export class LabelsComponent implements OnInit {
   }
 
   yMiddle(serie: Serie) {
+    //console.log("Band", this.graphic.yScale.bandwidth());
     return this.graphic.yScale(serie.key)+this.graphic.yScale.bandwidth()/2;
   }
 

@@ -18,6 +18,7 @@ export class Bd2NgxHeatmapComponent implements OnInit {
   @Input()
   set data(data: Serie[]) {
     this.series = data;
+    console.log("S", this.series.length);
 
     this.graphic = this.heatmapUtil.prepareGraphicContext(this.series, this.lookAndFeel);
   }
@@ -31,8 +32,9 @@ export class Bd2NgxHeatmapComponent implements OnInit {
     vMargin: 25,
     hMargin: 20,
 
-    smallRowWidth: 20,
-    bigRowWidth: 20,
+    smallRowWidth: 6,
+    midRowWidth: 12,
+    bigRowWidth: 25,
 
     rowGap: 0.05,
 

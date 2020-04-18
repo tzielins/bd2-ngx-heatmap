@@ -1,27 +1,32 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {Serie} from '../../../bd2-heatmap.dom';
+import {Observable, timer} from 'rxjs';
+import {map, tap} from 'rxjs/operators';
 
 @Component({
   selector: '[bd2-label-box]',
   template: `
     <svg:g *ngIf="serie" class="label"  >
-      <svg:text #text x="5" [attr.y]="yMiddle"
-                dominant-baseline="central" [style.font-size]="fontSize()"
+      <svg:text *ngIf="alwaysOn" x="5" [attr.y]="yMiddle"
+                dominant-baseline="central" [attr.font-size]="fontSize()"
                 [attr.opacity]="toggled ? 1 : 0.6" [attr.fill]="toggled ? 'white' : undefined"
       >{{serie.label}}</svg:text>
       <g (mouseout)="toggleLabel(false)" (mouseover)="toggleLabel(true)">
-        <svg:rect x="-7" width="7" [attr.y]="yPosition" [attr.height]="yHeight" fill="rgb(127, 127, 127)"
-                  ></svg:rect>
-        <svg:rect x="0" [attr.width]="textBWidth" [attr.y]="textBY" [attr.height]="textBHeight"
-                  fill="black" opacity="0.8" [attr.display]="toggled ? undefined : 'none'"
+        <!--<svg:rect x="-7" width="7" [attr.y]="yPosition" [attr.height]="yHeight" fill="rgb(127, 127, 127)"
+                  ></svg:rect>-->
+        <svg:circle [attr.cx]="-cirR()-2" [attr.cy]="yMiddle" [attr.r]="cirR()" [attr.fill]="'rgb(67, 125, 179)'"
+                    [attr.filter]="band < 7 ? undefined : 'url(#bd2-shadow)'"
+        ></svg:circle>
+        <svg:g [attr.opacity]="ready ? 1 : 0" [attr.display]="toggled ? undefined : 'none'" font-size="10">
+          <svg:rect x="0" [attr.width]="textBWidth" [attr.y]="textBY" [attr.height]="textBHeight"
+                    fill="black" opacity="0.8" filter="url(#bd2-shadow)"
 
-        ></svg:rect>
-        <svg:text x="5" [attr.y]="yMiddle"
-                  dominant-baseline="central" [style.font-size]="fontSize()"
-                  fill="white" [attr.display]="toggled ? undefined : 'none'"
-        >{{serie.label}}</svg:text>
+          ></svg:rect>
+          <svg:text #text x="5" [attr.y]="yMiddle"
+                    dominant-baseline="central" fill="white"
+          >{{serie.label}}</svg:text>
+        </svg:g>
       </g>
-      <!--<svg:line x1="-10" x2="20" [attr.y1]="yMiddle" [attr.y2]="yMiddle" stroke="black"></svg:line>-->
     </svg:g>
   `,
   styles: [
@@ -41,6 +46,15 @@ export class LabelBoxComponent implements OnInit {
   @Input()
   yHeight: number;
 
+  @Input()
+  band: number;
+
+  @Input()
+  color: string;
+
+  @Input()
+  alwaysOn = true;
+
   @ViewChild('text')
   textNode: ElementRef<SVGGraphicsElement>;
 
@@ -49,6 +63,7 @@ export class LabelBoxComponent implements OnInit {
   textBHeight;
 
   toggled = false;
+  ready = false;
 
   constructor() { }
 
@@ -56,19 +71,40 @@ export class LabelBoxComponent implements OnInit {
   }
 
   fontSize() {
-    return this.yHeight < 12 ? this.yHeight - 1 : 12;
+    if (this.yHeight > 10) {
+      return 10;
+    }
+    if (this.yHeight >= 5) {
+      return this.yHeight;
+    }
+    return 0;
   }
 
   toggleLabel(val?: boolean) {
 
     if (val === undefined) { val = !this.toggled; }
 
+    this.ready = false;
     this.toggled = val;
 
     if (this.toggled) {
-      this.setTextBBox(this.textBBox());
+      this.updateTextBBox().subscribe(
+        rect => {
+          if (this.toggled) {
+            this.ready = true;
+          }
+        }
+      );
     }
 
+  }
+
+  updateTextBBox(): Observable<SVGRect> {
+
+    return timer(0).pipe(
+      map( r => this.textBBox()),
+      tap( rect => this.setTextBBox(rect))
+    );
   }
 
   setTextBBox(rect: SVGRect) {
@@ -84,5 +120,10 @@ export class LabelBoxComponent implements OnInit {
     return this.textNode.nativeElement.getBBox();
   }
 
+  cirR() {
+    if (this.band >= 20) return 9;
+    if (this.band <= 5 ) return 2;
+    return this.band/2-1;
+  }
 
 }

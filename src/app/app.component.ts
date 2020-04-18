@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Serie} from './lib/bd2-heatmap.dom';
 
 
@@ -17,8 +17,23 @@ const dataJson72 =
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'bd2-ngx-heatmap';
 
   data: Serie[] = JSON.parse(dataJson72);
+
+  ngOnInit(): void {
+    const size = 25;
+    while (this.data.length < size) {
+      this.data = this.data.concat(JSON.parse(dataJson72));
+    }
+
+    this.data = this.data.slice(0, size);
+
+    this.data.forEach((v, i) => {
+      v.key = i;
+    });
+  }
+
+
 }
