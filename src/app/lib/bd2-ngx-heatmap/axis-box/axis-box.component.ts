@@ -1,11 +1,12 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {GraphicContext} from '../../bd2-heatmap.dom';
 
 @Component({
   selector: '[bd2-axis-box]',
   templateUrl: './axis-box.component.html',
   styles: [
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AxisBoxComponent implements OnInit, OnChanges {
 
@@ -13,8 +14,8 @@ export class AxisBoxComponent implements OnInit, OnChanges {
   graphic: GraphicContext;
 
 
-
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

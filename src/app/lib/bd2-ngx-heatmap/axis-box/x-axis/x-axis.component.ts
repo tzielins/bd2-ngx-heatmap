@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ScaleBand, ScaleLinear} from 'd3-scale';
 import {Tick} from '../../../bd2-heatmap.dom';
 
@@ -9,11 +9,12 @@ import {Tick} from '../../../bd2-heatmap.dom';
   template: `
     <svg:g class="x-axis" [attr.transform]="axisTransform" text-anchor="middle" font-size="9" fill="grey">
       <!--<svg:line x1="0" y1="0" y2="0" [attr.x2]="x2" stroke="grey"></svg:line>-->
-      <svg:g *ngFor="let tick of ticks" bd2-v-tick-mark class="tickMark" [tick]="tick"></svg:g>
+      <svg:g *ngFor="let tick of ticks; trackBy: trackByIndex" bd2-v-tick-mark class="tickMark" [tick]="tick"></svg:g>
     </svg:g>
   `,
   styles: [
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XAxisComponent implements OnInit, OnChanges {
 
@@ -30,7 +31,15 @@ export class XAxisComponent implements OnInit, OnChanges {
   x2: number;
   ticks: Tick[] = [];
 
-  constructor() { }
+
+
+  constructor() {
+  }
+
+  trackByIndex(index: number, item: any) {
+    return index;
+  }
+
 
   ngOnInit(): void {
   }

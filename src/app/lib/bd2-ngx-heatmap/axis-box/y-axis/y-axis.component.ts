@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ScaleBand, ScaleLinear} from 'd3-scale';
 
 @Component({
@@ -9,7 +9,8 @@ import {ScaleBand, ScaleLinear} from 'd3-scale';
     </svg:g>
   `,
   styles: [
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class YAxisComponent implements OnInit, OnChanges {
 
@@ -25,7 +26,15 @@ export class YAxisComponent implements OnInit, OnChanges {
   axisTransform: string;
   y2: number;
 
-  constructor() { }
+  //<svg:text display="none">{{message()}}</svg:text>
+  msgI = 1;
+  message() {
+    console.log('YAxis', this.msgI++);
+    return 'YAxis';
+  }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
