@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
-import {Point} from '../../../bd2-heatmap.dom';
+import {Point} from '../../../../bd2-heatmap.dom';
 import {ScaleBand, ScaleQuantize} from 'd3-scale';
-import {TooltipService} from '../../tooltip.service';
+import {TooltipService} from '../../../tooltip.service';
 
 @Component({
   selector: '[bd2-data-point-box]',

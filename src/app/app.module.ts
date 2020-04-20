@@ -6,13 +6,15 @@ import { Bd2NgxHeatmapComponent } from './lib/bd2-ngx-heatmap/bd2-ngx-heatmap.co
 import { AxisBoxComponent } from './lib/bd2-ngx-heatmap/axis-box/axis-box.component';
 import { XAxisComponent } from './lib/bd2-ngx-heatmap/axis-box/x-axis/x-axis.component';
 import { YAxisComponent } from './lib/bd2-ngx-heatmap/axis-box/y-axis/y-axis.component';
-import { SerieBoxComponent } from './lib/bd2-ngx-heatmap/serie-box/serie-box.component';
-import { DataPointBoxComponent } from './lib/bd2-ngx-heatmap/serie-box/data-point-box/data-point-box.component';
+import { SerieRowComponent } from './lib/bd2-ngx-heatmap/series-box/serie-row/serie-row.component';
+import { DataPointBoxComponent } from './lib/bd2-ngx-heatmap/series-box/serie-row/data-point-box/data-point-box.component';
 import { VTickMarkComponent } from './lib/bd2-ngx-heatmap/axis-box/x-axis/v-tick-mark/v-tick-mark.component';
 import { LabelsComponent } from './lib/bd2-ngx-heatmap/labels/labels.component';
 import { LabelBoxComponent } from './lib/bd2-ngx-heatmap/labels/label-box/label-box.component';
 import { TooltipComponent } from './lib/bd2-ngx-heatmap/tooltip/tooltip.component';
 import {FormsModule} from '@angular/forms';
+import { SeriesBoxComponent } from './lib/bd2-ngx-heatmap/series-box/series-box.component';
+import { PaneBackComponent } from './lib/bd2-ngx-heatmap/pane-back/pane-back.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +23,14 @@ import {FormsModule} from '@angular/forms';
     AxisBoxComponent,
     XAxisComponent,
     YAxisComponent,
-    SerieBoxComponent,
+    SerieRowComponent,
     DataPointBoxComponent,
     VTickMarkComponent,
     LabelsComponent,
     LabelBoxComponent,
     TooltipComponent,
+    SeriesBoxComponent,
+    PaneBackComponent,
   ],
   imports: [
     BrowserModule,

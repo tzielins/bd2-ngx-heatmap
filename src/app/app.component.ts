@@ -42,10 +42,17 @@ export class AppComponent implements OnInit {
 
   data: Serie[] = JSON.parse(dataJson72);
 
+  msgI = 1;
+
   ngOnInit(): void {
     this.size = this.data.length;
     this.lastX = Math.max(...this.data.map(s => s.data[s.data.length - 1].x));
 
+  }
+
+  message() {
+    console.log('Message', this.msgI++);
+    return 'Message';
   }
 
   testData() {

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SerieBoxComponent } from './serie-box.component';
+import { PaneBackComponent } from './pane-back.component';
 
-describe('SerieBoxComponent', () => {
-  let component: SerieBoxComponent;
-  let fixture: ComponentFixture<SerieBoxComponent>;
+describe('PaneBackComponent', () => {
+  let component: PaneBackComponent;
+  let fixture: ComponentFixture<PaneBackComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SerieBoxComponent ]
+      declarations: [ PaneBackComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SerieBoxComponent);
+    fixture = TestBed.createComponent(PaneBackComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

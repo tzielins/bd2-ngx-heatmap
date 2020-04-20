@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {GraphicContext, Serie} from '../../bd2-heatmap.dom';
+import {GraphicContext, Serie} from '../../../bd2-heatmap.dom';
 
 @Component({
-  selector: '[bd2-serie-box]',
+  selector: '[bd2-serie-row]',
   template: `
     <svg:g *ngIf="graphic && serie" class="serieBox">
       <svg:g *ngFor="let point of serie.data; trackBy: trackByIndex" bd2-data-point-box
@@ -18,7 +18,7 @@ import {GraphicContext, Serie} from '../../bd2-heatmap.dom';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SerieBoxComponent implements OnInit, OnChanges {
+export class SerieRowComponent implements OnInit, OnChanges {
 
   @Input()
   graphic: GraphicContext;

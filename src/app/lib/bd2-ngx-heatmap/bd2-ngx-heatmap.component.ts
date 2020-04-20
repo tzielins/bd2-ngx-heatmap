@@ -46,9 +46,7 @@ export class Bd2NgxHeatmapComponent implements OnInit {
 
   constructor() { }
 
-  trackByIndex(index: number, item: any) {
-    return index;
-  }
+
 
   ngOnInit(): void {
   }
