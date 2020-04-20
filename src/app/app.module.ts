@@ -12,6 +12,7 @@ import { VTickMarkComponent } from './lib/bd2-ngx-heatmap/axis-box/x-axis/v-tick
 import { LabelsComponent } from './lib/bd2-ngx-heatmap/labels/labels.component';
 import { LabelBoxComponent } from './lib/bd2-ngx-heatmap/labels/label-box/label-box.component';
 import { TooltipComponent } from './lib/bd2-ngx-heatmap/tooltip/tooltip.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TooltipComponent } from './lib/bd2-ngx-heatmap/tooltip/tooltip.componen
     TooltipComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

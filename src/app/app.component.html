@@ -4,6 +4,22 @@
     <div class="co-12">BioDare2 Heatmap</div>
   </div>
   <div class="row">
+    <div class="col-2">&nbsp;</div>
+    <div class="col-8">
+      <label>size</label><input [(ngModel)]="size">
+      <br/>
+      <label>lastX</label><input [(ngModel)]="lastX">
+      <br/>
+      <label>gaps</label><input type="checkbox" [(ngModel)]="gaps">
+      <br/>
+      <label>normalized</label><input type="checkbox" [(ngModel)]="normalized">
+      <br/>
+      <button (click)="generate()">Generate</button>
+
+    </div>
+    <div class="col-2">&nbsp;</div>
+  </div>
+  <div class="row">
     <div class="col-2" style="background: red;">&nbsp;</div>
     <div class="col-8">
       <bd2-ngx-heatmap [data]="data">
