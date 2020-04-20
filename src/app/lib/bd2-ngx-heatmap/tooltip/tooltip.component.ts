@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {TooltipService} from '../tooltip.service';
 import {Observable, Subscription, timer} from 'rxjs';
 import {GraphicContext, Point} from '../../bd2-heatmap.dom';
@@ -23,10 +23,12 @@ import {debounceTime, map, tap} from 'rxjs/operators';
         <tspan x="1em" dy="1.2em">{{values}}</tspan>
       </svg:text>
       </svg:g>
+      <svg:text display="none">{{message()}}</svg:text>
     </svg:g>
   `,
   styles: [
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TooltipComponent implements OnInit, OnDestroy {
 
@@ -49,7 +51,15 @@ export class TooltipComponent implements OnInit, OnDestroy {
   textBWidth: number;
   textBHeight: number;
 
-  constructor(private tooltip: TooltipService) { }
+  msgI = 1;
+  message() {
+    console.log('tooltip', this.msgI++);
+    return 'Tooltip';
+  }
+
+  constructor(private tooltip: TooltipService, private changeDetector: ChangeDetectorRef) {
+    console.log("Tooltip Created");
+  }
 
   ngOnInit(): void {
     this.subscription = this.tooltip.request$.pipe(
@@ -78,7 +88,7 @@ export class TooltipComponent implements OnInit, OnDestroy {
     this.values = this.formatValues(point);
 
     this.show = true;
-
+    this.changeDetector.markForCheck();
 
     this.updateTextBBox().subscribe(
       rect => {
@@ -86,6 +96,7 @@ export class TooltipComponent implements OnInit, OnDestroy {
           this.position = this.translateToDataLocation(location, this.textBWidth, this.graphic.workspaceWidth);
           this.ready = true;
         }
+        this.changeDetector.markForCheck();
       }
     );
 
@@ -102,6 +113,7 @@ export class TooltipComponent implements OnInit, OnDestroy {
 
   hideTooltip(point: Point, location: Point) {
     this.show = false;
+    this.changeDetector.markForCheck();
   }
 
   formatValues(point: Point) {

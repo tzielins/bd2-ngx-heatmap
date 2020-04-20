@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {Point} from '../../../bd2-heatmap.dom';
 import {ScaleBand, ScaleQuantize} from 'd3-scale';
 import {TooltipService} from '../../tooltip.service';
@@ -12,9 +12,11 @@ import {TooltipService} from '../../tooltip.service';
           (mouseout)="hideTooltip($event)" (mouseover)="showTooltip($event)"
     >
     </svg:rect>
+    <svg:text display="none">{{message()}}</svg:text>
   `,
   styles: [
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DataPointBoxComponent implements OnInit {
 
@@ -36,7 +38,15 @@ export class DataPointBoxComponent implements OnInit {
   @Input()
   label: string;
 
-  constructor(private tooltip: TooltipService) { }
+  msgI = 1;
+  message() {
+    //console.log('Box'+this.point?.x, this.msgI++);
+    return 'Box';
+  }
+
+  constructor(private tooltip: TooltipService) {
+    console.log("Box Created");
+  }
 
   ngOnInit(): void {
   }

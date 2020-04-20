@@ -22,7 +22,7 @@
         >
         </rect>
 
-        <g *ngFor="let serie of series" bd2-serie-box [graphic]="graphic" [serie]="serie"></g>
+        <g *ngFor="let serie of series; trackBy: trackByIndex" bd2-serie-box [graphic]="graphic" [serie]="serie"></g>
 
       </g>
 

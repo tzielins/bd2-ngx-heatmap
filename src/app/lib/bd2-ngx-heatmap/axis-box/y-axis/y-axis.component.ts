@@ -26,13 +26,6 @@ export class YAxisComponent implements OnInit, OnChanges {
   axisTransform: string;
   y2: number;
 
-  //<svg:text display="none">{{message()}}</svg:text>
-  msgI = 1;
-  message() {
-    console.log('YAxis', this.msgI++);
-    return 'YAxis';
-  }
-
   constructor() {
   }
 

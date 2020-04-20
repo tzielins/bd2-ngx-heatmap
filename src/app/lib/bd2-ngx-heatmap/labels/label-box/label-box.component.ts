@@ -1,4 +1,4 @@
-import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {Serie} from '../../../bd2-heatmap.dom';
 import {Observable, timer} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
@@ -27,10 +27,12 @@ import {map, tap} from 'rxjs/operators';
           >{{serie.label}}</svg:text>
         </svg:g>
       </g>
+      <svg:text display="none">{{message()}}</svg:text>
     </svg:g>
   `,
   styles: [
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LabelBoxComponent implements OnInit {
 
@@ -65,7 +67,14 @@ export class LabelBoxComponent implements OnInit {
   toggled = false;
   ready = false;
 
-  constructor() { }
+  msgI = 1;
+  message() {
+    console.log('Label', this.msgI++);
+    return 'Label';
+  }
+  constructor(private changeDetector: ChangeDetectorRef) {
+    console.log("Label Created");
+  }
 
   ngOnInit(): void {
   }
@@ -93,6 +102,7 @@ export class LabelBoxComponent implements OnInit {
           if (this.toggled) {
             this.ready = true;
           }
+          this.changeDetector.markForCheck();
         }
       );
     }
