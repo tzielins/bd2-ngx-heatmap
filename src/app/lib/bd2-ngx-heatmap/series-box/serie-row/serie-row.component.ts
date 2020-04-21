@@ -5,11 +5,12 @@ import {GraphicContext, Serie} from '../../../bd2-heatmap.dom';
   selector: '[bd2-serie-row]',
   template: `
     <svg:g *ngIf="graphic && serie" class="serieBox">
-      <svg:g *ngFor="let point of serie.data; trackBy: trackByIndex" bd2-data-point-box
+      <svg:g *ngFor="let point of serie.data; last as isLast trackBy: trackByIndex" bd2-data-point-box
              [point]="point" [xScale]="graphic.xScale"
              [yPosition]="yPosition"
              [yHeight]="yHeight" [colorScale]="graphic.colorScale"
              [label]="serie.label"
+             [lastPoint]="lastSerie && isLast"
       ></svg:g>
     </svg:g>
   `,
@@ -24,6 +25,9 @@ export class SerieRowComponent implements OnInit, OnChanges {
 
   @Input()
   serie: Serie;
+
+  @Input()
+  lastSerie = false;
 
   yPosition: number;
 

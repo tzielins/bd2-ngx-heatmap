@@ -4,7 +4,8 @@ import {GraphicContext, Serie} from '../../bd2-heatmap.dom';
 @Component({
   selector: '[bd2-series-box]',
   template: `
-    <svg:g *ngFor="let serie of series; trackBy: trackByIndex" bd2-serie-row [graphic]="graphic" [serie]="serie"></svg:g>
+    <svg:g *ngFor="let serie of series; last as isLast; trackBy: trackByIndex"
+           bd2-serie-row [graphic]="graphic" [serie]="serie" [lastSerie]="isLast"></svg:g>
   `,
   styles: [
   ],

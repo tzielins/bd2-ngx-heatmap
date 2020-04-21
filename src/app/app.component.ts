@@ -44,10 +44,17 @@ export class AppComponent implements OnInit {
 
   msgI = 1;
 
+  busy = false;
+
   ngOnInit(): void {
     this.size = this.data.length;
     this.lastX = Math.max(...this.data.map(s => s.data[s.data.length - 1].x));
 
+  }
+
+  processing($event: boolean) {
+    console.log("Processing", $event);
+    this.busy = $event;
   }
 
   message() {

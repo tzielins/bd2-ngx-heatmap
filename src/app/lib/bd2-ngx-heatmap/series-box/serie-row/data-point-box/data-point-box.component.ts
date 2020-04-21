@@ -1,7 +1,19 @@
-import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  Input,
+  NgZone,
+  OnDestroy,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import {Point} from '../../../../bd2-heatmap.dom';
 import {ScaleBand, ScaleQuantize} from 'd3-scale';
 import {TooltipService} from '../../../tooltip.service';
+import {StateService} from '../../../state.service';
 
 // (mouseout)="hideTooltip($event)" (mouseover)="showTooltip($event)"
 @Component({
@@ -17,7 +29,7 @@ import {TooltipService} from '../../../tooltip.service';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DataPointBoxComponent implements OnInit, OnDestroy, AfterViewInit {
+export class DataPointBoxComponent implements OnInit, OnDestroy, AfterViewInit, AfterViewChecked {
 
   @ViewChild('box')
   boxNode: ElementRef<SVGGraphicsElement>;
@@ -42,8 +54,11 @@ export class DataPointBoxComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input()
   label: string;
 
+  @Input()
+  lastPoint = false;
 
-  constructor(private tooltip: TooltipService, private zone: NgZone) {
+
+  constructor(private tooltip: TooltipService, private stateService: StateService, private zone: NgZone) {
   }
 
   ngAfterViewInit(): void {
@@ -62,7 +77,11 @@ export class DataPointBoxComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit(): void {
   }
 
-
+  ngAfterViewChecked(): void {
+    if (this.lastPoint) {
+      this.stateService.finishedRendering();
+    }
+  }
 
   ngOnDestroy(): void {
     this.removeMouseListeners(this.boxNode);
@@ -91,6 +110,8 @@ export class DataPointBoxComponent implements OnInit, OnDestroy, AfterViewInit {
     const location = {x: this.xScale(this.point.x), y: this.yPosition};
     this.tooltip.showTooltip(this.label, this.point, location);
   }
+
+
 
 
 
