@@ -27,7 +27,6 @@ import {map, tap} from 'rxjs/operators';
           >{{serie.label}}</svg:text>
         </svg:g>
       </g>
-      <svg:text display="none">{{message()}}</svg:text>
     </svg:g>
   `,
   styles: [
@@ -67,13 +66,7 @@ export class LabelBoxComponent implements OnInit {
   toggled = false;
   ready = false;
 
-  msgI = 1;
-  message() {
-    console.log('Label', this.msgI++);
-    return 'Label';
-  }
   constructor(private changeDetector: ChangeDetectorRef) {
-    console.log("Label Created");
   }
 
   ngOnInit(): void {
@@ -131,9 +124,9 @@ export class LabelBoxComponent implements OnInit {
   }
 
   cirR() {
-    if (this.band >= 20) return 9;
-    if (this.band <= 5 ) return 2;
-    return this.band/2-1;
+    if (this.band >= 20) { return 9; }
+    if (this.band <= 5 ) { return 2; }
+    return this.band / 2 - 1;
   }
 
 }

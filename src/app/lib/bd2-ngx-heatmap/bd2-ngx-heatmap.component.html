@@ -5,7 +5,7 @@
         <feDropShadow dx="1" dy="1" stdDeviation="1"/>
       </filter>
     </defs>
-    <g class="mainPane" style="background: aqua;" [attr.transform]="graphic.mainPaneTransform">
+    <g class="mainPane" [attr.transform]="graphic.mainPaneTransform">
 
       <g bd2-pane-back [graphic]="graphic" class="paneBack"></g>
 
@@ -25,6 +25,5 @@
 
     </g>
   </svg>
-  {{series.length}}<br>
-  {{ series | json }}
+  <!--{{ series | json }}-->
 </div>

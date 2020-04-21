@@ -83,7 +83,7 @@ export class AppComponent implements OnInit {
   extend(data: Point[], lastX: number) {
 
 
-    while (data.length <= lastX+1) {
+    while (data.length <= lastX + 1) {
       const ext: Point[] = data.map( p => ({x: p.x, y: p.y}));
       data = data.concat(ext);
     }

@@ -1,4 +1,3 @@
-
 import {scaleLinear} from 'd3-scale';
 import {rgb} from 'd3-color';
 import {range} from 'd3-array';

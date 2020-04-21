@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {ScaleBand, ScaleLinear} from 'd3-scale';
+import {ScaleBand} from 'd3-scale';
 import {Tick} from '../../../bd2-heatmap.dom';
 
 //
@@ -73,7 +73,7 @@ export class XAxisComponent implements OnInit, OnChanges {
     for (let i = 0; i < domain.length; i += step) {
       ticks.push(domain[i]);
     }
-    //console.log('T', ticks);
+    // console.log('T', ticks);
     return ticks;
   }
 

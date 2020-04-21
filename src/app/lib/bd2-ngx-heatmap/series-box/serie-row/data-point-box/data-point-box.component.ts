@@ -3,7 +3,7 @@ import {Point} from '../../../../bd2-heatmap.dom';
 import {ScaleBand, ScaleQuantize} from 'd3-scale';
 import {TooltipService} from '../../../tooltip.service';
 
-//(mouseout)="hideTooltip($event)" (mouseover)="showTooltip($event)"
+// (mouseout)="hideTooltip($event)" (mouseover)="showTooltip($event)"
 @Component({
   selector: '[bd2-data-point-box]',
   template: `
@@ -12,7 +12,6 @@ import {TooltipService} from '../../../tooltip.service';
           [attr.height]="yHeight" [attr.fill]="colorScale(point.y)" [attr.stroke]="colorScale(point.y)"
     >
     </svg:rect>
-    <svg:text display="none">{{message()}}</svg:text>
   `,
   styles: [
   ],
@@ -43,14 +42,8 @@ export class DataPointBoxComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input()
   label: string;
 
-  msgI = 1;
-  message() {
-    //console.log('Box'+this.point?.x, this.msgI++);
-    return 'Box';
-  }
 
   constructor(private tooltip: TooltipService, private zone: NgZone) {
-    console.log("Box Created");
   }
 
   ngAfterViewInit(): void {
@@ -96,10 +89,7 @@ export class DataPointBoxComponent implements OnInit, OnDestroy, AfterViewInit {
 
   showTooltip($event: any) {
     const location = {x: this.xScale(this.point.x), y: this.yPosition};
-    //console.log("Show", location);
-    //this.zone.run(() =>
-      this.tooltip.showTooltip(this.label, this.point, location)
-    //);
+    this.tooltip.showTooltip(this.label, this.point, location);
   }
 
 

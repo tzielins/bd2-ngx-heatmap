@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { VTickMarkComponent } from './v-tick-mark.component';
+import {VTickMarkComponent} from './v-tick-mark.component';
 
 describe('VTickMarkComponent', () => {
   let component: VTickMarkComponent;

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { YAxisComponent } from './y-axis.component';
+import {YAxisComponent} from './y-axis.component';
 
 describe('YAxisComponent', () => {
   let component: YAxisComponent;

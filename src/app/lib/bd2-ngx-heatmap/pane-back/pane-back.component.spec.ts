@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PaneBackComponent } from './pane-back.component';
+import {PaneBackComponent} from './pane-back.component';
 
 describe('PaneBackComponent', () => {
   let component: PaneBackComponent;

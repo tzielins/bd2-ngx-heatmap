@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {ScaleBand, ScaleLinear} from 'd3-scale';
+import {ScaleBand} from 'd3-scale';
 
 @Component({
   selector: '[bd2-y-axis]',

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { XAxisComponent } from './x-axis.component';
+import {XAxisComponent} from './x-axis.component';
 
 describe('XAxisComponent', () => {
   let component: XAxisComponent;

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DataPointBoxComponent } from './data-point-box.component';
+import {DataPointBoxComponent} from './data-point-box.component';
 
 describe('DataPointBoxComponent', () => {
   let component: DataPointBoxComponent;

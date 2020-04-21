@@ -1,6 +1,16 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  Output,
+  SimpleChanges
+} from '@angular/core';
 import {GraphicContext, LookAndFeel, Serie} from '../bd2-heatmap.dom';
-import {scaleBand, ScaleBand, scaleLinear, ScaleLinear} from 'd3-scale';
 import {Bd2HeatmapUtil} from '../bd2-heatmap-util';
 import {TooltipService} from './tooltip.service';
 
@@ -12,20 +22,23 @@ import {TooltipService} from './tooltip.service';
   providers: [TooltipService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Bd2NgxHeatmapComponent implements OnInit, OnChanges {
+export class Bd2NgxHeatmapComponent implements OnInit, OnDestroy, OnChanges {
 
   series: Serie[];
 
   @Input()
   set data(data: Serie[]) {
+    this.processing.next(true);
     this.series = data;
-    console.log("S", this.series.length);
 
     this.graphic = this.heatmapUtil.prepareGraphicContext(this.series, this.lookAndFeel);
   }
 
   @Input()
   hidden = false;
+
+  @Output()
+  processing = new EventEmitter<boolean>();
 
   svgWidth = '100%';
 
@@ -49,12 +62,16 @@ export class Bd2NgxHeatmapComponent implements OnInit, OnChanges {
 
 
   ngOnInit(): void {
-    //this.changeDetector.detach();
+    // this.changeDetector.detach();
+  }
+
+  ngOnDestroy() {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    //this.changeDetector.detectChanges();
+    // this.changeDetector.detectChanges();
   }
+
 
 
 

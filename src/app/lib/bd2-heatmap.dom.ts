@@ -1,6 +1,5 @@
-
 // import * as d3Scale from 'd3-scale';
-import {ScaleBand, ScaleLinear, ScaleQuantize} from 'd3-scale';
+import {ScaleBand, ScaleQuantize} from 'd3-scale';
 
 export type LookAndFeel = {
   vMargin: number;
@@ -58,7 +57,7 @@ export type Point = {
 
 export class Tick {
 
-  constructor(public x = 0, public y = 0, public label:any = undefined,
+  constructor(public x = 0, public y = 0, public label: any = undefined,
               public top= false, public left= false) {}
 
 }

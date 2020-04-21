@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SeriesBoxComponent } from './series-box.component';
+import {SeriesBoxComponent} from './series-box.component';
 
 describe('SeriesBoxComponent', () => {
   let component: SeriesBoxComponent;

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { LabelBoxComponent } from './label-box.component';
+import {LabelBoxComponent} from './label-box.component';
 
 describe('LabelBoxComponent', () => {
   let component: LabelBoxComponent;

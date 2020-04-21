@@ -11,7 +11,6 @@ import {GraphicContext, Serie} from '../../../bd2-heatmap.dom';
              [yHeight]="yHeight" [colorScale]="graphic.colorScale"
              [label]="serie.label"
       ></svg:g>
-      <svg:text display="none">{{message()}}</svg:text>
     </svg:g>
   `,
   styles: [
@@ -30,13 +29,7 @@ export class SerieRowComponent implements OnInit, OnChanges {
 
   yHeight: number;
 
-  msgI = 1;
-  message() {
-    console.log('Serie', this.msgI++);
-    return 'Serie';
-  }
   constructor() {
-    console.log("Serie Created");
   }
 
   trackByIndex(index: number, item: any) {

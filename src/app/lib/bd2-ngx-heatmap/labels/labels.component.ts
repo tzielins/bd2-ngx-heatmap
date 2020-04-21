@@ -10,7 +10,6 @@ import {GraphicContext, Serie} from '../../bd2-heatmap.dom';
                [yPosition]="yPosition(serie)" [yHeight]="yHeight()" [yMiddle]="yMiddle(serie)"
                [band]="this.graphic.yScale.bandwidth()" [color]="this.graphic.labelsColors(ix)"
         ></svg:g>
-      <svg:text display="none">{{message()}}</svg:text>
     </svg:g>
   `,
   styles: [
@@ -25,14 +24,7 @@ export class LabelsComponent implements OnInit {
   @Input()
   data: Serie[];
 
-  //
-  msgI = 1;
-  message() {
-    console.log('Labels', this.msgI++);
-    return 'Labels';
-  }
   constructor() {
-    console.log("Labels Created");
   }
 
   trackByIndex(index: number, item: any) {
@@ -47,13 +39,13 @@ export class LabelsComponent implements OnInit {
   }
 
   yMiddle(serie: Serie) {
-    //console.log("Band", this.graphic.yScale.bandwidth());
-    return this.graphic.yScale(serie.key)+this.graphic.yScale.bandwidth()/2;
+    // console.log("Band", this.graphic.yScale.bandwidth());
+    return this.graphic.yScale(serie.key) + this.graphic.yScale.bandwidth() / 2;
   }
 
 
   yHeight() {
-    return 2+this.graphic.yScale.bandwidth() / 2;
+    return 2 + this.graphic.yScale.bandwidth() / 2;
   }
 
 

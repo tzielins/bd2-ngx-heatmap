@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AxisBoxComponent } from './axis-box.component';
+import {AxisBoxComponent} from './axis-box.component';
 
 describe('AxisBoxComponent', () => {
   let component: AxisBoxComponent;

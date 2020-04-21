@@ -1,5 +1,5 @@
 import {GraphicContext, LookAndFeel, Serie} from './bd2-heatmap.dom';
-import {scaleBand, scaleLinear, scaleQuantize} from 'd3-scale';
+import {scaleBand, scaleQuantize} from 'd3-scale';
 import {colors} from './color-util';
 import {format} from 'd3-format';
 import {interpolateSpectral} from 'd3-scale-chromatic';
@@ -42,7 +42,7 @@ export class Bd2HeatmapUtil {
   addPaneAttributes(context: GraphicContext, lookAndFeel: LookAndFeel) {
     context.viewBox = `0 0 500 ${context.pHeight}`;
 
-    context.mainPaneTransform = `translate(${2*lookAndFeel.hMargin}, ${lookAndFeel.vMargin})`;
+    context.mainPaneTransform = `translate(${2 * lookAndFeel.hMargin}, ${lookAndFeel.vMargin})`;
   }
 
   addScales(context: GraphicContext, data: Serie[], lookAndFeel: LookAndFeel) {

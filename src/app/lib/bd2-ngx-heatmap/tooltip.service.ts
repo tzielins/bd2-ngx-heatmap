@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Point} from '../bd2-heatmap.dom';
 import {Subject} from 'rxjs';
 
