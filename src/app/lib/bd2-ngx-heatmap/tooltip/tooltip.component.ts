@@ -62,6 +62,7 @@ export class TooltipComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
     this.subscription = this.tooltip.request$.pipe(
         debounceTime(100)
       ).subscribe( request => this.handleRequest(request));
@@ -74,11 +75,13 @@ export class TooltipComponent implements OnInit, OnDestroy {
   }
 
   handleRequest([show, label, point, location]: [boolean, string, Point, Point]) {
+    //console.log("Handling request", show);
     if (show) {
       this.showTooltip(label, point, location);
     } else {
       this.hideTooltip(point, location);
     }
+    //this.changeDetector.detectChanges();
   }
 
   showTooltip(label: string, point: Point, location: Point) {
@@ -88,15 +91,16 @@ export class TooltipComponent implements OnInit, OnDestroy {
     this.values = this.formatValues(point);
 
     this.show = true;
-    this.changeDetector.markForCheck();
-
+    //this.changeDetector.markForCheck();
+    this.changeDetector.detectChanges();
     this.updateTextBBox().subscribe(
       rect => {
         if (this.show) {
           this.position = this.translateToDataLocation(location, this.textBWidth, this.graphic.workspaceWidth);
           this.ready = true;
         }
-        this.changeDetector.markForCheck();
+        //this.changeDetector.markForCheck();
+        this.changeDetector.detectChanges();
       }
     );
 
@@ -113,7 +117,8 @@ export class TooltipComponent implements OnInit, OnDestroy {
 
   hideTooltip(point: Point, location: Point) {
     this.show = false;
-    this.changeDetector.markForCheck();
+    //this.changeDetector.markForCheck();
+    this.changeDetector.detectChanges();
   }
 
   formatValues(point: Point) {

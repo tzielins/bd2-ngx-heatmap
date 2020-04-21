@@ -1,15 +1,15 @@
-import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, Input, NgZone, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Point} from '../../../../bd2-heatmap.dom';
 import {ScaleBand, ScaleQuantize} from 'd3-scale';
 import {TooltipService} from '../../../tooltip.service';
 
+//(mouseout)="hideTooltip($event)" (mouseover)="showTooltip($event)"
 @Component({
   selector: '[bd2-data-point-box]',
   template: `
-    <svg:rect *ngIf="point && xScale" [attr.x]="xScale(point.x)" [attr.y]="yPosition"
+    <svg:rect #box *ngIf="point && xScale" [attr.x]="xScale(point.x)" [attr.y]="yPosition"
           [attr.width]="xScale.bandwidth()-1"
           [attr.height]="yHeight" [attr.fill]="colorScale(point.y)" [attr.stroke]="colorScale(point.y)"
-          (mouseout)="hideTooltip($event)" (mouseover)="showTooltip($event)"
     >
     </svg:rect>
     <svg:text display="none">{{message()}}</svg:text>
@@ -18,7 +18,12 @@ import {TooltipService} from '../../../tooltip.service';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DataPointBoxComponent implements OnInit {
+export class DataPointBoxComponent implements OnInit, OnDestroy, AfterViewInit {
+
+  @ViewChild('box')
+  boxNode: ElementRef<SVGGraphicsElement>;
+
+  prevBoxNode: ElementRef<SVGGraphicsElement>;
 
   @Input()
   point: Point;
@@ -44,11 +49,44 @@ export class DataPointBoxComponent implements OnInit {
     return 'Box';
   }
 
-  constructor(private tooltip: TooltipService) {
+  constructor(private tooltip: TooltipService, private zone: NgZone) {
     console.log("Box Created");
   }
 
+  ngAfterViewInit(): void {
+    if (this.boxNode) {
+
+      if ((this.prevBoxNode !== this.boxNode)) {
+        this.removeMouseListeners(this.prevBoxNode);
+        this.zone.runOutsideAngular(() => {
+          this.addMouseListeners(this.boxNode);
+        });
+        this.prevBoxNode = this.boxNode;
+      }
+    }
+  }
+
   ngOnInit(): void {
+  }
+
+
+
+  ngOnDestroy(): void {
+    this.removeMouseListeners(this.boxNode);
+  }
+
+  addMouseListeners(elm: ElementRef<SVGGraphicsElement>) {
+    if (elm) {
+      elm.nativeElement.addEventListener('mouseover', this.showTooltip.bind(this));
+      elm.nativeElement.addEventListener('mouseout', this.hideTooltip.bind(this));
+    }
+  }
+
+  removeMouseListeners(elm: ElementRef<SVGGraphicsElement>) {
+    if (elm) {
+      elm.nativeElement.removeEventListener('mouseover', this.showTooltip);
+      elm.nativeElement.removeEventListener('mouseout', this.hideTooltip);
+    }
   }
 
   hideTooltip($event: any) {
@@ -58,8 +96,15 @@ export class DataPointBoxComponent implements OnInit {
 
   showTooltip($event: any) {
     const location = {x: this.xScale(this.point.x), y: this.yPosition};
-    this.tooltip.showTooltip(this.label, this.point, location);
+    //console.log("Show", location);
+    //this.zone.run(() =>
+      this.tooltip.showTooltip(this.label, this.point, location)
+    //);
   }
+
+
+
+
 
 
 }

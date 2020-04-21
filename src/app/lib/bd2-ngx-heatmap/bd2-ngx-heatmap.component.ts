@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {GraphicContext, LookAndFeel, Serie} from '../bd2-heatmap.dom';
 import {scaleBand, ScaleBand, scaleLinear, ScaleLinear} from 'd3-scale';
 import {Bd2HeatmapUtil} from '../bd2-heatmap-util';
@@ -9,9 +9,10 @@ import {TooltipService} from './tooltip.service';
   selector: 'bd2-ngx-heatmap',
   templateUrl: './bd2-ngx-heatmap.component.html',
   styleUrls: ['./bd2-ngx-heatmap.component.css'],
-  providers: [TooltipService]
+  providers: [TooltipService],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Bd2NgxHeatmapComponent implements OnInit {
+export class Bd2NgxHeatmapComponent implements OnInit, OnChanges {
 
   series: Serie[];
 
@@ -44,11 +45,15 @@ export class Bd2NgxHeatmapComponent implements OnInit {
 
   heatmapUtil = new Bd2HeatmapUtil();
 
-  constructor() { }
-
+  constructor(private changeDetector: ChangeDetectorRef) { }
 
 
   ngOnInit(): void {
+    //this.changeDetector.detach();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    //this.changeDetector.detectChanges();
   }
 
 
