@@ -52,11 +52,6 @@ export class AppComponent implements OnInit {
 
   }
 
-  processing($event: boolean) {
-    console.log("Processing", $event);
-    this.busy = $event;
-  }
-
   message() {
     console.log('Message', this.msgI++);
     return 'Message';
