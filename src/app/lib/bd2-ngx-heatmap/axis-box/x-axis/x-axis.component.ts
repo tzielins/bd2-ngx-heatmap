@@ -7,8 +7,8 @@ import {Tick} from '../../../bd2-heatmap.dom';
 @Component({
   selector: '[bd2hm-x-axis]',
   template: `
-    <svg:g class="bd2hm-x-axis" [attr.transform]="axisTransform" text-anchor="middle" font-size="9" fill="grey">
-      <!--<svg:line x1="0" y1="0" y2="0" [attr.x2]="x2" stroke="grey"></svg:line>-->
+    <svg:g class="bd2hm-x-axis" [attr.transform]="axisTransform" >
+      <svg:line x1="0" y1="0" y2="0" [attr.x2]="x2"></svg:line>
       <svg:g *ngFor="let tick of ticks; trackBy: trackByIndex" bd2hm-vtick-mark class="bd2hm-tickMark" [tick]="tick"></svg:g>
     </svg:g>
   `,

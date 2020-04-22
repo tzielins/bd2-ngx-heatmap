@@ -1,0 +1,10 @@
+
+::ng-deep .bd2hm-axisWrapper line {
+  stroke: grey;
+}
+
+::ng-deep .bd2hm-axisWrapper text {
+  fill: grey;
+  text-anchor: middle;
+  font-size: 9px;
+}
