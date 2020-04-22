@@ -9,14 +9,14 @@ import {debounceTime, map, tap} from 'rxjs/operators';
 // [style.visibility]="showBack ? undefined :'hidden'"
 
 @Component({
-  selector: '[bd2-tooltip]',
+  selector: '[bd2hm-tooltip]',
   template: `
-    <svg:g *ngIf="graphic" class="tooltipBox" [attr.display]="show ? undefined : 'none'" [attr.transform]="position"
+    <svg:g *ngIf="graphic" class="bd2hm-tooltipBox" [attr.display]="show ? undefined : 'none'" [attr.transform]="position"
            font-size="10"
     >
       <svg:g [attr.opacity]="ready ? 1 : 0">
       <svg:rect [attr.x]="textBX" [attr.width]="textBWidth" [attr.y]="textBY" [attr.height]="textBHeight"
-                fill="black" opacity="0.8" filter="url(#bd2-shadow)"
+                fill="black" opacity="0.8" filter="url(#bd2hm-shadow)"
       ></svg:rect>
       <svg:text #text fill="white">
         <tspan x="0">{{label}}</tspan>

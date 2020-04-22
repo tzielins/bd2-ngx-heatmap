@@ -17,7 +17,7 @@ import {TooltipService} from '../../../tooltip.service';
 
 // (mouseout)="hideTooltip($event)" (mouseover)="showTooltip($event)"
 @Component({
-  selector: '[bd2-data-point-box]',
+  selector: '[bd2hm-data-point-box]',
   template: `
     <svg:rect #box *ngIf="point && xScale" [attr.x]="xScale(point.x)" [attr.y]="yPosition"
           [attr.width]="xWidth"

@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Tick} from '../../../../bd2-heatmap.dom';
 
 @Component({
-  selector: '[bd2-v-tick-mark]',
+  selector: '[bd2hm-vtick-mark]',
   template: `
     <svg:line *ngIf="tick"
               [attr.x1]="tick.x" [attr.x2]="tick.x"

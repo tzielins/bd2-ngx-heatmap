@@ -2,10 +2,10 @@ import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChan
 import {GraphicContext, Serie} from '../../../bd2-heatmap.dom';
 
 @Component({
-  selector: '[bd2-serie-row]',
+  selector: '[bd2hm-serie-row]',
   template: `
-    <svg:g *ngIf="graphic && serie" class="serieBox">
-      <svg:g *ngFor="let point of serie.data; trackBy: trackByIndex" bd2-data-point-box
+    <svg:g *ngIf="graphic && serie" class="bd2hm-serie">
+      <svg:g *ngFor="let point of serie.data; trackBy: trackByIndex" bd2hm-data-point-box
              [point]="point" [xScale]="graphic.xScale"
              [yPosition]="yPosition"
              [yHeight]="yHeight" [colorScale]="graphic.colorScale"

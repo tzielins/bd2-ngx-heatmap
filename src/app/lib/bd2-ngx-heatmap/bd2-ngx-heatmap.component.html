@@ -1,27 +1,27 @@
-<div class="bd2-heatmap" [hidden]="hidden">
+<div class="bd2hm-heatmap" [hidden]="hidden">
   <svg *ngIf="graphic" [attr.width]="svgWidth" [attr.viewBox]="graphic.viewBox">
     <defs>
-      <filter id="bd2-shadow">
+      <filter id="bd2hm-shadow">
         <feDropShadow dx="1" dy="1" stdDeviation="1"/>
       </filter>
     </defs>
-    <g class="mainPane" [attr.transform]="graphic.mainPaneTransform">
+    <g class="bd2hm-mainPane" [attr.transform]="graphic.mainPaneTransform">
 
-      <g bd2-pane-back [graphic]="graphic" class="paneBack"></g>
+      <g bd2hm-pane-back [graphic]="graphic" class="bd2hm-paneBack"></g>
 
-      <g bd2-axis-box [graphic]="graphic"></g>
+      <g bd2hm-axis-box [graphic]="graphic"></g>
 
-      <g class="dataBox" >
+      <g class="bd2hm-dataBox" >
 
 
 
-        <g bd2-series-box [graphic]="graphic" [series]="series" class="seriesBox"></g>
+        <g bd2hm-series-box [graphic]="graphic" [series]="series" class="bd2hm-seriesBox"></g>
 
       </g>
 
-      <g bd2-labels [graphic]="graphic" [data]="series" class="labelsBox"></g>
+      <g bd2hm-labels [graphic]="graphic" [data]="series" class="bd2hm-labelsBox"></g>
 
-      <g bd2-tooltip [graphic]="graphic"></g>
+      <g bd2hm-tooltip [graphic]="graphic"></g>
 
     </g>
   </svg>

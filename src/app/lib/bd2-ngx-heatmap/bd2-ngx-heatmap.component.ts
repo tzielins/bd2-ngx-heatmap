@@ -5,7 +5,7 @@ import {TooltipService} from './tooltip.service';
 
 
 @Component({
-  selector: 'bd2-ngx-heatmap',
+  selector: 'bd2-ng-heatmap',
   templateUrl: './bd2-ngx-heatmap.component.html',
   styleUrls: ['./bd2-ngx-heatmap.component.css'],
   providers: [TooltipService],

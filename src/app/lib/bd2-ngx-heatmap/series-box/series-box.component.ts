@@ -2,10 +2,10 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {GraphicContext, Serie} from '../../bd2-heatmap.dom';
 
 @Component({
-  selector: '[bd2-series-box]',
+  selector: '[bd2hm-series-box]',
   template: `
     <svg:g *ngFor="let serie of series; trackBy: trackByIndex"
-           bd2-serie-row [graphic]="graphic" [serie]="serie"></svg:g>
+           bd2hm-serie-row [graphic]="graphic" [serie]="serie"></svg:g>
   `,
   styles: [
   ],

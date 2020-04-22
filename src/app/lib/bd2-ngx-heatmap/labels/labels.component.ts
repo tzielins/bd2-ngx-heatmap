@@ -2,10 +2,10 @@ import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {GraphicContext, Serie} from '../../bd2-heatmap.dom';
 
 @Component({
-  selector: '[bd2-labels]',
+  selector: '[bd2hm-labels]',
   template: `
-    <svg:g *ngIf="graphic && data" class="labels">
-        <svg:g bd2-label-box *ngFor="let serie of data; let ix = index; trackBy: trackByIndex"
+    <svg:g *ngIf="graphic && data" class="bd2hm-labels">
+        <svg:g bd2hm-label-box *ngFor="let serie of data; let ix = index; trackBy: trackByIndex"
                [serie]="serie"
                [yPosition]="yPosition(serie)" [yHeight]="yHeight()" [yMiddle]="yMiddle(serie)"
                [band]="this.graphic.yScale.bandwidth()" [color]="this.graphic.labelsColors(ix)"

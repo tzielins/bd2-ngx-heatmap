@@ -8,7 +8,7 @@
       "schematics": {},
       "root": "",
       "sourceRoot": "src",
-      "prefix": "bd2",
+      "prefix": "bd2hm",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

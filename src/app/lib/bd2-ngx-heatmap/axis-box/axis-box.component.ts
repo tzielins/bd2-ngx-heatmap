@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChan
 import {GraphicContext} from '../../bd2-heatmap.dom';
 
 @Component({
-  selector: '[bd2-axis-box]',
+  selector: '[bd2hm-axis-box]',
   templateUrl: './axis-box.component.html',
   styles: [
   ],

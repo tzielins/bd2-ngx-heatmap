@@ -4,9 +4,9 @@ import {Observable, timer} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
 
 @Component({
-  selector: '[bd2-label-box]',
+  selector: '[bd2hm-label-box]',
   template: `
-    <svg:g *ngIf="serie" class="label"  >
+    <svg:g *ngIf="serie" class="bd2hm-label"  >
       <svg:text *ngIf="alwaysOn" x="5" [attr.y]="yMiddle"
                 dominant-baseline="central" [attr.font-size]="fontSize()"
                 [attr.opacity]="toggled ? 1 : 0.6" [attr.fill]="toggled ? 'white' : undefined"
@@ -15,11 +15,11 @@ import {map, tap} from 'rxjs/operators';
         <!--<svg:rect x="-7" width="7" [attr.y]="yPosition" [attr.height]="yHeight" fill="rgb(127, 127, 127)"
                   ></svg:rect>-->
         <svg:circle [attr.cx]="-cirR()-2" [attr.cy]="yMiddle" [attr.r]="cirR()" [attr.fill]="'rgb(67, 125, 179)'"
-                    [attr.filter]="band < 7 ? undefined : 'url(#bd2-shadow)'"
+                    [attr.filter]="band < 7 ? undefined : 'url(#bd2hm-shadow)'"
         ></svg:circle>
         <svg:g [attr.opacity]="ready ? 1 : 0" [attr.display]="toggled ? undefined : 'none'" font-size="10">
           <svg:rect x="0" [attr.width]="textBWidth" [attr.y]="textBY" [attr.height]="textBHeight"
-                    fill="black" opacity="0.8" filter="url(#bd2-shadow)"
+                    fill="black" opacity="0.8" filter="url(#bd2hm-shadow)"
 
           ></svg:rect>
           <svg:text #text x="5" [attr.y]="yMiddle"
