@@ -8,9 +8,9 @@ describe('SerieRowComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SerieRowComponent ]
+      declarations: [SerieRowComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

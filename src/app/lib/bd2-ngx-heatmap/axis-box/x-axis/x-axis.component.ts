@@ -12,8 +12,7 @@ import {Tick} from '../../../bd2-heatmap.dom';
       <svg:g *ngFor="let tick of ticks; trackBy: trackByIndex" bd2hm-vtick-mark class="bd2hm-tickMark" [tick]="tick"></svg:g>
     </svg:g>
   `,
-  styles: [
-  ],
+  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class XAxisComponent implements OnInit, OnChanges {
@@ -30,7 +29,6 @@ export class XAxisComponent implements OnInit, OnChanges {
   axisTransform: string;
   x2: number;
   ticks: Tick[] = [];
-
 
 
   constructor() {
@@ -62,11 +60,13 @@ export class XAxisComponent implements OnInit, OnChanges {
   prepareTicks(xScale: ScaleBand<any>): Tick[] {
     const positions = this.calculateTicksPosition(xScale);
 
-    return positions.map( tick => new Tick(this.tickXPosition(tick), 0, tick, this.top, false));
+    return positions.map(tick => new Tick(this.tickXPosition(tick), 0, tick, this.top, false));
   }
 
   calculateTicksPosition(xScale: ScaleBand<any>) {
-    if (!xScale) { return []; }
+    if (!xScale) {
+      return [];
+    }
     const ticks = [];
     const domain = xScale.domain();
     const step = this.domainStep(domain.length);

@@ -8,9 +8,9 @@ describe('AxisBoxComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AxisBoxComponent ]
+      declarations: [AxisBoxComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

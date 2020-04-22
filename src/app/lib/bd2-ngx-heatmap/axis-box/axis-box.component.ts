@@ -4,8 +4,7 @@ import {GraphicContext} from '../../bd2-heatmap.dom';
 @Component({
   selector: '[bd2hm-axis-box]',
   templateUrl: './axis-box.component.html',
-  styles: [
-  ],
+  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AxisBoxComponent implements OnInit, OnChanges {

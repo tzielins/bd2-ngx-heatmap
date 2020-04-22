@@ -8,9 +8,9 @@ describe('VTickMarkComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VTickMarkComponent ]
+      declarations: [VTickMarkComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

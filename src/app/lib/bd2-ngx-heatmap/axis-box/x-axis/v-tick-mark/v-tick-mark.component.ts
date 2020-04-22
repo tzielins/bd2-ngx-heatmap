@@ -10,8 +10,7 @@ import {Tick} from '../../../../bd2-heatmap.dom';
     ></svg:line>
     <svg:text *ngIf="tick" [attr.x]="tick.x" [attr.y]="texty2" [attr.dy]="textdy">{{tick.label}}</svg:text>
   `,
-  styles: [
-  ]
+  styles: []
 })
 export class VTickMarkComponent implements OnInit, OnChanges {
 
@@ -23,7 +22,7 @@ export class VTickMarkComponent implements OnInit, OnChanges {
 
   marky2: number;
   texty2: number;
-  textdy: number|string;
+  textdy: number | string;
 
   constructor() {
   }
@@ -40,7 +39,7 @@ export class VTickMarkComponent implements OnInit, OnChanges {
 
   calculatePositions() {
     this.marky2 = this.tick?.top ? -this.length : this.length;
-    this.texty2 = this.tick?.top ? -(this.length+4) : (this.length+4);
+    this.texty2 = this.tick?.top ? -(this.length + 4) : (this.length + 4);
     this.textdy = this.tick?.top ? 0 : '0.6em';
   }
 

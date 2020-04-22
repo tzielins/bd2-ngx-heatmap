@@ -1,4 +1,4 @@
-import {GraphicContext, LookAndFeel, Serie} from './bd2-heatmap.dom';
+import {GraphicContext, LookAndFeelSizing, Serie} from './bd2-heatmap.dom';
 import {scaleBand, scaleQuantize} from 'd3-scale';
 import {colors} from './color-util';
 import {format} from 'd3-format';
@@ -6,7 +6,7 @@ import {interpolateSpectral} from 'd3-scale-chromatic';
 
 export class Bd2HeatmapUtil {
 
-  prepareGraphicContext(data: Serie[], lookAndFeel: LookAndFeel): GraphicContext {
+  prepareGraphicContext(data: Serie[], lookAndFeel: LookAndFeelSizing): GraphicContext {
 
     const context = new GraphicContext();
 
@@ -20,7 +20,7 @@ export class Bd2HeatmapUtil {
     return context;
   }
 
-  calculateDimensions(context: GraphicContext, data: Serie[], lookAndFeel: LookAndFeel) {
+  calculateDimensions(context: GraphicContext, data: Serie[], lookAndFeel: LookAndFeelSizing) {
 
     context.pWidth = 500;
     context.workspaceWidth = context.pWidth - 3 * lookAndFeel.hMargin;
@@ -29,7 +29,7 @@ export class Bd2HeatmapUtil {
     context.pHeight = context.workspaceHeight + 2 * lookAndFeel.vMargin;
   }
 
-  calculateWorkspaceHeight(data: any[], lookAndFeel: LookAndFeel) {
+  calculateWorkspaceHeight(data: any[], lookAndFeel: LookAndFeelSizing) {
     if (data.length <= 25) {
       return data.length * lookAndFeel.bigRowWidth;
     }
@@ -39,13 +39,13 @@ export class Bd2HeatmapUtil {
     return data.length * lookAndFeel.smallRowWidth;
   }
 
-  addPaneAttributes(context: GraphicContext, lookAndFeel: LookAndFeel) {
+  addPaneAttributes(context: GraphicContext, lookAndFeel: LookAndFeelSizing) {
     context.viewBox = `0 0 500 ${context.pHeight}`;
 
     context.mainPaneTransform = `translate(${2 * lookAndFeel.hMargin}, ${lookAndFeel.vMargin})`;
   }
 
-  addScales(context: GraphicContext, data: Serie[], lookAndFeel: LookAndFeel) {
+  addScales(context: GraphicContext, data: Serie[], lookAndFeel: LookAndFeelSizing) {
 
     /*const timeDomain = this.timeDomain(data);
 
@@ -64,7 +64,7 @@ export class Bd2HeatmapUtil {
       .domain(timeDomain)
       .range([0, context.workspaceWidth]);
 
-    const yDomain = data.map( s => s.key);
+    const yDomain = data.map(s => s.key);
 
     context.yScale = scaleBand()
       .paddingInner(lookAndFeel.rowGap)
@@ -77,7 +77,7 @@ export class Bd2HeatmapUtil {
 
   }
 
-  addFormatters(context: GraphicContext, data: Serie[], lookAndFeel: LookAndFeel) {
+  addFormatters(context: GraphicContext, data: Serie[], lookAndFeel: LookAndFeelSizing) {
     const timeDomain = this.timeDomain(data);
     context.domainFormatter = this.formatForDomain(timeDomain);
 
@@ -90,7 +90,7 @@ export class Bd2HeatmapUtil {
     let min = Number.POSITIVE_INFINITY;
     let max = Number.NEGATIVE_INFINITY;
 
-    data.forEach( serie => {
+    data.forEach(serie => {
       if (serie.data.length > 0) {
         min = Math.min(min, serie.data[0].x);
         max = Math.max(max, serie.data[serie.data.length - 1].x);
@@ -127,11 +127,13 @@ export class Bd2HeatmapUtil {
 
   valuesRange(traces: Serie[]): [number, number] {
 
-    if (traces.length === 0) { return [NaN, NaN]; }
+    if (traces.length === 0) {
+      return [NaN, NaN];
+    }
     let min = traces[0].min;
     let max = traces[0].max;
 
-    traces.forEach( tr => {
+    traces.forEach(tr => {
       min = Math.min(min, tr.min);
       max = Math.max(max, tr.max);
     });
@@ -156,6 +158,7 @@ export class Bd2HeatmapUtil {
   labelsColors(traces: Serie[]) {
     const size = traces.length;
 
+    // tslint:disable-next-line:only-arrow-functions
     return function(i: number) {
       return interpolateSpectral(i / size);
     };

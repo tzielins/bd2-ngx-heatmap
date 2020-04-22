@@ -8,9 +8,9 @@ describe('Bd2NgxHeatmapComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ Bd2NgxHeatmapComponent ]
+      declarations: [Bd2NgxHeatmapComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

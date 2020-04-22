@@ -8,9 +8,9 @@ describe('PaneBackComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PaneBackComponent ]
+      declarations: [PaneBackComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

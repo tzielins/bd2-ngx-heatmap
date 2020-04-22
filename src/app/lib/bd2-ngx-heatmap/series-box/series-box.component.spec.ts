@@ -8,9 +8,9 @@ describe('SeriesBoxComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SeriesBoxComponent ]
+      declarations: [SeriesBoxComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

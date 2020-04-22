@@ -8,9 +8,9 @@ describe('XAxisComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ XAxisComponent ]
+      declarations: [XAxisComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

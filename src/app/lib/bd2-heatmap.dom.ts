@@ -1,16 +1,16 @@
 // import * as d3Scale from 'd3-scale';
 import {ScaleBand, ScaleQuantize} from 'd3-scale';
 
-export type LookAndFeel = {
-  vMargin: number;
-  hMargin: number;
+export class LookAndFeelSizing {
+  vMargin = 25;
+  hMargin = 20;
 
-  smallRowWidth: number;
-  midRowWidth: number;
-  bigRowWidth: number;
+  smallRowWidth = 6;
+  midRowWidth = 12;
+  bigRowWidth = 25;
 
-  rowGap: number;
-};
+  rowGap = 0.05;
+}
 
 export class GraphicContext {
 
@@ -59,6 +59,7 @@ export type Point = {
 export class Tick {
 
   constructor(public x = 0, public y = 0, public label: any = undefined,
-              public top= false, public left= false) {}
+              public top = false, public left = false) {
+  }
 
 }

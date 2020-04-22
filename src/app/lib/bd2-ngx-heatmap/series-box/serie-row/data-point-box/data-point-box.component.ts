@@ -1,13 +1,14 @@
 import {
-  AfterViewChecked,
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
   Input,
-  NgZone, OnChanges,
+  NgZone,
+  OnChanges,
   OnDestroy,
-  OnInit, SimpleChanges,
+  OnInit,
+  SimpleChanges,
   ViewChild
 } from '@angular/core';
 import {Point} from '../../../../bd2-heatmap.dom';
@@ -20,13 +21,12 @@ import {TooltipService} from '../../../tooltip.service';
   selector: '[bd2hm-data-point-box]',
   template: `
     <svg:rect #box *ngIf="point && xScale" [attr.x]="xScale(point.x)" [attr.y]="yPosition"
-          [attr.width]="xWidth"
-          [attr.height]="yHeight" [attr.fill]="colorScale(point.y)" [attr.stroke]="colorScale(point.y)"
+              [attr.width]="xWidth"
+              [attr.height]="yHeight" [attr.fill]="colorScale(point.y)" [attr.stroke]="colorScale(point.y)"
     >
     </svg:rect>
   `,
-  styles: [
-  ],
+  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DataPointBoxComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
@@ -62,7 +62,7 @@ export class DataPointBoxComponent implements OnInit, OnDestroy, OnChanges, Afte
   ngOnChanges(changes: SimpleChanges): void {
     if (this.xScale) {
       const band = this.xScale.bandwidth();
-      this.xWidth = band >= 2 ? band -1 : 1;
+      this.xWidth = band >= 2 ? band - 1 : 1;
     }
   }
 
@@ -81,7 +81,6 @@ export class DataPointBoxComponent implements OnInit, OnDestroy, OnChanges, Afte
 
   ngOnInit(): void {
   }
-
 
 
   ngOnDestroy(): void {
@@ -111,14 +110,6 @@ export class DataPointBoxComponent implements OnInit, OnDestroy, OnChanges, Afte
     const location = {x: this.xScale(this.point.x), y: this.yPosition, width: this.xWidth};
     this.tooltip.showTooltip(this.label, this.point, location);
   }
-
-
-
-
-
-
-
-
 
 
 }

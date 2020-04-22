@@ -39,4 +39,5 @@ import {PaneBackComponent} from './lib/bd2-ngx-heatmap/pane-back/pane-back.compo
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

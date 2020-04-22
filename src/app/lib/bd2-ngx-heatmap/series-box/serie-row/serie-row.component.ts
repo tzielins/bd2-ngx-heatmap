@@ -13,8 +13,7 @@ import {GraphicContext, Serie} from '../../../bd2-heatmap.dom';
       ></svg:g>
     </svg:g>
   `,
-  styles: [
-  ],
+  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SerieRowComponent implements OnInit, OnChanges {

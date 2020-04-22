@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
-import {GraphicContext, LookAndFeel, Serie} from '../bd2-heatmap.dom';
+import {GraphicContext, LookAndFeelSizing, Serie} from '../bd2-heatmap.dom';
 import {Bd2HeatmapUtil} from '../bd2-heatmap-util';
 import {TooltipService} from './tooltip.service';
 
@@ -17,8 +17,8 @@ export class Bd2NgxHeatmapComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input()
   set data(data: Serie[]) {
-      this.series = data;
-      this.graphic = this.heatmapUtil.prepareGraphicContext(this.series, this.lookAndFeel);
+    this.series = data;
+    this.graphic = this.heatmapUtil.prepareGraphicContext(this.series, this.lookAndFeel);
   }
 
   @Input()
@@ -27,17 +27,7 @@ export class Bd2NgxHeatmapComponent implements OnInit, OnDestroy, OnChanges {
 
   svgWidth = '100%';
 
-  lookAndFeel: LookAndFeel = {
-    vMargin: 25,
-    hMargin: 20,
-
-    smallRowWidth: 6,
-    midRowWidth: 12,
-    bigRowWidth: 25,
-
-    rowGap: 0.05,
-
-  };
+  lookAndFeel = new LookAndFeelSizing();
 
   graphic: GraphicContext;
 
@@ -58,8 +48,6 @@ export class Bd2NgxHeatmapComponent implements OnInit, OnDestroy, OnChanges {
     // this.changeDetector.detectChanges();
 
   }
-
-
 
 
 }

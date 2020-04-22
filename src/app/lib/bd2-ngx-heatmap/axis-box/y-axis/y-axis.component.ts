@@ -4,12 +4,11 @@ import {ScaleBand} from 'd3-scale';
 @Component({
   selector: '[bd2hm-y-axis]',
   template: `
-    <svg:g class="bd2hm-y-axis" [attr.transform]="axisTransform" >
+    <svg:g class="bd2hm-y-axis" [attr.transform]="axisTransform">
       <svg:line x1="0" y1="0" x2="0" [attr.y2]="y2"></svg:line>
     </svg:g>
   `,
-  styles: [
-  ],
+  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class YAxisComponent implements OnInit, OnChanges {

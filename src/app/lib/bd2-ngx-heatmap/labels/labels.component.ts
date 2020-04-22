@@ -5,14 +5,13 @@ import {GraphicContext, Serie} from '../../bd2-heatmap.dom';
   selector: '[bd2hm-labels]',
   template: `
     <svg:g *ngIf="graphic && data" class="bd2hm-labels">
-        <svg:g bd2hm-label-box *ngFor="let serie of data; let ix = index; trackBy: trackByIndex"
-               [serie]="serie"
-               [yStart]="yStart(serie)" [maxHeight]="maxHeight()" [alwaysOn]="alwaysOn"
-        ></svg:g>
+      <svg:g bd2hm-label-box *ngFor="let serie of data; let ix = index; trackBy: trackByIndex"
+             [serie]="serie"
+             [yStart]="yStart(serie)" [maxHeight]="maxHeight()" [alwaysOn]="alwaysOn"
+      ></svg:g>
     </svg:g>
   `,
-  styles: [
-  ],
+  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LabelsComponent implements OnInit {
@@ -59,7 +58,6 @@ export class LabelsComponent implements OnInit {
   /*yHeight() {
     return 2 + this.graphic.yScale.bandwidth() / 2;
   }*/
-
 
 
 }

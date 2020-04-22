@@ -16,20 +16,20 @@ import {map, tap} from 'rxjs/operators';
 @Component({
   selector: '[bd2hm-label-box]',
   template: `
-    <svg:g *ngIf="serie" class="bd2hm-label"  >
+    <svg:g *ngIf="serie" class="bd2hm-label">
       <svg:text *ngIf="alwaysOn" x="5" [attr.y]="yMiddle" class="bd2hm-onLabel"
-                 [attr.font-size]="fontSize()"
+                [attr.font-size]="fontSize()"
       >{{serie.label}}</svg:text>
 
       <g (mouseout)="toggleLabel(false)" (mouseover)="toggleLabel(true)">
         <svg:rect x="-7" width="7" [attr.y]="triggerY" [attr.height]="triggerHeight" [attr.fill]="color"
-                  ></svg:rect>
+        ></svg:rect>
 
         <!--<svg:circle [attr.cx]="-cirR()-2" [attr.cy]="yMiddle" [attr.r]="cirR()" [attr.fill]="'rgb(67, 125, 179)'"
                     [attr.filter]="band < 7 ? undefined : 'url(#bd2hm-shadow)'"
         ></svg:circle>-->
 
-        <svg:g class="bd2hm-hover" [attr.opacity]="ready ? 1 : 0" [attr.display]="toggled ? undefined : 'none'" >
+        <svg:g class="bd2hm-hover" [attr.opacity]="ready ? 1 : 0" [attr.display]="toggled ? undefined : 'none'">
           <svg:rect x="0" [attr.width]="textBWidth" [attr.y]="textBY" [attr.height]="textBHeight"
           ></svg:rect>
           <svg:text #text x="5" [attr.y]="yMiddle"
@@ -38,8 +38,7 @@ import {map, tap} from 'rxjs/operators';
       </g>
     </svg:g>
   `,
-  styles: [
-  ],
+  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LabelBoxComponent implements OnInit, OnChanges {
@@ -112,7 +111,9 @@ export class LabelBoxComponent implements OnInit, OnChanges {
 
   toggleLabel(val?: boolean) {
 
-    if (val === undefined) { val = !this.toggled; }
+    if (val === undefined) {
+      val = !this.toggled;
+    }
 
     this.ready = false;
     this.toggled = val;
@@ -133,8 +134,8 @@ export class LabelBoxComponent implements OnInit, OnChanges {
   updateTextBBox(): Observable<SVGRect> {
 
     return timer(0).pipe(
-      map( r => this.textBBox()),
-      tap( rect => this.setTextBBox(rect))
+      map(r => this.textBBox()),
+      tap(rect => this.setTextBBox(rect))
     );
   }
 
@@ -157,7 +158,6 @@ export class LabelBoxComponent implements OnInit, OnChanges {
     if (this.band <= 5 ) { return 2; }
     return this.band / 2 - 1;
   } */
-
 
 
 }

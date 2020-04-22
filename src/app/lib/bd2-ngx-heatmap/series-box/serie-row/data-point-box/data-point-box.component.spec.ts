@@ -8,9 +8,9 @@ describe('DataPointBoxComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DataPointBoxComponent ]
+      declarations: [DataPointBoxComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

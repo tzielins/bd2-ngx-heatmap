@@ -7,8 +7,7 @@ import {GraphicContext, Serie} from '../../bd2-heatmap.dom';
     <svg:g *ngFor="let serie of series; trackBy: trackByIndex"
            bd2hm-serie-row [graphic]="graphic" [serie]="serie"></svg:g>
   `,
-  styles: [
-  ],
+  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SeriesBoxComponent implements OnInit {
@@ -19,7 +18,8 @@ export class SeriesBoxComponent implements OnInit {
   @Input()
   graphic: GraphicContext;
 
-  constructor() { }
+  constructor() {
+  }
 
   trackByIndex(index: number, item: any) {
     return index;

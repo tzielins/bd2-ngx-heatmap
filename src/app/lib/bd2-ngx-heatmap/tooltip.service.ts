@@ -6,7 +6,9 @@ import {Subject} from 'rxjs';
 export class TooltipService {
 
   request$ = new Subject<[boolean, string, Point, Point]>();
-  constructor() { }
+
+  constructor() {
+  }
 
   showTooltip(label: string, point: Point, location: Point) {
     this.request$.next([true, label, point, location]);

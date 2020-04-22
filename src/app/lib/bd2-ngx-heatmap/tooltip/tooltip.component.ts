@@ -25,8 +25,7 @@ import {debounceTime, map, tap} from 'rxjs/operators';
 
     </svg:g>
   `,
-  styles: [
-  ],
+  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TooltipComponent implements OnInit, OnDestroy {
@@ -56,8 +55,8 @@ export class TooltipComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
 
     this.subscription = this.tooltip.request$.pipe(
-        debounceTime(100)
-      ).subscribe( request => this.handleRequest(request));
+      debounceTime(100)
+    ).subscribe(request => this.handleRequest(request));
   }
 
   ngOnDestroy(): void {
@@ -100,9 +99,9 @@ export class TooltipComponent implements OnInit, OnDestroy {
   }
 
   translateToDataLocation(location: Point, textBoxWidth: number, workspaceWidth: number) {
-    let x = location.x + location.width+8;
+    let x = location.x + location.width + 8;
     if ((x + textBoxWidth) >= workspaceWidth) {
-      x = location.x - textBoxWidth ;
+      x = location.x - textBoxWidth;
     }
     const y = location.y;
     return `translate(${x}, ${y})`;
@@ -120,12 +119,11 @@ export class TooltipComponent implements OnInit, OnDestroy {
   }
 
 
-
   updateTextBBox(): Observable<SVGRect> {
 
     return timer(0).pipe(
-      map( r => this.textBBox()),
-      tap( rect => this.setTextBBox(rect))
+      map(r => this.textBBox()),
+      tap(rect => this.setTextBBox(rect))
     );
   }
 
