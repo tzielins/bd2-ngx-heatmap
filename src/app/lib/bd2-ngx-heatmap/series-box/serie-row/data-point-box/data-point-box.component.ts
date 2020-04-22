@@ -103,12 +103,12 @@ export class DataPointBoxComponent implements OnInit, OnDestroy, OnChanges, Afte
   }
 
   hideTooltip($event: any) {
-    const location = {x: this.xScale(this.point.x), y: this.yPosition};
+    const location = {x: this.xScale(this.point.x), y: this.yPosition, width: this.xWidth};
     this.tooltip.hideTooltip(this.point, location);
   }
 
   showTooltip($event: any) {
-    const location = {x: this.xScale(this.point.x), y: this.yPosition};
+    const location = {x: this.xScale(this.point.x), y: this.yPosition, width: this.xWidth};
     this.tooltip.showTooltip(this.label, this.point, location);
   }
 

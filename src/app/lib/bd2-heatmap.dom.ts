@@ -52,6 +52,7 @@ export type Point = {
 
   x: number;
   y: number;
+  width?: number;
 
 };
 

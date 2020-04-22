@@ -19,8 +19,8 @@ import {debounceTime, map, tap} from 'rxjs/operators';
                 fill="black" opacity="0.8" filter="url(#bd2-shadow)"
       ></svg:rect>
       <svg:text #text fill="white">
-        <tspan x="1em">{{label}}</tspan>
-        <tspan x="1em" dy="1.2em">{{values}}</tspan>
+        <tspan x="0">{{label}}</tspan>
+        <tspan x="0" dy="1.2em">{{values}}</tspan>
       </svg:text>
       </svg:g>
     </svg:g>
@@ -100,9 +100,9 @@ export class TooltipComponent implements OnInit, OnDestroy {
   }
 
   translateToDataLocation(location: Point, textBoxWidth: number, workspaceWidth: number) {
-    let x = location.x;
+    let x = location.x + location.width+8;
     if ((x + textBoxWidth) >= workspaceWidth) {
-      x = location.x - textBoxWidth - 20;
+      x = location.x - textBoxWidth ;
     }
     const y = location.y;
     return `translate(${x}, ${y})`;
