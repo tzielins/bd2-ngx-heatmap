@@ -48,21 +48,21 @@ export class XAxisComponent implements OnInit, OnChanges {
 
     this.axisTransform = `translate(0,${this.yPosition})`;
     this.x2 = this.xScale?.range()[1];
-    this.ticks = this.preapreTicks(this.xScale);
+    this.ticks = this.prepareTicks(this.xScale);
   }
 
   tickXPosition(tick: any) {
     return this.xScale(tick) + this.xScale.bandwidth() / 2;
   }
 
-  tickYPosition() {
+  /*tickYPosition() {
     return this.top ? -3 : 3;
-  }
+  }*/
 
-  preapreTicks(xScale: ScaleBand<any>): Tick[] {
+  prepareTicks(xScale: ScaleBand<any>): Tick[] {
     const positions = this.calculateTicksPosition(xScale);
 
-    return positions.map( tick => new Tick(this.tickXPosition(tick), this.tickYPosition(), tick, this.top, false));
+    return positions.map( tick => new Tick(this.tickXPosition(tick), 0, tick, this.top, false));
   }
 
   calculateTicksPosition(xScale: ScaleBand<any>) {
@@ -84,7 +84,10 @@ export class XAxisComponent implements OnInit, OnChanges {
     if (length <= 73) {
       return 6;
     }
-    return 12;
+    if (length <= 169) {
+      return 12;
+    }
+    return 24;
   }
 
 }
