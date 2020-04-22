@@ -5,9 +5,9 @@ import {
   Component,
   ElementRef,
   Input,
-  NgZone,
+  NgZone, OnChanges,
   OnDestroy,
-  OnInit,
+  OnInit, SimpleChanges,
   ViewChild
 } from '@angular/core';
 import {Point} from '../../../../bd2-heatmap.dom';
@@ -20,7 +20,7 @@ import {TooltipService} from '../../../tooltip.service';
   selector: '[bd2-data-point-box]',
   template: `
     <svg:rect #box *ngIf="point && xScale" [attr.x]="xScale(point.x)" [attr.y]="yPosition"
-          [attr.width]="xScale.bandwidth()-1"
+          [attr.width]="xWidth"
           [attr.height]="yHeight" [attr.fill]="colorScale(point.y)" [attr.stroke]="colorScale(point.y)"
     >
     </svg:rect>
@@ -29,7 +29,7 @@ import {TooltipService} from '../../../tooltip.service';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DataPointBoxComponent implements OnInit, OnDestroy, AfterViewInit {
+export class DataPointBoxComponent implements OnInit, OnDestroy, OnChanges, AfterViewInit {
 
   @ViewChild('box')
   boxNode: ElementRef<SVGGraphicsElement>;
@@ -54,7 +54,16 @@ export class DataPointBoxComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input()
   label: string;
 
+  xWidth: number;
+
   constructor(private tooltip: TooltipService, private zone: NgZone) {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.xScale) {
+      const band = this.xScale.bandwidth();
+      this.xWidth = band >= 2 ? band -1 : 1;
+    }
   }
 
   ngAfterViewInit(): void {
@@ -110,4 +119,8 @@ export class DataPointBoxComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
 
+
+
 }
+
+
