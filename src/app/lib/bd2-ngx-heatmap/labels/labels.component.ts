@@ -7,8 +7,7 @@ import {GraphicContext, Serie} from '../../bd2-heatmap.dom';
     <svg:g *ngIf="graphic && data" class="bd2hm-labels">
         <svg:g bd2hm-label-box *ngFor="let serie of data; let ix = index; trackBy: trackByIndex"
                [serie]="serie"
-               [yPosition]="yPosition(serie)" [yHeight]="yHeight()" [yMiddle]="yMiddle(serie)"
-               [band]="this.graphic.yScale.bandwidth()" [color]="this.graphic.labelsColors(ix)"
+               [yStart]="yStart(serie)" [maxHeight]="maxHeight()" [alwaysOn]="alwaysOn"
         ></svg:g>
     </svg:g>
   `,
@@ -24,6 +23,9 @@ export class LabelsComponent implements OnInit {
   @Input()
   data: Serie[];
 
+  @Input()
+  alwaysOn = true;
+
   constructor() {
   }
 
@@ -34,19 +36,29 @@ export class LabelsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  yPosition(serie: Serie) {
-    return this.graphic.yScale(serie.key) + this.graphic.yScale.bandwidth() / 4;
+  yStart(serie: Serie) {
+    // return this.graphic.yScale(serie.key) + this.graphic.yScale.bandwidth() / 4;
+    return this.graphic.yScale(serie.key);
   }
 
+  maxHeight() {
+    return this.graphic.yScale.bandwidth();
+  }
+
+  color(ix: number) {
+    return this.graphic.labelsColors(ix);
+  }
+
+  /*
   yMiddle(serie: Serie) {
     // console.log("Band", this.graphic.yScale.bandwidth());
     return this.graphic.yScale(serie.key) + this.graphic.yScale.bandwidth() / 2;
-  }
+  }*/
 
 
-  yHeight() {
+  /*yHeight() {
     return 2 + this.graphic.yScale.bandwidth() / 2;
-  }
+  }*/
 
 
 

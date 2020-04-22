@@ -1,4 +1,7 @@
 
+/*
+ Axis styling
+ */
 ::ng-deep .bd2hm-axisWrapper line {
   stroke: grey;
 }
@@ -7,4 +10,28 @@
   fill: grey;
   text-anchor: middle;
   font-size: 9px;
+}
+
+
+/*
+ Labels styling
+ */
+
+
+::ng-deep .bd2hm-labels text.bd2hm-onLabel {
+  dominant-baseline: central;
+  fill: black;
+  opacity: 0.6;
+}
+
+::ng-deep .bd2hm-labels .bd2hm-hover text {
+  dominant-baseline: central;
+  fill: white;
+  font-size: 10px;
+}
+
+::ng-deep .bd2hm-labels .bd2hm-hover rect {
+  fill: black;
+  opacity: 0.8;
+  filter: url(#bd2hm-shadow)
 }

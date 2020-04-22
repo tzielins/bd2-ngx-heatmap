@@ -1,4 +1,14 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import {Serie} from '../../../bd2-heatmap.dom';
 import {Observable, timer} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
@@ -7,23 +17,22 @@ import {map, tap} from 'rxjs/operators';
   selector: '[bd2hm-label-box]',
   template: `
     <svg:g *ngIf="serie" class="bd2hm-label"  >
-      <svg:text *ngIf="alwaysOn" x="5" [attr.y]="yMiddle"
-                dominant-baseline="central" [attr.font-size]="fontSize()"
-                [attr.opacity]="toggled ? 1 : 0.6" [attr.fill]="toggled ? 'white' : undefined"
+      <svg:text *ngIf="alwaysOn" x="5" [attr.y]="yMiddle" class="bd2hm-onLabel"
+                 [attr.font-size]="fontSize()"
       >{{serie.label}}</svg:text>
-      <g (mouseout)="toggleLabel(false)" (mouseover)="toggleLabel(true)">
-        <!--<svg:rect x="-7" width="7" [attr.y]="yPosition" [attr.height]="yHeight" fill="rgb(127, 127, 127)"
-                  ></svg:rect>-->
-        <svg:circle [attr.cx]="-cirR()-2" [attr.cy]="yMiddle" [attr.r]="cirR()" [attr.fill]="'rgb(67, 125, 179)'"
-                    [attr.filter]="band < 7 ? undefined : 'url(#bd2hm-shadow)'"
-        ></svg:circle>
-        <svg:g [attr.opacity]="ready ? 1 : 0" [attr.display]="toggled ? undefined : 'none'" font-size="10">
-          <svg:rect x="0" [attr.width]="textBWidth" [attr.y]="textBY" [attr.height]="textBHeight"
-                    fill="black" opacity="0.8" filter="url(#bd2hm-shadow)"
 
+      <g (mouseout)="toggleLabel(false)" (mouseover)="toggleLabel(true)">
+        <svg:rect x="-7" width="7" [attr.y]="triggerY" [attr.height]="triggerHeight" [attr.fill]="color"
+                  ></svg:rect>
+
+        <!--<svg:circle [attr.cx]="-cirR()-2" [attr.cy]="yMiddle" [attr.r]="cirR()" [attr.fill]="'rgb(67, 125, 179)'"
+                    [attr.filter]="band < 7 ? undefined : 'url(#bd2hm-shadow)'"
+        ></svg:circle>-->
+
+        <svg:g class="bd2hm-hover" [attr.opacity]="ready ? 1 : 0" [attr.display]="toggled ? undefined : 'none'" >
+          <svg:rect x="0" [attr.width]="textBWidth" [attr.y]="textBY" [attr.height]="textBHeight"
           ></svg:rect>
           <svg:text #text x="5" [attr.y]="yMiddle"
-                    dominant-baseline="central" fill="white"
           >{{serie.label}}</svg:text>
         </svg:g>
       </g>
@@ -33,28 +42,29 @@ import {map, tap} from 'rxjs/operators';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LabelBoxComponent implements OnInit {
+export class LabelBoxComponent implements OnInit, OnChanges {
 
   @Input()
   serie: Serie;
 
   @Input()
-  yPosition: number;
+  yStart: number;
 
   @Input()
-  yMiddle: number;
-
-  @Input()
-  yHeight: number;
-
-  @Input()
-  band: number;
-
-  @Input()
-  color: string;
+  maxHeight: number;
 
   @Input()
   alwaysOn = true;
+
+  @Input()
+  color = 'rgb(67, 125, 179)';
+
+  margin: number;
+  triggerY: number;
+  triggerHeight: number;
+
+  yMiddle: number;
+
 
   @ViewChild('text')
   textNode: ElementRef<SVGGraphicsElement>;
@@ -72,12 +82,30 @@ export class LabelBoxComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    this.margin = this.marginSize();
+    this.triggerY = this.yStart + this.margin;
+    this.triggerHeight = this.margin > 1 ? this.maxHeight - 2 * this.margin : this.maxHeight - 1;
+    this.yMiddle = this.yStart + this.maxHeight / 2;
+
+  }
+
+  marginSize() {
+    if (this.maxHeight >= 20) {
+      return 4;
+    }
+    if (this.maxHeight >= 12) {
+      return 2;
+    }
+    return 1;
+  }
+
   fontSize() {
-    if (this.yHeight > 10) {
+    if (this.maxHeight > 12) {
       return 10;
     }
-    if (this.yHeight >= 5) {
-      return this.yHeight;
+    if (this.maxHeight >= 6) {
+      return this.maxHeight - 3;
     }
     return 0;
   }
@@ -123,10 +151,13 @@ export class LabelBoxComponent implements OnInit {
     return this.textNode.nativeElement.getBBox();
   }
 
+  /*
   cirR() {
     if (this.band >= 20) { return 9; }
     if (this.band <= 5 ) { return 2; }
     return this.band / 2 - 1;
-  }
+  } */
+
+
 
 }

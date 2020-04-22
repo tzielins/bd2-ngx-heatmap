@@ -1,6 +1,16 @@
 
 /*
+ Examples of forcing custom styling
+ */
+
+/*
 ::ng-deep bd2-ng-heatmap.customized .bd2hm-axisWrapper line {
   stroke: red;
 }
 */
+
+/*
+::ng-deep bd2-ng-heatmap.customized .bd2hm-labels .bd2hm-hover text {
+  fill: red;
+}
+ */
