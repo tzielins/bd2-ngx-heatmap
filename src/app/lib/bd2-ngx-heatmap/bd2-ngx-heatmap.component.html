@@ -1,5 +1,5 @@
 <div class="bd2hm-heatmap" [hidden]="hidden">
-  <svg *ngIf="graphic" [attr.width]="svgWidth" [attr.viewBox]="graphic.viewBox">
+  <svg *ngIf="graphic" width="100%" [attr.viewBox]="graphic.viewBox">
     <defs>
       <filter id="bd2hm-shadow">
         <feDropShadow dx="1" dy="1" stdDeviation="1"/>
@@ -18,7 +18,7 @@
 
       <g bd2hm-series-box [graphic]="graphic" [series]="series" class="bd2hm-seriesBox"></g>
 
-      <g bd2hm-labels [graphic]="graphic" [data]="series"></g>
+      <g bd2hm-labels [graphic]="graphic" [data]="series" [alwaysOn]="labelsAlwaysOn"></g>
 
       <g bd2hm-tooltip [graphic]="graphic"></g>
 

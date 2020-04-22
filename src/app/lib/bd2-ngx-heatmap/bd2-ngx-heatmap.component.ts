@@ -24,9 +24,10 @@ export class Bd2NgxHeatmapComponent implements OnInit, OnDestroy, OnChanges {
   @Input()
   hidden = false;
 
+  @Input()
+  labelsAlwaysOn = true;
 
-  svgWidth = '100%';
-
+  @Input()
   lookAndFeel = new LookAndFeelSizing();
 
   graphic: GraphicContext;
