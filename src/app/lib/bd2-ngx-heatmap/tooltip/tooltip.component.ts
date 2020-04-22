@@ -11,18 +11,18 @@ import {debounceTime, map, tap} from 'rxjs/operators';
 @Component({
   selector: '[bd2hm-tooltip]',
   template: `
-    <svg:g *ngIf="graphic" class="bd2hm-tooltipBox" [attr.display]="show ? undefined : 'none'" [attr.transform]="position"
-           font-size="10"
-    >
+    <svg:g *ngIf="graphic" class="bd2hm-tooltipBox" [attr.display]="show ? undefined : 'none'" [attr.transform]="position">
+
       <svg:g [attr.opacity]="ready ? 1 : 0">
-      <svg:rect [attr.x]="textBX" [attr.width]="textBWidth" [attr.y]="textBY" [attr.height]="textBHeight"
-                fill="black" opacity="0.8" filter="url(#bd2hm-shadow)"
-      ></svg:rect>
-      <svg:text #text fill="white">
-        <tspan x="0">{{label}}</tspan>
-        <tspan x="0" dy="1.2em">{{values}}</tspan>
-      </svg:text>
+        <svg:rect [attr.x]="textBX" [attr.width]="textBWidth" [attr.y]="textBY" [attr.height]="textBHeight"
+        ></svg:rect>
+
+        <svg:text #text>
+          <tspan x="0">{{label}}</tspan>
+          <tspan x="0" dy="1.2em">{{values}}</tspan>
+        </svg:text>
       </svg:g>
+
     </svg:g>
   `,
   styles: [
