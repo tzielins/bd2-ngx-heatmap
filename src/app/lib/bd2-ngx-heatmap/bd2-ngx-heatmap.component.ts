@@ -34,7 +34,7 @@ export class Bd2NgxHeatmapComponent implements OnInit, OnDestroy, OnChanges {
 
   heatmapUtil = new Bd2HeatmapUtil();
 
-  constructor(private changeDetector: ChangeDetectorRef) {
+  constructor(private changeDetector: ChangeDetectorRef, private tooltip: TooltipService) {
   }
 
 
@@ -43,6 +43,9 @@ export class Bd2NgxHeatmapComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnDestroy() {
+    if (this.tooltip) {
+      this.tooltip.ngOnDestroy();
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {

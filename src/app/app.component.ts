@@ -33,7 +33,7 @@ const dataRaw120 =
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'bd2-ngx-heatmap';
+  title = 'BioDare2 Heatmap';
 
   size = 25;
   lastX = 120;

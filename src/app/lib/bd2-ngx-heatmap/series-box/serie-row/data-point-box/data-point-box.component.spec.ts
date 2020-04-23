@@ -43,7 +43,7 @@ describe('DataPointBoxComponent', () => {
     const [label, point, location] = tooltip.showTooltip.calls.mostRecent().args;
     expect(label).toBe('F');
     expect(point).toBe(component.point);
-    expect(location).toEqual({x: 0, y: 20, width: 5-1});
+    expect(location).toEqual({x: 0, y: 20, width: 5 - 1});
   });
 
   it('hideTooltip calls service', () => {

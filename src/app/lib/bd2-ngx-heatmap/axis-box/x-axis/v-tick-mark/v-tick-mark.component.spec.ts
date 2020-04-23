@@ -25,31 +25,31 @@ describe('VTickMarkComponent', () => {
   });
 
   it('calculates positions', () => {
-    component.tick = new Tick(10,0,'11',true);
+    component.tick = new Tick(10, 0, '11', true);
     component.length = 3;
     component.calculatePositions();
 
     expect(component.marky2).toBe(-3);
-    expect(component.texty2).toBe(-(3+4));
+    expect(component.texty2).toBe(-(3 + 4));
     expect(component.textdy).toBe(0);
 
-    component.tick = new Tick(10,0,'11',false);
+    component.tick = new Tick(10, 0, '11', false);
     component.length = 4;
     component.calculatePositions();
 
     expect(component.marky2).toBe(4);
-    expect(component.texty2).toBe((4+4));
+    expect(component.texty2).toBe((4 + 4));
     expect(component.textdy).toBe('0.6em');
   });
 
-  it('renders mark and label',() => {
+  it('renders mark and label', () => {
     let line = fixture.nativeElement.querySelector('line');
     let text = fixture.nativeElement.querySelector('text');
 
     expect(line).toBeFalsy();
     expect(text).toBeFalsy();
 
-    component.tick = new Tick(10,0,'11',true);
+    component.tick = new Tick(10, 0, '11', true);
     fixture.detectChanges();
 
     line = fixture.nativeElement.querySelector('line');

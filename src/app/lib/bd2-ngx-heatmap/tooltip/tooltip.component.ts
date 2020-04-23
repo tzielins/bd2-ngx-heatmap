@@ -102,7 +102,7 @@ export class TooltipComponent implements OnInit, OnDestroy {
   }
 
   translateToDataLocation(location: Point, textBoxWidth: number, workspaceWidth: number) {
-    let x = location.x + location.width + 2*this.boxMargin;
+    let x = location.x + location.width + 2 * this.boxMargin;
     if ((x + textBoxWidth) >= workspaceWidth) {
       x = location.x - textBoxWidth;
     }
@@ -133,8 +133,8 @@ export class TooltipComponent implements OnInit, OnDestroy {
   setTextBBox(rect: SVGRect) {
     this.textBX = rect.x - this.boxMargin;
     this.textBY = rect.y - this.boxMargin;
-    this.textBHeight = rect.height + 2*this.boxMargin;
-    this.textBWidth = rect.width + 2*this.boxMargin;
+    this.textBHeight = rect.height + 2 * this.boxMargin;
+    this.textBWidth = rect.width + 2 * this.boxMargin;
   }
 
   textBBox(): SVGRect {
@@ -145,7 +145,7 @@ export class TooltipComponent implements OnInit, OnDestroy {
   }
 
   formatLabel(label: string) {
-    if (!label) return '';
+    if (!label) { return ''; }
     if (label.length < 40) {
       return label;
     }

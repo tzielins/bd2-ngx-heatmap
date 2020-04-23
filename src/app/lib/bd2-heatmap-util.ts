@@ -14,13 +14,13 @@ export class Bd2HeatmapUtil {
     this.addPaneAttributes(context, lookAndFeel);
 
     this.addScales(context, data, lookAndFeel);
-    this.addFormatters(context, data, lookAndFeel);
+    this.addFormatters(context, data);
 
     context.labelsColors = this.labelsColors(data);
     return context;
   }
 
-  calculateDimensions(context: GraphicContext, data: Serie[], lookAndFeel: LookAndFeelSizing) {
+  calculateDimensions(context: GraphicContext, data: any[], lookAndFeel: LookAndFeelSizing) {
 
     context.pWidth = 500;
     context.workspaceWidth = context.pWidth - 3 * lookAndFeel.hMargin;
@@ -77,7 +77,7 @@ export class Bd2HeatmapUtil {
 
   }
 
-  addFormatters(context: GraphicContext, data: Serie[], lookAndFeel: LookAndFeelSizing) {
+  addFormatters(context: GraphicContext, data: Serie[]) {
     const timeDomain = this.timeDomain(data);
     context.domainFormatter = this.formatForDomain(timeDomain);
 
@@ -91,7 +91,7 @@ export class Bd2HeatmapUtil {
     let max = Number.NEGATIVE_INFINITY;
 
     data.forEach(serie => {
-      if (serie.data.length > 0) {
+      if (serie.data && serie.data.length > 0) {
         min = Math.min(min, serie.data[0].x);
         max = Math.max(max, serie.data[serie.data.length - 1].x);
       }

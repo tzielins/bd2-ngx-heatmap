@@ -1,5 +1,7 @@
 import {async, TestBed} from '@angular/core/testing';
 import {AppComponent} from './app.component';
+import {Bd2NgxHeatmapModule} from './lib/bd2-ngx-heatmap/bd2-ngx-heatmap.module';
+import {FormsModule} from '@angular/forms';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -7,6 +9,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports: [Bd2NgxHeatmapModule, FormsModule]
     }).compileComponents();
   }));
 
@@ -19,13 +22,13 @@ describe('AppComponent', () => {
   it(`should have as title 'bd2-ngx-heatmap'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('bd2-ngx-heatmap');
+    expect(app.title).toEqual('BioDare2 Heatmap');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('bd2-ngx-heatmap app is running!');
+    expect(compiled.querySelector('h1').textContent).toContain('BioDare2 Heatmap');
   });
 });

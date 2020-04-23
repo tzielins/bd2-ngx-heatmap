@@ -28,7 +28,7 @@ describe('AxisBoxComponent', () => {
   });
 
   xit('renders', () => {
-    //does not work, WHY, *ngIf?
+    // does not work, WHY, *ngIf?
     const util = new Bd2HeatmapUtil();
     const context = util.prepareGraphicContext([], new LookAndFeelSizing());
 

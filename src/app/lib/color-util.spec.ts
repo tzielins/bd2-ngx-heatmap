@@ -9,7 +9,7 @@ describe('ColorUtil', () => {
 
     col = colors('red', 'white', 'blue', 1);
     expect(col.length).toBe(3);
-    expect(col).toEqual(['#ff0000','#ffffff','#0000ff']);
+    expect(col).toEqual(['#ff0000', '#ffffff', '#0000ff']);
 
   });
 });

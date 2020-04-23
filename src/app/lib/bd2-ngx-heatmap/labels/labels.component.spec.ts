@@ -38,17 +38,17 @@ describe('LabelsComponent', () => {
 
   it('maxHeight returns the bandwith', () => {
     const context = new GraphicContext();
-    context.yScale = scaleBand().domain(['1', '2']).range([0,10]);
+    context.yScale = scaleBand().domain(['1', '2']).range([0, 10]);
 
     component.graphic = context;
     expect(component.maxHeight()).toBe(context.yScale.bandwidth());
 
   });
 
-  it('yStart uses scales', ()=>{
+  it('yStart uses scales', () => {
 
     const context = new GraphicContext();
-    context.yScale = scaleBand().domain(['1', '2']).range([0,10]);
+    context.yScale = scaleBand().domain(['1', '2']).range([0, 10]);
 
     component.graphic = context;
 
