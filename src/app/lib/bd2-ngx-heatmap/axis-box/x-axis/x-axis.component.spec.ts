@@ -6,7 +6,7 @@ import {scaleBand} from 'd3-scale';
 import {By} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
 
-fdescribe('XAxisComponent', () => {
+describe('XAxisComponent', () => {
   let component: XAxisComponent;
   let fixture: ComponentFixture<XAxisComponent>;
 

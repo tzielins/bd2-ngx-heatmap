@@ -55,8 +55,8 @@ describe('VTickMarkComponent', () => {
     line = fixture.nativeElement.querySelector('line');
     text = fixture.nativeElement.querySelector('text');
 
-    expect(line).toBeDefined();
-    expect(text).toBeDefined();
+    expect(line).toBeTruthy();
+    expect(text).toBeTruthy();
     expect(text.textContent).toContain('11');
 
   });

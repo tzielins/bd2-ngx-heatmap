@@ -34,6 +34,9 @@ export class TooltipComponent implements OnInit, OnDestroy {
   @Input()
   graphic: GraphicContext;
 
+  @Input()
+  boxMargin = 4;
+
   @ViewChild('text')
   textNode: ElementRef<SVGGraphicsElement>;
 
@@ -99,7 +102,7 @@ export class TooltipComponent implements OnInit, OnDestroy {
   }
 
   translateToDataLocation(location: Point, textBoxWidth: number, workspaceWidth: number) {
-    let x = location.x + location.width + 8;
+    let x = location.x + location.width + 2*this.boxMargin;
     if ((x + textBoxWidth) >= workspaceWidth) {
       x = location.x - textBoxWidth;
     }
@@ -128,10 +131,10 @@ export class TooltipComponent implements OnInit, OnDestroy {
   }
 
   setTextBBox(rect: SVGRect) {
-    this.textBX = rect.x - 4;
-    this.textBY = rect.y - 4;
-    this.textBHeight = rect.height + 8;
-    this.textBWidth = rect.width + 8;
+    this.textBX = rect.x - this.boxMargin;
+    this.textBY = rect.y - this.boxMargin;
+    this.textBHeight = rect.height + 2*this.boxMargin;
+    this.textBWidth = rect.width + 2*this.boxMargin;
   }
 
   textBBox(): SVGRect {
@@ -142,6 +145,7 @@ export class TooltipComponent implements OnInit, OnDestroy {
   }
 
   formatLabel(label: string) {
+    if (!label) return '';
     if (label.length < 40) {
       return label;
     }
