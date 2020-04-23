@@ -30,7 +30,6 @@ export class XAxisComponent implements OnInit, OnChanges {
   x2: number;
   ticks: Tick[] = [];
 
-
   constructor() {
   }
 
@@ -49,19 +48,17 @@ export class XAxisComponent implements OnInit, OnChanges {
     this.ticks = this.prepareTicks(this.xScale);
   }
 
-  tickXPosition(tick: any) {
-    return this.xScale(tick) + this.xScale.bandwidth() / 2;
-  }
-
-  /*tickYPosition() {
-    return this.top ? -3 : 3;
-  }*/
 
   prepareTicks(xScale: ScaleBand<any>): Tick[] {
     const positions = this.calculateTicksPosition(xScale);
 
-    return positions.map(tick => new Tick(this.tickXPosition(tick), 0, tick, this.top, false));
+    return positions.map(tick => new Tick(this.tickXPosition(tick, xScale), 0, tick, this.top, false));
   }
+
+  tickXPosition(tick: any, xScale: ScaleBand<any>) {
+    return xScale(tick) + xScale.bandwidth() / 2;
+  }
+
 
   calculateTicksPosition(xScale: ScaleBand<any>) {
     if (!xScale) {
