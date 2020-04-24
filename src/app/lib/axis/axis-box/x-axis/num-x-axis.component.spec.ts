@@ -1,9 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-
-import {XAxisComponent} from './x-axis.component';
 import {VTickMarkComponent} from './v-tick-mark/v-tick-mark.component';
-import {scaleBand, scaleLinear} from 'd3-scale';
-import {By} from '@angular/platform-browser';
+import {scaleLinear} from 'd3-scale';
 import {CommonModule} from '@angular/common';
 import {NumXAxisComponent} from './num-x-axis.component';
 
@@ -52,7 +49,7 @@ describe('NumXAxisComponent', () => {
     expect(ticks).toEqual([]);
 
     ticks = component.calculateTicksPosition(scale);
-    expect(component.domainStep(15-1)).toBe(4);
+    expect(component.domainStep(15 - 1)).toBe(4);
     expect(ticks).toEqual([1, 5, 9, 13]);
 
   });
@@ -68,7 +65,7 @@ describe('NumXAxisComponent', () => {
 
     component.top = true;
     ticks = component.prepareTicks(scale);
-    expect(component.domainStep(15-1)).toBe(4);
+    expect(component.domainStep(15 - 1)).toBe(4);
     expect(ticks.length).toBe(4);
 
     let tick = ticks[0];

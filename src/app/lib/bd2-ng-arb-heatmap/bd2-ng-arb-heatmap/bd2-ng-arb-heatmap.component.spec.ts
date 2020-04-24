@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { Bd2NgArbHeatmapComponent } from './bd2-ng-arb-heatmap.component';
+import {Bd2NgArbHeatmapComponent} from './bd2-ng-arb-heatmap.component';
 
 describe('Bd2NgArbHeatmapComponent', () => {
   let component: Bd2NgArbHeatmapComponent;

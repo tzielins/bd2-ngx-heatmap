@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {ScaleBand, ScaleLinear} from 'd3-scale';
+import {ScaleLinear} from 'd3-scale';
 import {Tick} from '../../../bd2-heatmap.dom';
 
 //
@@ -65,7 +65,7 @@ export class NumXAxisComponent implements OnInit, OnChanges {
     const domain = xScale.domain();
     const first = Math.round(domain[0]);
     const last = Math.round(domain[1]);
-    const step = this.domainStep(last-first);
+    const step = this.domainStep(last - first);
     for (let i = first; i <= last; i += step) {
       ticks.push(i);
     }

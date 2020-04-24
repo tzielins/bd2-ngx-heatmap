@@ -1,6 +1,5 @@
 // import * as d3Scale from 'd3-scale';
 import {ScaleBand, ScaleLinear, ScaleQuantize} from 'd3-scale';
-import {isNegativeNumberLiteral} from 'tslint';
 
 export class LookAndFeelSizing {
   vMargin = 25;

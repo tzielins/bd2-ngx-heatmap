@@ -1,7 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Bd2NgArbHeatmapComponent } from './bd2-ng-arb-heatmap/bd2-ng-arb-heatmap.component';
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
 
 @NgModule({

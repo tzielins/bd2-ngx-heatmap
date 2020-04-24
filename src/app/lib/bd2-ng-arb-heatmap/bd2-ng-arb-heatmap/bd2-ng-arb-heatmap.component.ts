@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {BoxSerie, GraphicContext, LookAndFeelSizing, Serie} from '../../bd2-heatmap.dom';
 import {TooltipService} from '../../bd2-ngx-heatmap/tooltip.service';
 import {BD2ArbHeatmapUtil} from '../bd2-arb-heatmap-util';
@@ -10,15 +10,15 @@ import {BD2ArbHeatmapUtil} from '../bd2-arb-heatmap-util';
   providers: [TooltipService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Bd2NgArbHeatmapComponent implements OnInit, OnDestroy {
+export class Bd2NgArbHeatmapComponent implements OnInit, OnDestroy, OnChanges {
 
   series: BoxSerie[];
 
   @Input()
-  set data(data: Serie[]) {
-    this.series = this.heatmapUtil.seriesToAsymBoxes(data);
-    this.graphic = this.heatmapUtil.prepareGraphicContext(this.series, this.lookAndFeel);
-  }
+  data: Serie[];
+
+  @Input()
+  asymmetric = false;
 
   @Input()
   hidden = false;
@@ -44,6 +44,15 @@ export class Bd2NgArbHeatmapComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this.tooltip) {
       this.tooltip.ngOnDestroy();
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.data) {
+      this.series = this.heatmapUtil.seriesToBoxes(this.data, this.asymmetric);
+      this.graphic = this.heatmapUtil.prepareGraphicContext(this.series, this.lookAndFeel);
+    } else {
+      this.graphic = undefined;
     }
   }
 

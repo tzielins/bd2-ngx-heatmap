@@ -1,6 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {GraphicContext} from '../../bd2-heatmap.dom';
-import {ScaleLinear} from 'd3-scale';
 
 @Component({
   selector: '[bd2hm-axis-box]',

@@ -28,7 +28,7 @@ describe('AxisBoxComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('recognizes xscale',() => {
+  it('recognizes xscale', () => {
     const util = new Bd2HeatmapUtil();
     const context = util.prepareGraphicContext([], new LookAndFeelSizing());
 

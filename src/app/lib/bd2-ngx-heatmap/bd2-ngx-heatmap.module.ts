@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {TooltipComponent} from './tooltip/tooltip.component';
 import {LabelsComponent} from './labels/labels.component';
 import {LabelBoxComponent} from './labels/label-box/label-box.component';
@@ -10,7 +10,6 @@ import {PaneBackComponent} from './pane-back/pane-back.component';
 import {Bd2NgxHeatmapComponent} from './bd2-ngx-heatmap.component';
 import {AxisModule} from '../axis/axis.module';
 import {Bd2NgArbHeatmapComponent} from '../bd2-ng-arb-heatmap/bd2-ng-arb-heatmap/bd2-ng-arb-heatmap.component';
-
 
 
 @NgModule({

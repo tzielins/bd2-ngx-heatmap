@@ -1,7 +1,6 @@
 import {async, ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
 
 import {LabelBoxComponent} from './label-box.component';
-import {ChangeDetectorRef} from '@angular/core';
 
 describe('LabelBoxComponent', () => {
   let component: LabelBoxComponent;

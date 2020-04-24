@@ -3,7 +3,6 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {XAxisComponent} from './x-axis.component';
 import {VTickMarkComponent} from './v-tick-mark/v-tick-mark.component';
 import {scaleBand} from 'd3-scale';
-import {By} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
 
 describe('XAxisComponent', () => {

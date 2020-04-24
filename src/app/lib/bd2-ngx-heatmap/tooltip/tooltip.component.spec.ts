@@ -4,7 +4,6 @@ import {TooltipComponent} from './tooltip.component';
 import {TooltipService} from '../tooltip.service';
 import {GraphicContext, LookAndFeelSizing} from '../../bd2-heatmap.dom';
 import {Bd2HeatmapUtil} from '../../bd2-heatmap-util';
-import {compileComponentFromMetadata} from '@angular/compiler';
 
 describe('TooltipComponent', () => {
   let component: TooltipComponent;
