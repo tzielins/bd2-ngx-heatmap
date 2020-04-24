@@ -1,5 +1,6 @@
 // import * as d3Scale from 'd3-scale';
-import {ScaleBand, ScaleQuantize} from 'd3-scale';
+import {ScaleBand, ScaleLinear, ScaleQuantize} from 'd3-scale';
+import {isNegativeNumberLiteral} from 'tslint';
 
 export class LookAndFeelSizing {
   vMargin = 25;
@@ -24,7 +25,7 @@ export class GraphicContext {
   workspaceHeight: number;
 
   // xScale: ScaleLinear<number, number>;
-  xScale: ScaleBand<any>;
+  xScale: ScaleBand<any> | ScaleLinear<number, number>;
   yScale: ScaleBand<any>;
 
   colorScale: ScaleQuantize<string>;
@@ -61,5 +62,30 @@ export class Tick {
   constructor(public x = 0, public y = 0, public label: any = undefined,
               public top = false, public left = false) {
   }
+
+}
+
+export class BoxDef {
+
+  width: number;
+
+  constructor(public x: number,
+              public y: number,
+              public left: number,
+              public right: number) {
+
+    this.width = right - left;
+  }
+}
+
+export class BoxSerie {
+
+  key?: any;
+  label?: string;
+  data: BoxDef[];
+
+  min: number;
+  max: number;
+  mean: number;
 
 }
