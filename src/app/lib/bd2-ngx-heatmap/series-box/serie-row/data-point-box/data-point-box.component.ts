@@ -11,8 +11,8 @@ import {
   SimpleChanges,
   ViewChild
 } from '@angular/core';
-import {Point} from '../../../../bd2-heatmap.dom';
-import {ScaleBand, ScaleQuantize} from 'd3-scale';
+import {BoxDef, Point} from '../../../../bd2-heatmap.dom';
+import {ScaleBand, ScaleLinear, ScaleQuantize} from 'd3-scale';
 import {TooltipService} from '../../../tooltip.service';
 
 
@@ -20,7 +20,7 @@ import {TooltipService} from '../../../tooltip.service';
 @Component({
   selector: '[bd2hm-data-point-box]',
   template: `
-    <svg:rect #box *ngIf="point && xScale" [attr.x]="xScale(point.x)" [attr.y]="yPosition"
+    <svg:rect #box *ngIf="point && xScale" [attr.x]="xPosition" [attr.y]="yPosition"
               [attr.width]="xWidth"
               [attr.height]="yHeight" [attr.fill]="colorScale(point.y)" [attr.stroke]="colorScale(point.y)"
     >
@@ -46,7 +46,7 @@ export class DataPointBoxComponent implements OnInit, OnDestroy, OnChanges, Afte
   yHeight: number;
 
   @Input()
-  xScale: ScaleBand<any>;
+  xScale: ScaleBand<any> | ScaleLinear<number, number>;
 
   @Input()
   colorScale: ScaleQuantize<string>;
@@ -54,15 +54,23 @@ export class DataPointBoxComponent implements OnInit, OnDestroy, OnChanges, Afte
   @Input()
   label: string;
 
+  xPosition: number;
   xWidth: number;
 
   constructor(private tooltip: TooltipService, private zone: NgZone) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.xScale) {
-      const band = this.xScale.bandwidth();
-      this.xWidth = band >= 2 ? band - 1 : 1;
+    if (this.xScale && this.point) {
+      if (this.point instanceof BoxDef) {
+        this.xPosition = this.xScale(this.point.left);
+        const band = this.xScale(this.point.right) - this.xScale(this.point.left);
+        this.xWidth = band >= 2 ? band - 1 : 1;
+      } else {
+        const band = (this.xScale as ScaleBand<any>).bandwidth();
+        this.xWidth = band >= 2 ? band - 1 : 1;
+        this.xPosition = this.xScale(this.point?.x);
+      }
     }
   }
 
@@ -102,12 +110,12 @@ export class DataPointBoxComponent implements OnInit, OnDestroy, OnChanges, Afte
   }
 
   hideTooltip($event: any) {
-    const location = {x: this.xScale(this.point.x), y: this.yPosition, width: this.xWidth};
+    const location = {x: this.xPosition, y: this.yPosition, width: this.xWidth};
     this.tooltip.hideTooltip(this.point, location);
   }
 
   showTooltip($event: any) {
-    const location = {x: this.xScale(this.point.x), y: this.yPosition, width: this.xWidth};
+    const location = {x: this.xPosition, y: this.yPosition, width: this.xWidth};
     this.tooltip.showTooltip(this.label, this.point, location);
   }
 
