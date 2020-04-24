@@ -5,7 +5,7 @@ import { Bd2NgArbHeatmapComponent } from './bd2-ng-arb-heatmap/bd2-ng-arb-heatma
 
 
 @NgModule({
-  declarations: [Bd2NgArbHeatmapComponent],
+  declarations: [],
   imports: [
     CommonModule
   ]

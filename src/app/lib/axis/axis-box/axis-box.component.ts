@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {GraphicContext} from '../../bd2-heatmap.dom';
+import {ScaleLinear} from 'd3-scale';
 
 @Component({
   selector: '[bd2hm-axis-box]',
@@ -12,6 +13,8 @@ export class AxisBoxComponent implements OnInit, OnChanges {
   @Input()
   graphic: GraphicContext;
 
+  xNumeric = false;
+  xBand = false;
 
   constructor() {
   }
@@ -20,6 +23,11 @@ export class AxisBoxComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+
+    if (this.graphic) {
+      this.xNumeric = (this.graphic.xScale as any).bandwidth ? false : true;
+      this.xBand = (this.graphic.xScale as any).bandwidth ? true : false;
+    }
   }
 
 }

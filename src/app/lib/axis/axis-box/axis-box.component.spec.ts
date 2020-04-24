@@ -4,6 +4,7 @@ import {AxisBoxComponent} from './axis-box.component';
 import {Bd2HeatmapUtil} from '../../bd2-heatmap-util';
 import {LookAndFeelSizing} from '../../bd2-heatmap.dom';
 import {CommonModule} from '@angular/common';
+import {scaleLinear} from 'd3-scale';
 
 describe('AxisBoxComponent', () => {
   let component: AxisBoxComponent;
@@ -25,6 +26,22 @@ describe('AxisBoxComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('recognizes xscale',() => {
+    const util = new Bd2HeatmapUtil();
+    const context = util.prepareGraphicContext([], new LookAndFeelSizing());
+
+    component.graphic = context;
+    component.ngOnChanges({});
+    expect(component.xNumeric).toBe(false);
+    expect(component.xBand).toBe(true);
+
+    context.xScale = scaleLinear();
+    component.graphic = context;
+    component.ngOnChanges({});
+    expect(component.xNumeric).toBe(true);
+    expect(component.xBand).toBe(false);
   });
 
   xit('renders', () => {

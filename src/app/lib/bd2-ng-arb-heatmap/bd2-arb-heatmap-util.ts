@@ -10,6 +10,7 @@ export class BD2ArbHeatmapUtil extends Bd2HeatmapUtil {
     let timeDomain = this.timeDomain(data);
     timeDomain = [timeDomain[0]-defMargin, timeDomain[1]+defMargin];
 
+    console.log("Time domain", timeDomain);
     context.xScale = scaleLinear()
       .clamp(true)
       .domain(timeDomain)
