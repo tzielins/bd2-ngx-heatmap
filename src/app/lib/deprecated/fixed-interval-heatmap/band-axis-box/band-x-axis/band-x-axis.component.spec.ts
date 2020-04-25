@@ -1,24 +1,24 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {XAxisComponent} from './x-axis.component';
-import {VTickMarkComponent} from './v-tick-mark/v-tick-mark.component';
+import {BandXAxisComponent} from './band-x-axis.component';
+import {VTickMarkComponent} from '../../../../axis/axis-box/x-axis/v-tick-mark/v-tick-mark.component';
 import {scaleBand} from 'd3-scale';
 import {CommonModule} from '@angular/common';
 
-describe('XAxisComponent', () => {
-  let component: XAxisComponent;
-  let fixture: ComponentFixture<XAxisComponent>;
+describe('BandXAxisComponent', () => {
+  let component: BandXAxisComponent;
+  let fixture: ComponentFixture<BandXAxisComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [XAxisComponent, VTickMarkComponent],
+      declarations: [BandXAxisComponent, VTickMarkComponent],
       imports: [CommonModule]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(XAxisComponent);
+    fixture = TestBed.createComponent(BandXAxisComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

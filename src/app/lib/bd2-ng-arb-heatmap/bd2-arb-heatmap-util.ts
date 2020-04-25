@@ -4,29 +4,7 @@ import {scaleBand, scaleLinear} from 'd3-scale';
 
 export class BD2ArbHeatmapUtil extends Bd2HeatmapUtil {
 
-  addScales(context: GraphicContext, data: BoxSerie[], lookAndFeel: LookAndFeelSizing) {
 
-    const defMargin = 0.5;
-    let timeDomain = this.timeDomain(data);
-    timeDomain = [timeDomain[0] - defMargin, timeDomain[1] + defMargin];
-
-    context.xScale = scaleLinear()
-      .clamp(true)
-      .domain(timeDomain)
-      .range([0, context.workspaceWidth]);
-
-    const yDomain = data.map(s => s.key);
-
-    context.yScale = scaleBand()
-      .paddingInner(lookAndFeel.rowGap)
-      .paddingOuter(0)
-      .domain(yDomain)
-      .range([0, context.workspaceHeight]);
-
-    context.colorScale = this.heatmapScale(data);
-
-
-  }
 
   seriesToBoxes(series: Serie[], asymmetric = false): BoxSerie[] {
     return series.map(s => this.serieToBoxes(s, asymmetric));

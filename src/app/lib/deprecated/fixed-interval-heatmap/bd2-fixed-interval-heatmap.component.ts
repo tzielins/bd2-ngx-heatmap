@@ -1,17 +1,18 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
-import {GraphicContext, LookAndFeelSizing, Serie} from '../bd2-heatmap.dom';
-import {Bd2HeatmapUtil} from '../bd2-heatmap-util';
-import {TooltipService} from './tooltip.service';
+import {LookAndFeelSizing, Serie} from '../../bd2-heatmap.dom';
+import {TooltipService} from '../../bd2-ngx-heatmap/tooltip.service';
+import {Bd2FixedHeatmapUtil} from './bd2-fixed-heatmap-util';
+import {FixedGraphicContext} from './bd2-fixed-heatmap.dom';
 
 
 @Component({
-  selector: 'bd2-ng-heatmap',
-  templateUrl: './bd2-ngx-heatmap.component.html',
-  styleUrls: ['./bd2-ngx-heatmap.component.css'],
+  selector: 'bd2-fixedint-heatmap',
+  templateUrl: './bd2-fixed-interval-heatmap.component.html',
+  styleUrls: ['./bd2-fixed-interval-heatmap.component.css'],
   providers: [TooltipService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Bd2NgxHeatmapComponent implements OnInit, OnDestroy, OnChanges {
+export class Bd2FixedIntervalHeatmapComponent implements OnInit, OnDestroy, OnChanges {
 
   series: Serie[];
 
@@ -30,9 +31,9 @@ export class Bd2NgxHeatmapComponent implements OnInit, OnDestroy, OnChanges {
   @Input()
   lookAndFeel = new LookAndFeelSizing();
 
-  graphic: GraphicContext;
+  graphic: FixedGraphicContext;
 
-  heatmapUtil = new Bd2HeatmapUtil();
+  heatmapUtil = new Bd2FixedHeatmapUtil();
 
   constructor(private changeDetector: ChangeDetectorRef, private tooltip: TooltipService) {
   }

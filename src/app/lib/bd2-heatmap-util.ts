@@ -1,5 +1,5 @@
-import {GraphicContext, LookAndFeelSizing, Serie} from './bd2-heatmap.dom';
-import {scaleBand, scaleQuantize} from 'd3-scale';
+import {BoxSerie, GraphicContext, LookAndFeelSizing, Serie} from './bd2-heatmap.dom';
+import {scaleBand, scaleLinear, scaleQuantize} from 'd3-scale';
 import {colors} from './color-util';
 import {format} from 'd3-format';
 import {interpolateSpectral} from 'd3-scale-chromatic';
@@ -47,20 +47,12 @@ export class Bd2HeatmapUtil {
 
   addScales(context: GraphicContext, data: Serie[], lookAndFeel: LookAndFeelSizing) {
 
-    /*const timeDomain = this.timeDomain(data);
+    const defMargin = 0.5;
+    let timeDomain = this.timeDomain(data);
+    timeDomain = [timeDomain[0] - defMargin, timeDomain[1] + defMargin];
 
     context.xScale = scaleLinear()
       .clamp(true)
-      .domain(timeDomain)
-      .range([0, context.workspaceWidth]);
-
-     */
-    const timeDomain = this.timeDomainBand(data);
-
-    context.xScale = scaleBand()
-      // .clamp(true)
-      .paddingInner(0)
-      .paddingOuter(0)
       .domain(timeDomain)
       .range([0, context.workspaceWidth]);
 
@@ -104,18 +96,7 @@ export class Bd2HeatmapUtil {
 
   }
 
-  timeDomainBand(data: Serie[]): any[] {
 
-    const [min, max] = this.timeDomain(data);
-
-    const res = [];
-
-    for (let i = min; i <= max; i++) {
-      res.push(i);
-    }
-    return res;
-
-  }
 
   heatmapScale(data: Serie[]) {
 

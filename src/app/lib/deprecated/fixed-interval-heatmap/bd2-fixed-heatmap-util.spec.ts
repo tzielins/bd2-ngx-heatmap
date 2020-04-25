@@ -1,14 +1,14 @@
-import {Bd2HeatmapUtil} from './bd2-heatmap-util';
-import {GraphicContext, LookAndFeelSizing, Point, Serie} from './bd2-heatmap.dom';
-import {scaleLinear} from 'd3-scale';
+import {Bd2FixedHeatmapUtil} from './bd2-fixed-heatmap-util';
+import {LookAndFeelSizing, Point, Serie} from '../../bd2-heatmap.dom';
+import {FixedGraphicContext} from './bd2-fixed-heatmap.dom';
 
 
-describe('Bd2HeatmapUtil', () => {
+describe('Bd2FixedHeatmapUtil', () => {
 
-  let util: Bd2HeatmapUtil;
+  let util: Bd2FixedHeatmapUtil;
 
   beforeEach(() => {
-    util = new Bd2HeatmapUtil();
+    util = new Bd2FixedHeatmapUtil();
   });
 
   it('creates', () => {
@@ -84,7 +84,20 @@ describe('Bd2HeatmapUtil', () => {
 
   });
 
+  it('timeDomainBand gives numbers between first x and last x by 1', () => {
 
+    const traces: Serie[] = [];
+    let points: Point[] = [{x: 1, y: 2}];
+    let s = { data: points} as Serie;
+    traces.push(s);
+
+    points = [{x: 3, y: 2}];
+    s = { data: points} as Serie;
+    traces.push(s);
+
+    expect(util.timeDomainBand(traces)).toEqual([1, 2, 3]);
+
+  });
 
   it('timeDomain gives times range from all series', () => {
 
@@ -107,7 +120,7 @@ describe('Bd2HeatmapUtil', () => {
 
   it('creates formaters for domain and values', () => {
 
-    const graphic = new GraphicContext();
+    const graphic = new FixedGraphicContext();
 
     const traces: Serie[] = [];
 
@@ -135,42 +148,27 @@ describe('Bd2HeatmapUtil', () => {
 
   it('addScales creates scales', () => {
 
-    const graphic = new GraphicContext();
+    const graphic = new FixedGraphicContext();
     graphic.workspaceWidth = 100;
     graphic.workspaceHeight = 200;
+    const traces: Serie[] = [];
+
+    const points: Point[] = [{x: 2, y: 0.1}, {x: 5, y: 0.3}];
+    const s = { key: 1, data: points, min: 0.1, max: 0.3} as Serie;
+    traces.push(s);
 
     const look = new LookAndFeelSizing();
-
-    const points = [];
-    const prev = {x: 0, y: 1};
-    const point = {x: 1, y: 2};
-    const next = {x: 3, y: 3};
-
-    points.push(prev);
-    points.push(point);
-    points.push(next);
-
-    const ser: Serie = {
-      key: 1,
-      label: 'F',
-      min: 1, max: 3, mean: (4 / 3),
-      data: points
-    };
-
-    // const boxes = util.serieToBoxes(ser, true);
-    util.addScales(graphic, [ser], look);
-    expect(graphic.xScale).toBeDefined();
+    util.addScales(graphic, traces, look);
+    expect(graphic.xBandScale).toBeDefined();
     expect(graphic.yScale).toBeDefined();
     expect(graphic.colorScale).toBeDefined();
 
-    expect(graphic.xScale).toBeInstanceOf(scaleLinear().constructor);
-    expect(graphic.xScale.domain()).toEqual([0 - 0.5, 3 + 0.5]);
-
+    expect(graphic.xBandScale(3)).toEqual(25);
+    expect(graphic.xBandScale(5)).toEqual(75);
 
     expect(graphic.yScale(1)).toEqual(look.rowGap * 200 / 2);
     expect(graphic.yScale.bandwidth()).toEqual(200 - 200 * look.rowGap);
   });
-
 
   it('workspace height depends on rows number and lookandfeel', () => {
 
@@ -200,7 +198,7 @@ describe('Bd2HeatmapUtil', () => {
     lookAndFeel.vMargin = 2;
     lookAndFeel.hMargin = 1;
 
-    const graphic = new GraphicContext();
+    const graphic = new FixedGraphicContext();
 
     const data = [1, 2, 3, 4, 5];
 
@@ -218,7 +216,7 @@ describe('Bd2HeatmapUtil', () => {
     const lookAndFeel = new LookAndFeelSizing();
     lookAndFeel.hMargin = 20;
     lookAndFeel.vMargin = 25;
-    const graphic = new GraphicContext();
+    const graphic = new FixedGraphicContext();
 
     const data = [1, 2, 3, 4, 5];
 

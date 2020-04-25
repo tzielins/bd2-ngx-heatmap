@@ -23,8 +23,7 @@ export class GraphicContext {
   workspaceWidth: number;
   workspaceHeight: number;
 
-  // xScale: ScaleLinear<number, number>;
-  xScale: ScaleBand<any> | ScaleLinear<number, number>;
+  xScale: ScaleLinear<number, number>;
   yScale: ScaleBand<any>;
 
   colorScale: ScaleQuantize<string>;
@@ -58,6 +57,7 @@ export type Point = {
 
 export class Tick {
 
+  // tslint:disable-next-line:no-unnecessary-initializer
   constructor(public x = 0, public y = 0, public label: any = undefined,
               public top = false, public left = false) {
   }

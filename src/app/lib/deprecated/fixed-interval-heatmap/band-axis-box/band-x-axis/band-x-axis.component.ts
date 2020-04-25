@@ -1,11 +1,11 @@
 import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {ScaleBand} from 'd3-scale';
-import {Tick} from '../../../bd2-heatmap.dom';
+import {Tick} from '../../../../bd2-heatmap.dom';
 
 //
 
 @Component({
-  selector: '[bd2hm-x-axis]',
+  selector: '[bd2hm-band-x-axis]',
   template: `
     <svg:g class="bd2hm-x-axis" [attr.transform]="axisTransform" >
       <svg:line x1="0" y1="0" y2="0" [attr.x2]="x2"></svg:line>
@@ -15,7 +15,7 @@ import {Tick} from '../../../bd2-heatmap.dom';
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class XAxisComponent implements OnInit, OnChanges {
+export class BandXAxisComponent implements OnInit, OnChanges {
 
   @Input()
   xScale: ScaleBand<any>;

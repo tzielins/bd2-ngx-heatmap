@@ -1,25 +1,24 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {AxisBoxComponent} from './axis-box.component';
-import {Bd2HeatmapUtil} from '../../bd2-heatmap-util';
-import {LookAndFeelSizing} from '../../bd2-heatmap.dom';
+import {BandAxisBoxComponent} from './band-axis-box.component';
 import {CommonModule} from '@angular/common';
-import {scaleLinear} from 'd3-scale';
+import {Bd2FixedHeatmapUtil} from '../bd2-fixed-heatmap-util';
+import {LookAndFeelSizing} from '../../../bd2-heatmap.dom';
 
-describe('AxisBoxComponent', () => {
-  let component: AxisBoxComponent;
-  let fixture: ComponentFixture<AxisBoxComponent>;
+describe('BandAxisBoxComponent', () => {
+  let component: BandAxisBoxComponent;
+  let fixture: ComponentFixture<BandAxisBoxComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AxisBoxComponent],
+      declarations: [BandAxisBoxComponent],
       imports: [CommonModule]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AxisBoxComponent);
+    fixture = TestBed.createComponent(BandAxisBoxComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -32,7 +31,7 @@ describe('AxisBoxComponent', () => {
 
   xit('renders', () => {
     // does not work, WHY, *ngIf?
-    const util = new Bd2HeatmapUtil();
+    const util = new Bd2FixedHeatmapUtil();
     const context = util.prepareGraphicContext([], new LookAndFeelSizing());
 
     component.graphic = context;
