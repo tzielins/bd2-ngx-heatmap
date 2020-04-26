@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {BandXAxisComponent} from './band-x-axis.component';
-import {VTickMarkComponent} from '../../../../axis/axis-box/x-axis/v-tick-mark/v-tick-mark.component';
+import {VTickMarkComponent} from '../../../../plot-elements/axis/axis-box/x-axis/v-tick-mark/v-tick-mark.component';
 import {scaleBand} from 'd3-scale';
 import {CommonModule} from '@angular/common';
 

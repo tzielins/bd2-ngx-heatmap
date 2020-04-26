@@ -1,6 +1,6 @@
 import {async, TestBed} from '@angular/core/testing';
 import {AppComponent} from './app.component';
-import {Bd2NgxHeatmapModule} from './lib/bd2-ngx-heatmap/bd2-ngx-heatmap.module';
+import {PlotElementsModule} from './lib/plot-elements/plot-elements.module';
 import {FormsModule} from '@angular/forms';
 
 describe('AppComponent', () => {
@@ -9,7 +9,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
-      imports: [Bd2NgxHeatmapModule, FormsModule]
+      imports: [PlotElementsModule, FormsModule]
     }).compileComponents();
   }));
 

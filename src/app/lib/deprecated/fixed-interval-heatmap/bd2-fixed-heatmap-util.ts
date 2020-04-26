@@ -1,9 +1,9 @@
 import {scaleBand} from 'd3-scale';
 import {FixedGraphicContext} from './bd2-fixed-heatmap.dom';
-import {Bd2HeatmapUtil} from '../../bd2-heatmap-util';
+import {HeatmapGraphUtil} from '../../heatmap-graph-util';
 import {LookAndFeelSizing, Serie} from '../../bd2-heatmap.dom';
 
-export class Bd2FixedHeatmapUtil extends Bd2HeatmapUtil {
+export class Bd2FixedHeatmapUtil extends HeatmapGraphUtil {
 
   prepareGraphicContext(data: Serie[], lookAndFeel: LookAndFeelSizing): FixedGraphicContext {
 

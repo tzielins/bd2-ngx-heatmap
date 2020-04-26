@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {LookAndFeelSizing, Serie} from '../../bd2-heatmap.dom';
-import {TooltipService} from '../../bd2-ngx-heatmap/tooltip.service';
+import {TooltipService} from '../../plot-elements/tooltip/tooltip.service';
 import {Bd2FixedHeatmapUtil} from './bd2-fixed-heatmap-util';
 import {FixedGraphicContext} from './bd2-fixed-heatmap.dom';
 

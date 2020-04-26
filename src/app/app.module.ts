@@ -3,8 +3,7 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {FormsModule} from '@angular/forms';
-import {Bd2FixedIntervalHeatmapModule} from './lib/deprecated/fixed-interval-heatmap/fixed-interval-heatmap.module';
-import {Bd2NgArbHeatmapModule} from './lib/bd2-ng-arb-heatmap/bd2-ng-arb-heatmap.module';
+import {Bd2NumHeatmapModule} from './lib/bd2-num-heatmap/bd2-num-heatmap.module';
 
 @NgModule({
   declarations: [
@@ -13,8 +12,7 @@ import {Bd2NgArbHeatmapModule} from './lib/bd2-ng-arb-heatmap/bd2-ng-arb-heatmap
   imports: [
     BrowserModule,
     FormsModule,
-    Bd2NgArbHeatmapModule,
-    Bd2FixedIntervalHeatmapModule
+    Bd2NumHeatmapModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
