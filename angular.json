@@ -65,7 +65,7 @@
               "projects/bd2-ngx-heatmap-demo/src/assets"
             ],
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "projects/bd2-ngx-heatmap-demo/src/styles.css"
             ],
             "scripts": []
