@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Point, Serie} from './lib/bd2-heatmap.dom';
+import {Point, Serie} from 'bd2-ngx-heatmap';
 
 
 const dataJson =
@@ -28,7 +28,7 @@ const dataRaw120 =
 `;
 
 @Component({
-  selector: 'bd2hm-root',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

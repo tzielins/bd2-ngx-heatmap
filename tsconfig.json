@@ -14,7 +14,13 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "bd2-ngx-heatmap": [
+        "dist/bd2-ngx-heatmap/bd2-ngx-heatmap",
+        "dist/bd2-ngx-heatmap"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "fullTemplateTypeCheck": true,

@@ -1,7 +1,7 @@
 import {async, TestBed} from '@angular/core/testing';
 import {AppComponent} from './app.component';
-import {PlotElementsModule} from './lib/plot-elements/plot-elements.module';
 import {FormsModule} from '@angular/forms';
+import {Bd2NgxHeatmapModule} from 'bd2-ngx-heatmap';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -9,7 +9,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
-      imports: [PlotElementsModule, FormsModule]
+      imports: [Bd2NgxHeatmapModule, FormsModule]
     }).compileComponents();
   }));
 
