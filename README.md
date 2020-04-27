@@ -1,27 +1,61 @@
 # Bd2NgxHeatmap
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.3.
+Bd2NgxHeatmap
 
-## Development server
+An angular component used by BioDare2 to display data on HeatMap chart.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The component uses only svg elements and angular directives
+*ngIf, *ngFor, [attr.x] to render and manage the plots.
+The d3 libraries like d3-scales are used only for computations
+of coordinates or colors not for rendering.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## How to use it
 
-## Build
+### Installation
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+`npm install bd2-ngx-heatmap --save`
 
-## Running unit tests
+### Using
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Import the Bd2NgxHeatmapModule module
 
-## Running end-to-end tests
+```
+@NgModule({
+...
+  imports: [
+    ...
+    Bd2NgxHeatmapModule
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+2. Include heatmap component in your template: 
 
-## Further help
+```
+      <bd2-num-heatmap [data]="data" class="customized">
+      </bd2-num-heatmap>
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+3. Inputs:
+
+4. Styling can be customized overriding component css.
+
+For example:
+
+```
+::ng-deep bd2-num-heatmap.customized .bd2hm-axisWrapper line {
+  stroke: red;
+}
+```
+
+Check the demo app, and Bd2NumHeatmapComponent embeded css for 
+classes.
+
+
+## Demo
+
+Interactive [demo](https://tzielins.github.io/bd2-ngx-heatmap/)
+

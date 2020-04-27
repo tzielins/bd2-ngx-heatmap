@@ -1,24 +1,61 @@
 # Bd2NgxHeatmap
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.3.
+Bd2NgxHeatmap
 
-## Code scaffolding
+An angular component used by BioDare2 to display data on HeatMap chart.
 
-Run `ng generate component component-name --project bd2-ngx-heatmap` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project bd2-ngx-heatmap`.
-> Note: Don't forget to add `--project bd2-ngx-heatmap` or else it will be added to the default project in your `angular.json` file. 
+The component uses only svg elements and angular directives
+*ngIf, *ngFor, [attr.x] to render and manage the plots.
+The d3 libraries like d3-scales are used only for computations
+of coordinates or colors not for rendering.
 
-## Build
 
-Run `ng build bd2-ngx-heatmap` to build the project. The build artifacts will be stored in the `dist/` directory.
+## How to use it
 
-## Publishing
+### Installation
 
-After building your library with `ng build bd2-ngx-heatmap`, go to the dist folder `cd dist/bd2-ngx-heatmap` and run `npm publish`.
+`npm install bd2-ngx-heatmap --save`
 
-## Running unit tests
+### Using
 
-Run `ng test bd2-ngx-heatmap` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Import the Bd2NgxHeatmapModule module
 
-## Further help
+```
+@NgModule({
+...
+  imports: [
+    ...
+    Bd2NgxHeatmapModule
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+2. Include heatmap component in your template: 
+
+```
+      <bd2-num-heatmap [data]="data" class="customized">
+      </bd2-num-heatmap>
+```
+
+3. Inputs:
+
+4. Styling can be customized overriding component css.
+
+For example:
+
+```
+::ng-deep bd2-num-heatmap.customized .bd2hm-axisWrapper line {
+  stroke: red;
+}
+```
+
+Check the demo app, and Bd2NumHeatmapComponent embeded css for 
+classes.
+
+
+## Demo
+
+Interactive [demo](https://tzielins.github.io/bd2-ngx-heatmap/)
+

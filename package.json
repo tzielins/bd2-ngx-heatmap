@@ -1,6 +1,22 @@
 {
   "name": "bd2-ngx-heatmap",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "ngx",
+    "heatmap",
+    "HeatMap chart"
+  ],
+  "private": false,
+  "author": {
+    "name": "Tomasz Zielinski",
+    "url": "https://github.com/tzielins"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tzielins/bd2-ngx-heatmap"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
