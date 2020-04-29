@@ -32,6 +32,12 @@ export class PaneBackComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.width = this.graphic.workspaceWidth - 2 * this.margin;
     this.height = this.graphic.workspaceHeight - 2 * this.margin;
+    if (this.width < 0) {
+      this.width = 0;
+    }
+    if (this.height < 0) {
+      this.height = 0;
+    }
   }
 
 }

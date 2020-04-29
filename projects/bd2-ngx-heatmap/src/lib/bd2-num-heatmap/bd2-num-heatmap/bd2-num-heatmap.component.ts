@@ -50,11 +50,12 @@ export class Bd2NumHeatmapComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.data) {
+    if (this.data && this.data.length > 0) {
       this.series = this.heatmapDataUtil.seriesToBoxes(this.data, this.asymmetric);
       this.graphic = this.heatmapGraphUtil.prepareGraphicContext(this.series, this.lookAndFeel);
     } else {
       this.graphic = undefined;
+      this.series = undefined;
     }
   }
 
