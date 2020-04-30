@@ -3,6 +3,7 @@ import {VTickMarkComponent} from './v-tick-mark/v-tick-mark.component';
 import {scaleLinear} from 'd3-scale';
 import {CommonModule} from '@angular/common';
 import {NumXAxisComponent} from './num-x-axis.component';
+import {ChangeDetectionStrategy} from '@angular/core';
 
 describe('NumXAxisComponent', () => {
   let component: NumXAxisComponent;
@@ -13,7 +14,10 @@ describe('NumXAxisComponent', () => {
       declarations: [NumXAxisComponent, VTickMarkComponent],
       imports: [CommonModule]
     })
-      .compileComponents();
+    .overrideComponent(NumXAxisComponent , {
+      set: {  changeDetection: ChangeDetectionStrategy.Default  }
+    })
+    .compileComponents();
   }));
 
   beforeEach(() => {
@@ -113,6 +117,7 @@ describe('NumXAxisComponent', () => {
     component.yPosition = 20;
     component.top = true;
 
+    // does not calls ngOnChanges, why
     fixture.detectChanges();
 
     expect(component.axisTransform).toEqual('translate(0,20)');
@@ -120,7 +125,7 @@ describe('NumXAxisComponent', () => {
     expect(component.ticks.length).toBeGreaterThan(1);
   });
 
-  xit('renders svg elements', () => {
+  it('renders svg elements', () => {
 
     const domain = [1, 15];
     const scale = scaleLinear()
@@ -131,23 +136,22 @@ describe('NumXAxisComponent', () => {
     component.yPosition = 20;
     component.top = true;
 
+    // not working, without calling WHY!!!!
+    component.ngOnChanges({});
     fixture.detectChanges();
     expect(component.ticks.length).toBeGreaterThan(1);
 
     const line = fixture.nativeElement.querySelector('line');
     expect(line).toBeDefined();
     expect(line.y2.baseVal.value).toBe(0);
+    expect(line.x2.baseVal.value).toBe(10);
 
-    // not working, WHY!!!!
-    /*
-    let ticks = fixture.debugElement.queryAll(By.css('g.bd2hm-tickMark'));
+
+    const ticks = fixture.nativeElement.querySelectorAll('g.bd2hm-tickMark');
     expect(ticks).toBeDefined();
     expect(ticks.length).toBe(component.ticks.length);
-    */
 
-    // let ticks = fixture.debugElement.queryAll(By.css('div.tmp'));
-    // expect(ticks).toBeDefined();
-    // expect(ticks.length).toBe(component.ticks.length);
+
 
   });
 

@@ -4,6 +4,7 @@ import {BandXAxisComponent} from './band-x-axis.component';
 import {VTickMarkComponent} from '../../../../plot-elements/axis/axis-box/x-axis/v-tick-mark/v-tick-mark.component';
 import {scaleBand} from 'd3-scale';
 import {CommonModule} from '@angular/common';
+import {ChangeDetectionStrategy} from '@angular/core';
 
 describe('BandXAxisComponent', () => {
   let component: BandXAxisComponent;
@@ -14,7 +15,10 @@ describe('BandXAxisComponent', () => {
       declarations: [BandXAxisComponent, VTickMarkComponent],
       imports: [CommonModule]
     })
-      .compileComponents();
+    .overrideComponent(BandXAxisComponent , {
+      set: {  changeDetection: ChangeDetectionStrategy.Default  }
+    })
+    .compileComponents();
   }));
 
   beforeEach(() => {
@@ -129,7 +133,7 @@ describe('BandXAxisComponent', () => {
     expect(component.ticks.length).toBeGreaterThan(1);
   });
 
-  xit('renders svg elements', () => {
+  it('renders svg elements', () => {
 
     const domain = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const scale = scaleBand<number>()
@@ -140,23 +144,22 @@ describe('BandXAxisComponent', () => {
     component.yPosition = 20;
     component.top = true;
 
+    // detect changes does not calls it, why???
+    component.ngOnChanges({});
     fixture.detectChanges();
     expect(component.ticks.length).toBeGreaterThan(1);
 
     const line = fixture.nativeElement.querySelector('line');
     expect(line).toBeDefined();
     expect(line.y2.baseVal.value).toBe(0);
+    expect(line.x2.baseVal.value).toBe(10);
 
-    // not working, WHY!!!!
-    /*
-    let ticks = fixture.debugElement.queryAll(By.css('g.bd2hm-tickMark'));
+
+    const ticks = fixture.nativeElement.querySelectorAll('g.bd2hm-tickMark');
     expect(ticks).toBeDefined();
     expect(ticks.length).toBe(component.ticks.length);
-    */
 
-    // let ticks = fixture.debugElement.queryAll(By.css('div.tmp'));
-    // expect(ticks).toBeDefined();
-    // expect(ticks.length).toBe(component.ticks.length);
+
 
   });
 

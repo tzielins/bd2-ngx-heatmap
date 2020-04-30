@@ -4,6 +4,9 @@ import {BandAxisBoxComponent} from './band-axis-box.component';
 import {CommonModule} from '@angular/common';
 import {Bd2FixedHeatmapUtil} from '../bd2-fixed-heatmap-util';
 import {LookAndFeelSizing} from '../../../bd2-heatmap.dom';
+import {YAxisComponent} from '../../../plot-elements/axis/axis-box/y-axis/y-axis.component';
+import {BandXAxisComponent} from './band-x-axis/band-x-axis.component';
+import {ChangeDetectionStrategy} from '@angular/core';
 
 describe('BandAxisBoxComponent', () => {
   let component: BandAxisBoxComponent;
@@ -11,9 +14,12 @@ describe('BandAxisBoxComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [BandAxisBoxComponent],
+      declarations: [BandAxisBoxComponent, YAxisComponent, BandXAxisComponent],
       imports: [CommonModule]
     })
+      .overrideComponent(BandAxisBoxComponent , {
+        set: {  changeDetection: ChangeDetectionStrategy.Default  }
+      })
       .compileComponents();
   }));
 
@@ -29,7 +35,7 @@ describe('BandAxisBoxComponent', () => {
 
 
 
-  xit('renders', () => {
+  it('renders', () => {
     // does not work, WHY, *ngIf?
     const util = new Bd2FixedHeatmapUtil();
     const context = util.prepareGraphicContext([], new LookAndFeelSizing());

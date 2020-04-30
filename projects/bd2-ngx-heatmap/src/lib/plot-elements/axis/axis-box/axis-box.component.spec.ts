@@ -4,6 +4,9 @@ import {AxisBoxComponent} from './axis-box.component';
 import {HeatmapGraphUtil} from '../../../heatmap-graph-util';
 import {LookAndFeelSizing} from '../../../bd2-heatmap.dom';
 import {CommonModule} from '@angular/common';
+import {NumXAxisComponent} from './x-axis/num-x-axis.component';
+import {ChangeDetectionStrategy} from '@angular/core';
+import {YAxisComponent} from './y-axis/y-axis.component';
 
 describe('AxisBoxComponent', () => {
   let component: AxisBoxComponent;
@@ -11,10 +14,13 @@ describe('AxisBoxComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AxisBoxComponent],
+      declarations: [AxisBoxComponent, NumXAxisComponent, YAxisComponent],
       imports: [CommonModule]
     })
-      .compileComponents();
+    .overrideComponent(AxisBoxComponent , {
+      set: {  changeDetection: ChangeDetectionStrategy.Default  }
+    })
+    .compileComponents();
   }));
 
   beforeEach(() => {
@@ -29,7 +35,7 @@ describe('AxisBoxComponent', () => {
 
 
 
-  xit('renders', () => {
+  it('renders', () => {
     // does not work, WHY, *ngIf?
     const util = new HeatmapGraphUtil();
     const context = util.prepareGraphicContext([], new LookAndFeelSizing());
