@@ -16,7 +16,28 @@
       <button (click)="generate()">Generate</button>
       <br/>
       {{message()}}
+      <br/>
 
+      <!-- trying to reproduce freeze problems with material and heatmap in biodare, but cannot
+      <mat-form-field>
+        <mat-label>Select an option</mat-label>
+        <mat-select [(value)]="size">
+          <mat-option *ngFor="let val of sizes" [value]="val">{{val}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <br/>
+      <mat-paginator #dataPaginator [length]="10000"
+                     [pageSize]="size"
+                     [pageIndex]="pageIndex"
+                     [pageSizeOptions]="sizes"
+                     (page)="loadDataPage($event)"
+
+      >
+      </mat-paginator>
+
+      <app-params-form [size]="size" (nextSize)="nextSize($event)"></app-params-form>
+      -->
     </div>
     <div class="col-2">&nbsp;</div>
   </div>

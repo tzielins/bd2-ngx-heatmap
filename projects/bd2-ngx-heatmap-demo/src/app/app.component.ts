@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Point, Serie} from 'bd2-ngx-heatmap';
-
+import { PageEvent } from '@angular/material/paginator';
 
 const dataJson =
   `
@@ -40,6 +40,9 @@ export class AppComponent implements OnInit {
   gaps = false;
   normalized = true;
 
+  sizes = [10, 25, 50, 100, 200, 500];
+  pageIndex = 0;
+
   data: Serie[] = JSON.parse(dataJson72);
 
   msgI = 1;
@@ -61,6 +64,18 @@ export class AppComponent implements OnInit {
     return this.normalized ? JSON.parse(dataNorm120) : JSON.parse(dataRaw120);
   }
 
+  loadDataPage(page: PageEvent) {
+    console.log('Load page', page);
+    this.pageIndex = page.pageIndex;
+    this.size = page.pageSize;
+
+  }
+
+  nextSize(size: number) {
+    this.size = size;
+    this.generate();
+  }
+
   generate() {
 
     this.data = this.testData();
@@ -73,6 +88,7 @@ export class AppComponent implements OnInit {
 
     this.data.forEach((v, i) => {
       v.key = i;
+      v.label = `${i}. ${v.label}`;
     });
 
     this.data.forEach(s => s.data = this.extend(s.data, this.lastX));
