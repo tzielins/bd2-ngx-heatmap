@@ -1,5 +1,5 @@
 import {HeatmapGraphUtil} from './heatmap-graph-util';
-import {GraphicContext, LookAndFeelSizing, Point, Serie} from './bd2-heatmap.dom';
+import {BoxDef, BoxSerie, GraphicContext, LookAndFeelSizing, Point, Serie} from './bd2-heatmap.dom';
 import {scaleLinear} from 'd3-scale';
 
 
@@ -103,6 +103,49 @@ describe('HeatmapGraphUtil', () => {
     traces.push(s);
     expect(util.timeDomain(traces)).toEqual([1, 5]);
 
+  });
+
+  it('timeMargin gives default if data not boxes', () => {
+
+    const timeDomain: [number, number] = [1, 5];
+    const traces: Serie[] = [];
+    expect(util.timeMargin(traces, timeDomain)).toEqual(0.5);
+
+    traces.push({} as Serie);
+    expect(util.timeMargin(traces, timeDomain)).toEqual(0.5);
+
+    let points: Point[] = [{x: 2, y: 2}, {x: 5, y: 3}];
+    let s = { data: points} as Serie;
+    traces.push(s);
+
+    points = [{x: 1, y: 2}];
+    s = { data: points} as Serie;
+    traces.push(s);
+    expect(util.timeMargin(traces, timeDomain)).toEqual(0.5);
+
+  });
+
+  it('timeMargin gives left width of box data with min x from domain', () => {
+
+    const timeDomain: [number, number] = [1, 5];
+    const traces: Serie[] = [];
+
+    traces.push({} as Serie);
+    expect(util.timeMargin(traces, timeDomain)).toEqual(0.5);
+
+    let points: BoxDef[] = [new BoxDef(2,  2, 1.5, 2.5), new BoxDef(5, 3, 4.8, 5.2)];
+    let s = { data: points} as BoxSerie;
+    traces.push(s);
+
+    points = [new BoxDef(1,  2, 0, 2)];
+    s = { data: points} as BoxSerie;
+    traces.push(s);
+    expect(util.timeMargin(traces, timeDomain)).toEqual(1);
+
+    points = [new BoxDef(1,  2, -0.5, 2)];
+    s = { data: points} as BoxSerie;
+    traces.push(s);
+    expect(util.timeMargin(traces, timeDomain)).toEqual(1.5);
   });
 
   it('creates formaters for domain and values', () => {

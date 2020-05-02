@@ -1,4 +1,4 @@
-import {GraphicContext, LookAndFeelSizing, Serie} from './bd2-heatmap.dom';
+import {BoxDef, GraphicContext, LookAndFeelSizing, Serie} from './bd2-heatmap.dom';
 import {scaleBand, scaleLinear, scaleQuantize} from 'd3-scale';
 import {colors} from './color-util';
 import {format} from 'd3-format';
@@ -47,9 +47,9 @@ export class HeatmapGraphUtil {
 
   addScales(context: GraphicContext, data: Serie[], lookAndFeel: LookAndFeelSizing) {
 
-    const defMargin = 0.5;
     let timeDomain = this.timeDomain(data);
-    timeDomain = [timeDomain[0] - defMargin, timeDomain[1] + defMargin];
+    const margin = this.timeMargin(data, timeDomain);
+    timeDomain = [timeDomain[0] - margin, timeDomain[1] + margin];
 
     context.xScale = scaleLinear()
       .clamp(true)
@@ -75,6 +75,22 @@ export class HeatmapGraphUtil {
 
     const valuesRange = this.valuesRange(data);
     context.valuesFormatter = this.formatForDomain(valuesRange);
+  }
+
+  timeMargin(data: Serie[], timeDomain: [number, number]) {
+
+    const min = timeDomain[0];
+    let margin = 0.5;
+
+    data.filter( serie => serie.data && serie.data.length > 0 && serie.data[0].x === min)
+        .forEach(serie => {
+          const p = serie.data[0];
+          if (p instanceof BoxDef) {
+            margin = Math.max(margin, p.x - p.left);
+          }
+        });
+
+    return margin;
   }
 
   timeDomain(data: Serie[]): [number, number] {
