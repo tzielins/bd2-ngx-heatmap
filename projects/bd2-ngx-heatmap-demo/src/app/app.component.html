@@ -13,6 +13,8 @@
       <br/>
       <label>normalized</label><input type="checkbox" [(ngModel)]="normalized">
       <br/>
+      <label>middle zero</label><input type="checkbox" [(ngModel)]="middleZero">
+      <br/>
       <button (click)="generate()">Generate</button>
       <br/>
       {{message()}}
@@ -44,7 +46,7 @@
   <div class="row">
     <div class="col-2">&nbsp;</div>
     <div class="col-8">
-      <bd2-num-heatmap [data]="data" [asymmetric]="false" class="customized">
+      <bd2-num-heatmap [data]="data" [asymmetric]="false" [middleZero]="middleZero" class="customized">
       </bd2-num-heatmap>
 
     </div>

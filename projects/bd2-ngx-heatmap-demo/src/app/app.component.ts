@@ -39,6 +39,7 @@ export class AppComponent implements OnInit {
   lastX = 120;
   gaps = false;
   normalized = true;
+  middleZero = false;
 
   sizes = [10, 25, 50, 100, 200, 500];
   pageIndex = 0;

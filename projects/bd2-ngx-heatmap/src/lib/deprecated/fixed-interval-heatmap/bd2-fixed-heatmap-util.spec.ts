@@ -75,7 +75,7 @@ describe('Bd2FixedHeatmapUtil', () => {
   it('heatmap scale constructs a scale', () => {
 
     const traces: Serie[] = [ {min: 1, max: 10} as Serie];
-    const scale = util.heatmapScale(traces);
+    const scale = util.heatmapScale(traces, false);
 
     expect(scale(1)).not.toEqual(scale(10));
     expect(scale(11)).toEqual(scale(10));
@@ -158,7 +158,7 @@ describe('Bd2FixedHeatmapUtil', () => {
     traces.push(s);
 
     const look = new LookAndFeelSizing();
-    util.addScales(graphic, traces, look);
+    util.addScales(graphic, traces, look, false);
     expect(graphic.xBandScale).toBeDefined();
     expect(graphic.yScale).toBeDefined();
     expect(graphic.colorScale).toBeDefined();

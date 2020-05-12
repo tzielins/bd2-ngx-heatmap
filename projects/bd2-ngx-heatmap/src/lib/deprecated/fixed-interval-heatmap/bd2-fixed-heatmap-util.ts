@@ -5,21 +5,21 @@ import {LookAndFeelSizing, Serie} from '../../bd2-heatmap.dom';
 
 export class Bd2FixedHeatmapUtil extends HeatmapGraphUtil {
 
-  prepareGraphicContext(data: Serie[], lookAndFeel: LookAndFeelSizing): FixedGraphicContext {
+  prepareGraphicContext(data: Serie[], lookAndFeel: LookAndFeelSizing, middleZero: boolean = false): FixedGraphicContext {
 
     const context = new FixedGraphicContext();
 
     this.calculateDimensions(context, data, lookAndFeel);
     this.addPaneAttributes(context, lookAndFeel);
 
-    this.addScales(context, data, lookAndFeel);
+    this.addScales(context, data, lookAndFeel, middleZero);
     this.addFormatters(context, data);
 
     context.labelsColors = this.labelsColors(data);
     return context;
   }
 
-  addScales(context: FixedGraphicContext, data: Serie[], lookAndFeel: LookAndFeelSizing) {
+  addScales(context: FixedGraphicContext, data: Serie[], lookAndFeel: LookAndFeelSizing, middleZero: boolean) {
 
     const timeDomain = this.timeDomainBand(data);
 
@@ -38,7 +38,7 @@ export class Bd2FixedHeatmapUtil extends HeatmapGraphUtil {
       .domain(yDomain)
       .range([0, context.workspaceHeight]);
 
-    context.colorScale = this.heatmapScale(data);
+    context.colorScale = this.heatmapScale(data, middleZero);
 
 
   }

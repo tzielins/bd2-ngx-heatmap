@@ -6,14 +6,14 @@ import {interpolateSpectral} from 'd3-scale-chromatic';
 
 export class HeatmapGraphUtil {
 
-  prepareGraphicContext(data: Serie[], lookAndFeel: LookAndFeelSizing): GraphicContext {
+  prepareGraphicContext(data: Serie[], lookAndFeel: LookAndFeelSizing, middleZero: boolean=false): GraphicContext {
 
     const context = new GraphicContext();
 
     this.calculateDimensions(context, data, lookAndFeel);
     this.addPaneAttributes(context, lookAndFeel);
 
-    this.addScales(context, data, lookAndFeel);
+    this.addScales(context, data, lookAndFeel, middleZero);
     this.addFormatters(context, data);
 
     context.labelsColors = this.labelsColors(data);
@@ -45,7 +45,7 @@ export class HeatmapGraphUtil {
     context.mainPaneTransform = `translate(${2 * lookAndFeel.hMargin}, ${lookAndFeel.vMargin})`;
   }
 
-  addScales(context: GraphicContext, data: Serie[], lookAndFeel: LookAndFeelSizing) {
+  addScales(context: GraphicContext, data: Serie[], lookAndFeel: LookAndFeelSizing, middleZero: boolean) {
 
     let timeDomain = this.timeDomain(data);
     context.xDomain = timeDomain;
@@ -67,7 +67,7 @@ export class HeatmapGraphUtil {
       .domain(yDomain)
       .range([0, context.workspaceHeight]);
 
-    context.colorScale = this.heatmapScale(data);
+    context.colorScale = this.heatmapScale(data, middleZero);
 
 
   }
@@ -117,9 +117,13 @@ export class HeatmapGraphUtil {
 
 
 
-  heatmapScale(data: Serie[]) {
+  heatmapScale(data: Serie[], middleZero: boolean) {
 
-    const domain = this.valuesRange(data);
+    let domain = this.valuesRange(data);
+    if (middleZero) {
+      const max = Math.max(Math.abs(domain[0]), Math.abs(domain[1]));
+      domain = [-max, max];
+    }
     const range = colors();
 
     return scaleQuantize<string>().domain(domain).range(range);

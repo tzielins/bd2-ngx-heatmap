@@ -75,12 +75,29 @@ describe('HeatmapGraphUtil', () => {
   it('heatmap scale constructs a scale', () => {
 
     const traces: Serie[] = [ {min: 1, max: 10} as Serie];
-    const scale = util.heatmapScale(traces);
+    const scale = util.heatmapScale(traces, false);
 
     expect(scale(1)).not.toEqual(scale(10));
     expect(scale(11)).toEqual(scale(10));
     expect(scale(0)).toEqual(scale(1));
     expect(scale(1)).not.toEqual(scale(2));
+
+  });
+
+  it('heatmap scale constructs a scale symmetrica over zero', () => {
+
+    const traces: Serie[] = [ {min: 1, max: 10} as Serie];
+    let scale = util.heatmapScale(traces, false);
+
+    expect(scale(0)).toEqual('#d62728');
+    expect(scale(1)).toEqual('#d62728');
+    expect(scale(10)).toEqual('#1f77b4');
+
+    scale = util.heatmapScale(traces, true);
+    expect(scale(0)).toEqual('#ffffff');
+    expect(scale(-10)).toEqual('#d62728');
+    expect(scale(10)).toEqual('#1f77b4');
+
 
   });
 
@@ -201,7 +218,7 @@ describe('HeatmapGraphUtil', () => {
     };
 
     // const boxes = util.serieToBoxes(ser, true);
-    util.addScales(graphic, [ser], look);
+    util.addScales(graphic, [ser], look, false);
     expect(graphic.xScale).toBeDefined();
     expect(graphic.yScale).toBeDefined();
     expect(graphic.colorScale).toBeDefined();

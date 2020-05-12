@@ -22,6 +22,9 @@ export class Bd2NumHeatmapComponent implements OnInit, OnDestroy, OnChanges {
   asymmetric = false;
 
   @Input()
+  middleZero = false;
+
+  @Input()
   hidden = false;
 
   @Input()
@@ -52,7 +55,7 @@ export class Bd2NumHeatmapComponent implements OnInit, OnDestroy, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (this.data && this.data.length > 0) {
       this.series = this.heatmapDataUtil.seriesToBoxes(this.data, this.asymmetric);
-      this.graphic = this.heatmapGraphUtil.prepareGraphicContext(this.series, this.lookAndFeel);
+      this.graphic = this.heatmapGraphUtil.prepareGraphicContext(this.series, this.lookAndFeel, this.middleZero);
     } else {
       this.graphic = undefined;
       this.series = undefined;
