@@ -21,6 +21,9 @@ export class NumXAxisComponent implements OnInit, OnChanges {
   xScale: ScaleLinear<number, number>;
 
   @Input()
+  xDomain: [number, number];
+
+  @Input()
   yPosition: number;
 
   @Input()
@@ -62,7 +65,7 @@ export class NumXAxisComponent implements OnInit, OnChanges {
       return [];
     }
     const ticks = [];
-    const domain = xScale.domain();
+    const domain = this.xDomain || xScale.domain();
     const first = Math.round(domain[0]);
     const last = Math.round(domain[1]);
     const step = this.domainStep(last - first);

@@ -48,6 +48,8 @@ export class HeatmapGraphUtil {
   addScales(context: GraphicContext, data: Serie[], lookAndFeel: LookAndFeelSizing) {
 
     let timeDomain = this.timeDomain(data);
+    context.xDomain = timeDomain;
+
     const margin = this.timeMargin(data, timeDomain);
     timeDomain = [timeDomain[0] - margin, timeDomain[1] + margin];
 
@@ -57,6 +59,7 @@ export class HeatmapGraphUtil {
       .range([0, context.workspaceWidth]);
 
     const yDomain = data.map(s => s.key);
+    context.yDomain = yDomain;
 
     context.yScale = scaleBand()
       .paddingInner(lookAndFeel.rowGap)

@@ -23,6 +23,9 @@ export class GraphicContext {
   workspaceWidth: number;
   workspaceHeight: number;
 
+  xDomain: [number, number];
+  yDomain: any[];
+
   xScale: ScaleLinear<number, number>;
   yScale: ScaleBand<any>;
 
