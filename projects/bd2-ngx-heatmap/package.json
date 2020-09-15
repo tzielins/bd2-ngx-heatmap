@@ -22,11 +22,11 @@
     "d3-color": "^1.4.0",
     "d3-format": "^1.4.4",
     "d3-scale": "^3.2.1",
-    "d3-scale-chromatic": "^1.5.0"
+    "d3-scale-chromatic": "^1.5.0",
+    "tslib": "^2.0.0"
   },
   "peerDependencies": {
     "@angular/common": "^9.1.6",
-    "@angular/core": "^9.1.6",
-    "tslib": "^1.10.0"
+    "@angular/core": "^9.1.6"
   }
 }
