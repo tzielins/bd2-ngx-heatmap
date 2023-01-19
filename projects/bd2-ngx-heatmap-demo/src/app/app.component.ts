@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Point, Serie} from 'bd2-ngx-heatmap';
-import { PageEvent } from '@angular/material/paginator';
 
 const dataJson =
   `
@@ -65,12 +64,13 @@ export class AppComponent implements OnInit {
     return this.normalized ? JSON.parse(dataNorm120) : JSON.parse(dataRaw120);
   }
 
+  /**
   loadDataPage(page: PageEvent) {
     console.log('Load page', page);
     this.pageIndex = page.pageIndex;
     this.size = page.pageSize;
 
-  }
+  }*/
 
   nextSize(size: number) {
     this.size = size;
