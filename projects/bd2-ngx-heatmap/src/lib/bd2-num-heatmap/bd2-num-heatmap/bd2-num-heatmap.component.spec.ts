@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import {Bd2NumHeatmapComponent} from './bd2-num-heatmap.component';
 
@@ -6,7 +6,7 @@ describe('Bd2NumHeatmapComponent', () => {
   let component: Bd2NumHeatmapComponent;
   let fixture: ComponentFixture<Bd2NumHeatmapComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ Bd2NumHeatmapComponent ]
     })

@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import {AxisBoxComponent} from './axis-box.component';
 import {HeatmapGraphUtil} from '../../../heatmap-graph-util';
@@ -12,7 +12,7 @@ describe('AxisBoxComponent', () => {
   let component: AxisBoxComponent;
   let fixture: ComponentFixture<AxisBoxComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [AxisBoxComponent, NumXAxisComponent, YAxisComponent],
       imports: [CommonModule]

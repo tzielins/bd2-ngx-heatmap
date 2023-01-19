@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import {SerieRowComponent} from './serie-row.component';
 import {BoxSerie, GraphicContext} from '../../../bd2-heatmap.dom';
@@ -8,7 +8,7 @@ describe('SerieRowComponent', () => {
   let component: SerieRowComponent;
   let fixture: ComponentFixture<SerieRowComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [SerieRowComponent]
     })

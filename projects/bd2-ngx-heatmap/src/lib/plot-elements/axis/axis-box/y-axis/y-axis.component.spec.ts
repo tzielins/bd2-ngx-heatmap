@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import {YAxisComponent} from './y-axis.component';
 import {scaleBand} from 'd3-scale';
@@ -7,7 +7,7 @@ describe('YAxisComponent', () => {
   let component: YAxisComponent;
   let fixture: ComponentFixture<YAxisComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [YAxisComponent]
     })

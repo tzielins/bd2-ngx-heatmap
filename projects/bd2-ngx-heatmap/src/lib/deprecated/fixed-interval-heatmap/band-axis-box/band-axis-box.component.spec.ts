@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import {BandAxisBoxComponent} from './band-axis-box.component';
 import {CommonModule} from '@angular/common';
@@ -12,7 +12,7 @@ describe('BandAxisBoxComponent', () => {
   let component: BandAxisBoxComponent;
   let fixture: ComponentFixture<BandAxisBoxComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [BandAxisBoxComponent, YAxisComponent, BandXAxisComponent],
       imports: [CommonModule]

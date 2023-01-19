@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import {LabelsComponent} from './labels.component';
 import {GraphicContext, Serie} from '../../bd2-heatmap.dom';
@@ -8,7 +8,7 @@ describe('LabelsComponent', () => {
   let component: LabelsComponent;
   let fixture: ComponentFixture<LabelsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [LabelsComponent]
     })

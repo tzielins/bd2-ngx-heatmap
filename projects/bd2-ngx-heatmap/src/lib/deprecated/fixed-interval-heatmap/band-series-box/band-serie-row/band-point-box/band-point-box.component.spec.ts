@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import {BandPointBoxComponent} from './band-point-box.component';
 import {scaleBand, scaleQuantize} from 'd3-scale';
@@ -10,7 +10,7 @@ describe('DataPointBoxComponent', () => {
   let tooltip: jasmine.SpyObj<TooltipService>;
 
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     tooltip = jasmine.createSpyObj('TooltipService', ['showTooltip', 'hideTooltip']);
     TestBed.configureTestingModule({
       declarations: [BandPointBoxComponent],

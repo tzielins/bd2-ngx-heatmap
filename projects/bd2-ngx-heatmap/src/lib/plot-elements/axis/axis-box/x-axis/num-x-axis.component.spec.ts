@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import {VTickMarkComponent} from './v-tick-mark/v-tick-mark.component';
 import {scaleLinear} from 'd3-scale';
 import {CommonModule} from '@angular/common';
@@ -9,7 +9,7 @@ describe('NumXAxisComponent', () => {
   let component: NumXAxisComponent;
   let fixture: ComponentFixture<NumXAxisComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [NumXAxisComponent, VTickMarkComponent],
       imports: [CommonModule]

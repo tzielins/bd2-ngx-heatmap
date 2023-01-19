@@ -1,10 +1,10 @@
-import {async, TestBed} from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import {AppComponent} from './app.component';
 import {FormsModule} from '@angular/forms';
 import {Bd2NgxHeatmapModule} from 'bd2-ngx-heatmap';
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent

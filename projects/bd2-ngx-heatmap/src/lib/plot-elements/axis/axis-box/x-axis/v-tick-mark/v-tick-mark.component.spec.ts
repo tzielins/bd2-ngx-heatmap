@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import {VTickMarkComponent} from './v-tick-mark.component';
 import {Tick} from '../../../../../bd2-heatmap.dom';
@@ -7,7 +7,7 @@ describe('VTickMarkComponent', () => {
   let component: VTickMarkComponent;
   let fixture: ComponentFixture<VTickMarkComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [VTickMarkComponent]
     })

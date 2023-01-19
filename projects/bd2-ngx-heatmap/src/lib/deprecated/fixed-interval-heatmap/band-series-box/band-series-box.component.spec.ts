@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import {BandSeriesBoxComponent} from './band-series-box.component';
 
@@ -6,7 +6,7 @@ describe('BandSeriesBoxComponent', () => {
   let component: BandSeriesBoxComponent;
   let fixture: ComponentFixture<BandSeriesBoxComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [BandSeriesBoxComponent]
     })

@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import {PaneBackComponent} from './pane-back.component';
 import {GraphicContext} from '../../bd2-heatmap.dom';
@@ -7,7 +7,7 @@ describe('PaneBackComponent', () => {
   let component: PaneBackComponent;
   let fixture: ComponentFixture<PaneBackComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [PaneBackComponent]
     })

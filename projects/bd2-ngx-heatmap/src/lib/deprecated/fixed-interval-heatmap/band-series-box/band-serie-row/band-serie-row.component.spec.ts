@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import {BandSerieRowComponent} from './band-serie-row.component';
 import {scaleBand} from 'd3-scale';
@@ -9,7 +9,7 @@ describe('SerieRowComponent', () => {
   let component: BandSerieRowComponent;
   let fixture: ComponentFixture<BandSerieRowComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [BandSerieRowComponent]
     })

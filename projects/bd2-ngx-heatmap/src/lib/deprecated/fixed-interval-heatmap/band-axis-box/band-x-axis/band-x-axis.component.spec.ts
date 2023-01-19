@@ -1,4 +1,4 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import {BandXAxisComponent} from './band-x-axis.component';
 import {VTickMarkComponent} from '../../../../plot-elements/axis/axis-box/x-axis/v-tick-mark/v-tick-mark.component';
@@ -10,7 +10,7 @@ describe('BandXAxisComponent', () => {
   let component: BandXAxisComponent;
   let fixture: ComponentFixture<BandXAxisComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [BandXAxisComponent, VTickMarkComponent],
       imports: [CommonModule]
