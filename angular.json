@@ -24,9 +24,12 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],			  
             "main": "projects/bd2-ngx-heatmap/src/test.ts",
             "tsConfig": "projects/bd2-ngx-heatmap/tsconfig.spec.json",
-            "karmaConfig": "projects/bd2-ngx-heatmap/karma.conf.js"
           }
         }
       }
@@ -115,9 +118,11 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "projects/bd2-ngx-heatmap-demo/src/test.ts",
-            "polyfills": "projects/bd2-ngx-heatmap-demo/src/polyfills.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "projects/bd2-ngx-heatmap-demo/tsconfig.spec.json",
-            "karmaConfig": "projects/bd2-ngx-heatmap-demo/karma.conf.js",
             "assets": [
               "projects/bd2-ngx-heatmap-demo/src/favicon.ico",
               "projects/bd2-ngx-heatmap-demo/src/assets"
