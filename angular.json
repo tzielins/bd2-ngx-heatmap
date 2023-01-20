@@ -28,18 +28,6 @@
             "tsConfig": "projects/bd2-ngx-heatmap/tsconfig.spec.json",
             "karmaConfig": "projects/bd2-ngx-heatmap/karma.conf.js"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/bd2-ngx-heatmap/tsconfig.lib.json",
-              "projects/bd2-ngx-heatmap/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     },
@@ -138,19 +126,6 @@
               "projects/bd2-ngx-heatmap-demo/src/styles.css"
             ],
             "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/bd2-ngx-heatmap-demo/tsconfig.app.json",
-              "projects/bd2-ngx-heatmap-demo/tsconfig.spec.json",
-              "projects/bd2-ngx-heatmap-demo/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         },
         "e2e": {
