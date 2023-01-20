@@ -145,6 +145,5 @@
   },
   "cli": {
     "analytics": "214f0a08-0f67-4403-8049-39f9b8b3edbe"
-  },
-  "defaultProject": "bd2-ngx-heatmap"
+  }
 }
