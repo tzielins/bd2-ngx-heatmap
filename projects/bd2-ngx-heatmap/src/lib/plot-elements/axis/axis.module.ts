@@ -21,6 +21,6 @@ import {NumXAxisComponent} from './axis-box/x-axis/num-x-axis.component';
     NumXAxisComponent,
     YAxisComponent,
     VTickMarkComponent,
-  ]
+  ],
 })
 export class AxisModule { }

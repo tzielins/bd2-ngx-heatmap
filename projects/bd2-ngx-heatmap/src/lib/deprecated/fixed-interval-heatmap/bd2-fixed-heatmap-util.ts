@@ -5,7 +5,7 @@ import {LookAndFeelSizing, Serie} from '../../bd2-heatmap.dom';
 
 export class Bd2FixedHeatmapUtil extends HeatmapGraphUtil {
 
-  prepareGraphicContext(data: Serie[], lookAndFeel: LookAndFeelSizing, middleZero: boolean = false): FixedGraphicContext {
+  override prepareGraphicContext(data: Serie[], lookAndFeel: LookAndFeelSizing, middleZero = false): FixedGraphicContext {
 
     const context = new FixedGraphicContext();
 
@@ -19,7 +19,7 @@ export class Bd2FixedHeatmapUtil extends HeatmapGraphUtil {
     return context;
   }
 
-  addScales(context: FixedGraphicContext, data: Serie[], lookAndFeel: LookAndFeelSizing, middleZero: boolean) {
+  override addScales(context: FixedGraphicContext, data: Serie[], lookAndFeel: LookAndFeelSizing, middleZero: boolean) {
 
     const timeDomain = this.timeDomainBand(data);
 

@@ -32,7 +32,7 @@ of coordinates or colors not for rendering.
 export class AppModule { }
 ```
 
-2. Include heatmap component in your template: 
+2. Include heatmap component in your template:
 
 ```
       <bd2-num-heatmap [data]="data" class="customized">
@@ -51,7 +51,7 @@ For example:
 }
 ```
 
-Check the demo app, and Bd2NumHeatmapComponent embeded css for 
+Check the demo app, and Bd2NumHeatmapComponent embeded css for
 classes.
 
 
