@@ -7,6 +7,7 @@ import {LookAndFeelSizing} from '../../../bd2-heatmap.dom';
 import {YAxisComponent} from '../../../plot-elements/axis/axis-box/y-axis/y-axis.component';
 import {BandXAxisComponent} from './band-x-axis/band-x-axis.component';
 import {ChangeDetectionStrategy} from '@angular/core';
+import {VTickMarkComponent} from "../../../plot-elements/axis/axis-box/x-axis/v-tick-mark/v-tick-mark.component";
 
 describe('BandAxisBoxComponent', () => {
   let component: BandAxisBoxComponent;
@@ -14,7 +15,7 @@ describe('BandAxisBoxComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [BandAxisBoxComponent, YAxisComponent, BandXAxisComponent],
+      declarations: [BandAxisBoxComponent, YAxisComponent, VTickMarkComponent, BandXAxisComponent],
       imports: [CommonModule]
     })
       .overrideComponent(BandAxisBoxComponent , {

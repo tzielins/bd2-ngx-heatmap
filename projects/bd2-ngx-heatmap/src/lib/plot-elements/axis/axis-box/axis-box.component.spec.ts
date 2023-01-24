@@ -7,6 +7,7 @@ import {CommonModule} from '@angular/common';
 import {NumXAxisComponent} from './x-axis/num-x-axis.component';
 import {ChangeDetectionStrategy} from '@angular/core';
 import {YAxisComponent} from './y-axis/y-axis.component';
+import {VTickMarkComponent} from "./x-axis/v-tick-mark/v-tick-mark.component";
 
 describe('AxisBoxComponent', () => {
   let component: AxisBoxComponent;
@@ -14,7 +15,7 @@ describe('AxisBoxComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [AxisBoxComponent, NumXAxisComponent, YAxisComponent],
+      declarations: [AxisBoxComponent, NumXAxisComponent, YAxisComponent, VTickMarkComponent],
       imports: [CommonModule]
     })
     .overrideComponent(AxisBoxComponent , {
